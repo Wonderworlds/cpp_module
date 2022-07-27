@@ -6,16 +6,32 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 14:44:25 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 15:02:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/27 16:46:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
+void	__megaphone(char *line)
+{
+	int		j;
+	char	c;
+
+	j = 0;
+	while (line[j])
+	{
+		if (line[j] <= 'z' && line[j] >= 'a')
+			c = line[j] - 32;
+		else
+			c = line[j];
+		std::cout << c;
+		j++;
+	}
+}
+
 int	main(int ac, char **av)
 {
-	int		i, j;
-	char	c;
+	int		i;
 
 	if (ac == 1)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
@@ -24,16 +40,7 @@ int	main(int ac, char **av)
 		i = 1;
 		while (i < ac)
 		{
-			j = 0;
-			while (av[i][j])
-			{
-				if (av[i][j] <= 'z' && av[i][j] >= 'a')
-					c = av[i][j] - 32;
-				else
-					c = av[i][j];
-				std::cout << c;
-				j++;
-			}
+			__megaphone(av[i]);
 			i++;
 		}
 		std::cout << std::endl;

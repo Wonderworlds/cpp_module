@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 19:38:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 20:15:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/27 22:18:04 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void	Contact::setphonenumber(std::string str) {
 }
 
 std::string	Contact::getsecret(void) const {
-	return this->_secret;
+	return this->_darkestsecret;
 }
 
 void	Contact::setsecret(std::string str) {
-	this->_secret.assign(str);
+	this->_darkestsecret.assign(str);
 	return ;
 }

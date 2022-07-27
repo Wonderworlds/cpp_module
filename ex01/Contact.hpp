@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:14:01 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 20:07:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/27 22:18:04 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ private:
 	std::string _lastname;
 	std::string _nickname;
 	std::string _phonenumber;
-	std::string _secret;
+	std::string _darkestsecret;
 
 public:
 

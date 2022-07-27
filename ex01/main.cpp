@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:55:40 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 21:17:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/27 23:12:06 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,37 @@ static void	__add(PhoneBook *instance) {
 	std::cout << "\033[H\033[2J\033[3J";
 }
 
+static void	__search_index(PhoneBook *instance)
+{
+	std::string	number;
+	Contact		*ptr;
+	const int 	size = instance->getsize();
+
+	std::cout << "Choose an index between 1 and " << size << " | 0 to return to menu";
+	std::cout << std::endl << "Your choice: ";
+	std::getline(std::cin, number);
+	while (!(number.size() == 1 && *number.begin() <= (size + '0') && *number.begin() > '0'))
+	{
+		if (number.size() == 1 && *number.begin() == '0')
+		{
+			std::cout << "\033[H\033[2J\033[3J";
+			return ;
+		}
+		std::cout << "\033[A\33[2K\r" << "Error index: " << number << " | Your choice: ";
+		std::getline(std::cin, number);
+	}
+	ptr = instance->getcontact(*number.begin() - '1');
+	std::cout << "\033[H\033[2J\033[3J";
+	std::cout << "First name: " << ptr->getfirstname() << std::endl;
+	std::cout << "Last name: " << ptr->getlastname() << std::endl;
+	std::cout << "Nickname: " << ptr->getnickname() << std::endl;
+	std::cout << "Phone number: " << ptr->getphonenumber() << std::endl;
+	std::cout << "Darkest secret: " << ptr->getsecret() << std::endl;
+	std::cout << std::endl << "Press ENTER...";
+	std::cin.get();
+	std::cout << "\033[H\033[2J\033[3J";
+}
+
 static void	__search(PhoneBook *instance) {
 	Contact		*ptr;
 	int			index = 0;
@@ -68,9 +99,10 @@ static void	__search(PhoneBook *instance) {
 		while (index < size)
 		{
 			ptr = instance->getcontact(index);
-			__display_contact(ptr, index);
+			__display_contact(ptr, index + 1);
 			index++;
 		}
+		__search_index(instance);
 	}
 }
 
@@ -91,8 +123,6 @@ static void	__menu(PhoneBook *instance) {
 			__add(instance);
 		else if (!buff.compare("SEARCH"))
 			__search(instance);
-		else
-			std::cout << "error: " << buff << std::endl << std::endl;
 	}
 }
 

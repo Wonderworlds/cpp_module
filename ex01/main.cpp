@@ -6,25 +6,47 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:55:40 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 20:40:12 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/27 21:17:37 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 #include <iostream>
+#include <iomanip>
 
 #define PROMPT_MSG "Three choices : ADD, SEARCH, EXIT"
 #define PROMPT "Your choice: "
 #define BUFFER_SIZE 8
 
-static void	__display_contact(Contact *instance) {
-	std::cout << "\033[H\033[2J\033[3J";
-	std::cout << "First name: " << instance->getfirstname() << std::endl;
-	std::cout << "Last name: " << instance->getlastname() << std::endl;
-	std::cout << "Nickname: " << instance->getnickname() << std::endl;
-	std::cout << "Phone number: " << instance->getphonenumber() << std::endl;
-	std::cout << "secret: " << instance->getsecret() << std::endl;
+static void	__display_str(std::string str) {
+	size_t	len_str;
+
+	len_str = str.size();
+	std::cout << "|";
+	if (len_str <= 10)
+	{
+		while (len_str < 10)
+		{
+			std::cout << " ";
+			len_str++;
+		}
+		std::cout << str;
+	}
+	else
+	{
+		std::cout << str.substr(0, 9);
+		std::cout << ".";
+	}
+}
+
+static void	__display_contact(Contact *instance, int index) {
+	std::cout << "|" << "         " << index;
+	__display_str(instance->getfirstname());
+	__display_str(instance->getlastname());
+	__display_str(instance->getnickname());
+	std::cout << "|" << std::endl;
+	std::cout << "---------------------------------------------" << std::endl;
 }
 
 static void	__add(PhoneBook *instance) {
@@ -33,10 +55,23 @@ static void	__add(PhoneBook *instance) {
 }
 
 static void	__search(PhoneBook *instance) {
-	Contact	*ptr;
+	Contact		*ptr;
+	int			index = 0;
+	const int	size = instance->getsize();
 
-	ptr = instance->getcontact(0);
-	__display_contact(ptr);
+	std::cout << "\033[H\033[2J\033[3J";
+	if (size == 0)
+		std::cout << "Contact list is empty" << std::endl << std::endl;
+	else
+	{
+		std::cout << "---------------------------------------------" << std::endl;
+		while (index < size)
+		{
+			ptr = instance->getcontact(index);
+			__display_contact(ptr, index);
+			index++;
+		}
+	}
 }
 
 static void	__menu(PhoneBook *instance) {

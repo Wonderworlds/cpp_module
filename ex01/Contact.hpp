@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:14:01 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 22:18:04 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 00:37:36 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <iostream>
 
-class Contact
-{
+class Contact {
+
 private:
 
 	std::string _firstname;

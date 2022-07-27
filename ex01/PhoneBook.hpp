@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:12:04 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 23:33:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 00:37:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 #include "Contact.hpp"
 
-class PhoneBook
-{
+class PhoneBook {
+
 private:
 	Contact _contacts[8];
 	int		_index;

@@ -6,11 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 14:44:25 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 16:46:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/27 16:49:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#define NOISE "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
 
 void	__megaphone(char *line)
 {
@@ -34,7 +35,7 @@ int	main(int ac, char **av)
 	int		i;
 
 	if (ac == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+		std::cout << NOISE << std::endl;
 	else
 	{
 		i = 1;

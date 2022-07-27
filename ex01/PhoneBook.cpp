@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 20:16:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 21:17:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/27 23:30:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ PhoneBook::~PhoneBook(void) {
 	return ;
 }
 
-Contact	*PhoneBook::getcontact(int index) {
+const Contact	*PhoneBook::getcontact(int index) const {
 	if (index < 0 || index > 7)
 		return NULL;
 	return (&this->_contacts[index]);

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:12:04 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 21:16:55 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/27 23:31:29 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class PhoneBook
 	public:
 		PhoneBook(void);
 		~PhoneBook(void);
-		Contact	*getcontact(int index);
+		const Contact	*getcontact(int index) const;
 		void	setcontact(void);
 		int		getsize(void) const;
 };

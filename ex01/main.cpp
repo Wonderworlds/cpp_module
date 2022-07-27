@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:55:40 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 23:22:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/27 23:34:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 #include <iostream>
 #include <iomanip>
 
-#define PROMPT_MSG "Three choices : ADD, SEARCH, EXIT"
-#define PROMPT "Your choice: "
-#define BUFFER_SIZE 8
-
 void	__search(PhoneBook *instance);
-
 
 static void	__add(PhoneBook *instance) {
 	instance->setcontact();
@@ -34,8 +29,8 @@ static void	__menu(PhoneBook *instance) {
 	std::cout << "\033[H\033[2J\033[3J";
 	while (stop)
 	{
-		std::cout << PROMPT_MSG << std::endl;
-		std::cout << PROMPT;
+		std::cout << "Three choices : ADD, SEARCH, EXIT" << std::endl;
+		std::cout << "Your choice: ";
 		std::getline (std::cin,buff);
 		std::cout << "\033[H\033[2J\033[3J";
 		if (!buff.compare("EXIT"))

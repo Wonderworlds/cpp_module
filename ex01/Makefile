@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/07/27 18:01:26 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/07/27 20:38:45 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
 CPPSRC				:=	main.cpp		\
-						# Contact.cpp		\
-						# PhoneBook.cpp
+						Contact.cpp		\
+						PhoneBook.cpp
 
 CC					:=	c++
 RM					:=	rm

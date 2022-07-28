@@ -6,13 +6,13 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/07/28 13:44:48 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/07/28 22:33:33 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL				=	/bin/sh
 
-PROGNAME			:=	BraiiiiiiinnnzzzZ
+PROGNAME			:=	harlFilter
 
 INCLUDEDIR			:=	./
 SRCDIR				:=	./
@@ -20,7 +20,8 @@ SRCDIR				:=	./
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-CPPSRC				:=	main.cpp
+CPPSRC				:=	main.cpp	\
+						Harl.cpp
 
 CC					:=	c++
 RM					:=	rm

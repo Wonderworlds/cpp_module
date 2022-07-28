@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 21:26:44 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 22:14:43 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 22:35:22 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <iostream>
 
 Harl::Harl(void) {
-	std::cout << "Contructor called: Harl" << std::endl;
 	this->_f[0] = &Harl::debug;
 	this->_f[1] = &Harl::info;
 	this->_f[2] = &Harl::warning;
@@ -23,7 +22,6 @@ Harl::Harl(void) {
 }
 
 Harl::~Harl(void) {
-	std::cout << "Destructor called: Harl" << std::endl;
 	return ;
 }
 
@@ -54,17 +52,36 @@ void	Harl::error(void) {
 
 void	Harl::complain(std::string level) {
 	const char	*levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	int			i;
+	int			i = -1;
 
-	i = 0;
-	while (i < 4)
-	{
+	while (++i < 4)
 		if (level.compare(levels[i]) == 0)
-		{
-			(this->*(_f[i]))();
-			return ;
-		}
-		i++;
+			break ;
+	switch (i)
+	{
+	case 0:
+		std::cout << "[ " << levels[0] << " ]" << std::endl;
+		(this->*(_f[0]))();
+		std::cout << std::endl;
+		// fall through
+	case 1:
+		std::cout << "[ " << levels[1] << " ]" << std::endl;
+		(this->*(_f[1]))();
+		std::cout << std::endl;
+		// fall through
+	case 2:
+		std::cout << "[ " << levels[2] << " ]" << std::endl;
+		(this->*(_f[2]))();
+		std::cout << std::endl;
+		// fall through
+	case 3:
+		std::cout << "[ " << levels[3] << " ]" << std::endl;
+		(this->*(_f[3]))();
+		std::cout << std::endl;
+		break ;
+	default:
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+		break;
 	}
 	return ;
 }

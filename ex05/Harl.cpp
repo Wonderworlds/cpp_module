@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 21:26:44 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 22:02:46 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 22:09:15 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 Harl::Harl(void) {
 	std::cout << "Contructor called: Harl" << std::endl;
-	this->f[0] = &Harl::debug;
-	this->f[1] = &Harl::info;
-	this->f[2] = &Harl::warning;
-	this->f[3] = &Harl::error;
+	this->_f[0] = &Harl::debug;
+	this->_f[1] = &Harl::info;
+	this->_f[2] = &Harl::warning;
+	this->_f[3] = &Harl::error;
 	return ;
 }
 
@@ -59,7 +59,7 @@ void	Harl::complain(std::string level) {
 	{
 		if (level.compare(levels[i]) == 0)
 		{
-			(this->*(f[i]))();
+			(this->*(_f[i]))();
 			return ;
 		}
 		i++;

@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 13:49:10 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 14:38:09 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/07/28 14:29:01 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/07/28 15:05:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
-
 #include <iostream>
+#include "Zombie.hpp"
 
-# define ANNOUNCE_MSG ": BraiiiiiiinnnzzzZ..."
+Zombie	*zombieHorde( int N, std::string name ){
+	Zombie	*horde = new Zombie[N];
+	int		i = -1;
 
-class Zombie
-{
-private:
-	std::string	_name;
-public:
-	Zombie(std::string name);
-	Zombie(void);
-	~Zombie(void);
-
-	void	announce(void);
-};
-
-#endif
+	while (++i < N)
+		horde[i].setname(name);
+	return (horde);
+}

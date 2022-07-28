@@ -6,13 +6,13 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/07/27 15:04:37 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/07/28 15:02:40 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL				=	/bin/sh
 
-PROGNAME			:=	megaphone
+PROGNAME			:=	horde
 
 INCLUDEDIR			:=	./
 SRCDIR				:=	./
@@ -20,7 +20,9 @@ SRCDIR				:=	./
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-CPPSRC				:=	megaphone.cpp
+CPPSRC				:=	main.cpp		\
+						Zombie.cpp		\
+						zombieHorde.cpp
 
 CC					:=	c++
 RM					:=	rm

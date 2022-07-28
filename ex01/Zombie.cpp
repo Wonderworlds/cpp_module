@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:52:32 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 14:38:41 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:04:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,10 @@ Zombie::~Zombie(void) {
 
 void	Zombie::announce(void) {
 	std::cout << this->_name << ANNOUNCE_MSG << std::endl;
+	return ;
+}
+
+void	Zombie::setname(std::string name) {
+	this->_name = name;
 	return ;
 }

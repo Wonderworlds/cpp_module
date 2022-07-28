@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:49:10 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 14:38:09 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:03:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ public:
 	~Zombie(void);
 
 	void	announce(void);
+	void	setname(std::string name);
 };
 
 #endif

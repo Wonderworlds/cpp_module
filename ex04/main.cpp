@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 18:04:25 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 19:34:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 19:51:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ int	__sed_file(const char *name, const char *from, const char *to, std::ifstream
 			loop = false;
 		if (file->gcount() == 0)
 			return (ofs.close(), error_read(), 1);
-		buffer[file->gcount()] = '\0';
-		str = buffer;
+		str.assign(buffer, buffer + file->gcount());
 		__sed(from, to, &str);
 		ofs << str;
 	}

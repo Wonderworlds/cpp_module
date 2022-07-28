@@ -54,11 +54,19 @@ int	main(int ac, const char **av)
 	int		i;
 	Zombie	*ptr;
 
-	if (ac != 3)
+	if (ac != 3 && ac != 1)
 		return (error_arg(), 1);
-	if (check_arg(av[1], &n) == 1)
-		return (error_arg(), 1);
-	ptr = zombieHorde(n, av[2]);
+	if (ac == 1)
+	{
+		ptr = zombieHorde(10, "razrockets");
+		n = 10;
+	}
+	else
+	{
+		if (check_arg(av[1], &n) == 1)
+			return (error_arg(), 1);
+		ptr = zombieHorde(n, av[2]);
+	}
 	i = -1;
 	while (++i < n)
 		ptr[i].announce();

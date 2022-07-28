@@ -14,17 +14,20 @@
 #include <iostream>
 
 Zombie::Zombie(std::string name) : _name(name) {
-	std::cout << "Constructor called: " << this->_name << std::endl;
+	std::cout << "Constructor called: Zombie: " << this->_name << std::endl;
 	return ;
 }
 
 Zombie::Zombie(void) {
-	std::cout << "Constructor called" << std::endl;
+	std::cout << "Constructor called: Zombie" << std::endl;
 	return ;
 }
 
 Zombie::~Zombie(void) {
-	std::cout << "Destructor called: " << this->_name << std::endl;
+	if (this->_name.empty())
+		std::cout << "Destructor called: Zombie" << std::endl;
+	else
+		std::cout << "Destructor called: Zombie: " << this->_name << std::endl;
 	return ;
 }
 

@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/07/28 15:37:24 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/07/28 17:28:58 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ SRCDIR				:=	./
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-CPPSRC				:=	main.cpp
+CPPSRC				:=	main.cpp	\
+						HumanA.cpp	\
+						HumanB.cpp	\
+						Weapon.cpp
 
 CC					:=	c++
 RM					:=	rm

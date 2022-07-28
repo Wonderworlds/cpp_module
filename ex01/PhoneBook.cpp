@@ -6,12 +6,15 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 20:16:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 23:46:55 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:28:55 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include <iostream>
+
+std::string	get_field(const char *field);
+std::string	get_field_number(const char *field);
 
 PhoneBook::PhoneBook(void) {
 	this->_index = 0;
@@ -33,18 +36,6 @@ int	PhoneBook::getsize(void) const{
 	return (this->_size);
 }
 
-static std::string	get_field(const char *field) {
-	std::string	ret;
-
-	std::cout << field;
-	std::getline (std::cin,ret);
-	while (ret.empty())
-	{
-		std::cout << "\033[A\33[2K\r" << "Error input empty | " << field;
-		std::getline (std::cin,ret);
-	}
-	return (ret);
-}
 
 void	PhoneBook::setcontact(void) {
 	std::string	str;
@@ -59,7 +50,7 @@ void	PhoneBook::setcontact(void) {
 	this->_contacts[this->_index].setlastname(str);
 	str = get_field("Nickname: ");
 	this->_contacts[this->_index].setnickname(str);
-	str = get_field("Phone number: ");
+	str = get_field_number("Phone number: ");
 	this->_contacts[this->_index].setphonenumber(str);
 	str = get_field("Darkest secret: ");
 	this->_contacts[this->_index].setsecret(str);

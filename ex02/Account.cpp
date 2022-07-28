@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 00:04:41 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 01:40:51 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:14:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,8 @@ void Account::displayAccountsInfos(void) {
 }
 
 void	Account::makeDeposit(int deposit) {
-	int	p_amount;
+	const int	p_amount = this->checkAmount();
 
-	p_amount = this->_amount;
 	if (INT_MAX - deposit < this->_amount)
 	{
 		Account::_displayTimestamp();
@@ -117,9 +116,8 @@ void	Account::makeDeposit(int deposit) {
 }
 
 bool	Account::makeWithdrawal(int withdrawal) {
-	int	p_amount;
+	const int	p_amount = this->checkAmount();
 
-	p_amount = this->_amount;
 	if (withdrawal > this->_amount)
 	{
 		Account::_displayTimestamp();

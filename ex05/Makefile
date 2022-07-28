@@ -6,13 +6,13 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/07/28 21:21:46 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/07/28 22:00:08 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL				=	/bin/sh
 
-PROGNAME			:=	megaphone
+PROGNAME			:=	harl
 
 INCLUDEDIR			:=	./
 SRCDIR				:=	./

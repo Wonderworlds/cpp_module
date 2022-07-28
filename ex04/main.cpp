@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 18:04:25 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 19:29:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/28 19:34:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	__sed(const char *from, const char *to, std::string *str)
 	std::string	needle = from;
 	std::string	replaceWith = to;
 
+	if (needle.size() == 0)
+		return ;
 	while ((found = str->find(needle)) != std::string::npos)
 	{
 		str->erase(found, needle.size());
@@ -60,11 +62,12 @@ int	__sed_file(const char *name, const char *from, const char *to, std::ifstream
 		return (error_file(), 1);
 	while (loop)
 	{
-		file->read(buffer, BUFFER_SIZE);
+		file->read(buffer, BUFFER_SIZE - 1);
 		if (file->rdstate() != 0)
 			loop = false;
 		if (file->gcount() == 0)
 			return (ofs.close(), error_read(), 1);
+		buffer[file->gcount()] = '\0';
 		str = buffer;
 		__sed(from, to, &str);
 		ofs << str;

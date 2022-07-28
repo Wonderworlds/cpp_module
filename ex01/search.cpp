@@ -77,7 +77,7 @@ static void	__print_contacts(PhoneBook *instance, const int size)
 	while (index < size)
 	{
 		ptr = instance->getcontact(index);
-		std::cout << "|" << "         " << index;
+		std::cout << "|" << "         " << index + 1;
 		__display_str(ptr->getfirstname());
 		__display_str(ptr->getlastname());
 		__display_str(ptr->getnickname());

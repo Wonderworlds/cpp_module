@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/07/27 15:04:37 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/07/28 21:21:46 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCDIR				:=	./
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-CPPSRC				:=	megaphone.cpp
+CPPSRC				:=	main.cpp	\
+						Harl.cpp
 
 CC					:=	c++
 RM					:=	rm

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:28:12 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 15:17:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:21:08 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ Zombie* zombieHorde(int N, std::string name);
 void	error_arg(void)
 {
 	std::cerr << "error: invalid argument" << std::endl;
+	return ;
+}
+
+void	error_alloc(void)
+{
+	std::cerr << "error: allocation failed" << std::endl;
 	return ;
 }
 
@@ -67,6 +73,8 @@ int	main(int ac, const char **av)
 			return (error_arg(), 1);
 		ptr = zombieHorde(n, av[2]);
 	}
+	if (ptr == NULL)
+		return (error_alloc(), 1);
 	i = -1;
 	while (++i < n)
 		ptr[i].announce();

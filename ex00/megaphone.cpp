@@ -3,47 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 14:44:25 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/27 16:49:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/29 09:31:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #define NOISE "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
 
-void	__megaphone(char *line)
+void	__megaphone(std::string arg)
 {
-	int		j;
-	char	c;
+	std::size_t	i = -1;
 
-	j = 0;
-	while (line[j])
-	{
-		if (line[j] <= 'z' && line[j] >= 'a')
-			c = line[j] - 32;
-		else
-			c = line[j];
-		std::cout << c;
-		j++;
-	}
+	while (arg[++i] != '\0')
+		std::cout << (char)std::toupper(arg[i]);
 }
 
 int	main(int ac, char **av)
 {
-	int		i;
+	std::string	str;
+	int			i = 0;
 
 	if (ac == 1)
 		std::cout << NOISE << std::endl;
 	else
 	{
-		i = 1;
-		while (i < ac)
-		{
+		while (av[++i])
 			__megaphone(av[i]);
-			i++;
-		}
 		std::cout << std::endl;
 	}
 	return (0);

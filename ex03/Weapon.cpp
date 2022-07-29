@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 15:49:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 17:34:12 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/29 10:19:15 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ Weapon::~Weapon(void) {
 	return ;
 }
 
-std::string	Weapon::getType(void) const {
-	const std::string	&ref = this->_type;
-	return (ref);
+std::string	const &Weapon::getType(void) const {
+	return (this->_type);
 }
 
 void	Weapon::setType(std::string type) {

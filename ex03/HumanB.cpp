@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:23:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 18:00:25 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/29 09:49:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ HumanB::~HumanB(void) {
 }
 
 void	HumanB::attack(void) {
-
 	if (!this->_weapon)
 		std::cout << this->_name << " attacks with nothing" << std::endl;
 	else

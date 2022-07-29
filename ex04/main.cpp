@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*   By: fmauguin <fmauguin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 18:04:25 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/28 21:22:36 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:56:13 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,18 @@ int	__sed_file(const char *name, const char *from, const char *to, std::ifstream
 		return (error_file(), 1);
 	while (loop)
 	{
-		file->read(buffer, BUFFER_SIZE - 1);
-		if (file->rdstate() != 0)
+		file->read(buffer, BUFFER_SIZE);
+		if (file->rdstate() == std::ifstream::failbit
+			|| file->rdstate() == std::ifstream::badbit)
+			return(ofs.close(), error_read(), 1);
+		if (file->eof())
 			loop = false;
-		if (file->gcount() == 0)
-			return (ofs.close(), error_read(), 1);
-		str.assign(buffer, buffer + file->gcount());
-		__sed(from, to, &str);
-		ofs << str;
+		if (file->gcount() != 0)
+		{
+			str.assign(buffer, buffer + file->gcount());
+			__sed(from, to, &str);
+			ofs << str;
+		}
 	}
 	ofs.close();
 	return (0);

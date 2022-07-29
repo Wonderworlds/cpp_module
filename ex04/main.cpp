@@ -35,16 +35,17 @@ void	error_read(void)
 
 void	__sed(const char *from, const char *to, std::string *str)
 {
-	std::size_t	found;
+	std::size_t	found, it = 0;
 	std::string	needle = from;
 	std::string	replaceWith = to;
 
 	if (needle.size() == 0)
 		return ;
-	while ((found = str->find(needle)) != std::string::npos)
+	while ((found = str->find(needle, it)) != std::string::npos)
 	{
 		str->erase(found, needle.size());
 		str->insert(found, replaceWith);
+		it = found + 1;
 	}
 }
 

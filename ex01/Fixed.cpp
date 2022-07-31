@@ -6,13 +6,17 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:25:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 16:46:13 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:38:51 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cmath>
 #include "Fixed.hpp"
+
+#ifndef __GNUC__
+#pragma region constructor && destructor
+#endif
 
 Fixed::Fixed(void) : _value(0) {
 	std::cout << "Default Constructor called" << std::endl;
@@ -41,6 +45,10 @@ Fixed::~Fixed(void) {
 	std::cout << "Destructor called" << std::endl;
 	return ;
 }
+
+#ifndef __GNUC__
+#pragma endregion constructor && destructor
+#endif
 
 int	Fixed::getRawBits(void) const {
 	std::cout << "getRawBits member function called" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:25:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 19:44:20 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:39:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ Fixed::Fixed(Fixed const & src) {
 
 Fixed::~Fixed(void) {
 	#ifdef DEBUG
-		std::cout << "Destructor called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 	#endif
 	return ;
 }

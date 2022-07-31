@@ -21,7 +21,8 @@ OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
 CPPSRC				:=	main.cpp		\
-						Fixed.cpp
+						Fixed.cpp		\
+						Point.cpp
 
 CC					:=	c++
 RM					:=	rm

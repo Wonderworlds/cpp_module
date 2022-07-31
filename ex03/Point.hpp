@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 19:41:32 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 20:50:53 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:39:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ private:
 	Fixed const _y;
 public:
 	Point(void);
-	Point(Fixed const x, Fixed const y);
+	Point(Fixed const & x, Fixed const & y);
 	Point(Point const & src);
 	~Point(void);
 

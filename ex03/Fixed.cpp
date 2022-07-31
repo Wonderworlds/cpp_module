@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:25:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 19:39:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:51:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Fixed::Fixed(void) : _value(0) {
 
 Fixed::Fixed(int const newValue) : _value(newValue << _bits) {
 	#ifdef DEBUG
-		std::cout << "Int Constructor called" << std::endl;
+		std::cout << "Int Constructor called : value " << this->toFloat() << std::endl;
 	#endif
 	return ;
 }
@@ -42,7 +42,7 @@ Fixed::Fixed(float const newValue) : _value((int)roundf(newValue * (1 << _bits))
 
 Fixed::Fixed(Fixed const & src) {
 	#ifdef DEBUG
-		std::cout << "Copy Constructor called" << std::endl;
+		std::cout << "Copy Constructor called : Fixed" << std::endl;
 	#endif
 	*this = src;
 

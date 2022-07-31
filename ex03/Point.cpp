@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 19:47:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 21:11:25 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:49:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 Point::Point(void) : _x(0), _y(0) {
 	#ifdef DEBUG
-		std::cout << "Default Constructor called" << std::endl;
+		std::cout << "Default Constructor called : Point" << std::endl;
 	#endif
 	return ;
 }
 
-Point::Point(Fixed const x, Fixed const y) : _x(x), _y(y) {
+Point::Point(Fixed const & x, Fixed const & y) : _x(x), _y(y) {
 	#ifdef DEBUG
 		std::cout << "Parametric Constructor called" << std::endl;
 	#endif
@@ -34,7 +34,7 @@ Point::Point(Fixed const x, Fixed const y) : _x(x), _y(y) {
 
 Point::Point(Point const & src) {
 	#ifdef DEBUG
-		std::cout << "Copy Constructor called" << std::endl;
+		std::cout << "Copy Constructor called : point" << std::endl;
 	#endif
 	*this = src;
 
@@ -50,6 +50,10 @@ Point::~Point(void) {
 
 #ifndef __GNUC__
 #pragma endregion Constructor && Destructor
+#endif
+
+#ifndef __GNUC__
+#pragma region Function Member
 #endif
 
 Fixed const	Point::getX(void) const {
@@ -72,8 +76,13 @@ Point &	Point::operator=(Point const & rhs) {
 	#endif
 	if (this != &rhs)
 	{
-		(Fixed)this->_x = rhs.getX();
-		(Fixed)this->_y = rhs.getY();
+		(Fixed &)this->_x = rhs.getX();
+		(Fixed &)this->_y = rhs.getY();
 	}
 	return *this;
 }
+
+#ifndef __GNUC__
+#pragma endregion Function Member
+#endif
+

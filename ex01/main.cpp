@@ -6,16 +6,18 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:41:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 15:42:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 17:12:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
 
+
+
 int main( void ) {
 	Fixed a;
-	Fixed const b( 10 );
+	Fixed const b( 10);
 	Fixed const c( 42.42f );
 	Fixed const d( b );
 
@@ -30,6 +32,8 @@ int main( void ) {
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+
+
 
 	return 0;
 }

@@ -6,22 +6,27 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:25:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 15:48:19 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 16:46:13 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cmath>
 #include "Fixed.hpp"
-
-int const	Fixed::_bits = 8;
 
 Fixed::Fixed(void) : _value(0) {
 	std::cout << "Default Constructor called" << std::endl;
 	return ;
 }
 
-Fixed::Fixed(int const newValue) : _value(newValue) {
+Fixed::Fixed(int const newValue) : _value(newValue << _bits) {
 	std::cout << "Int Constructor called" << std::endl;
+	return ;
+}
+
+Fixed::Fixed(float const newValue) : _value((int)roundf(newValue * (1 << _bits))) {
+	std::cout << "Float Constructor called" << std::endl;
+
 	return ;
 }
 
@@ -48,10 +53,24 @@ void	Fixed::setRawBits(int const raw) {
 	return ;
 }
 
+int	Fixed::toInt(void) const {
+	return ((int)(roundf((float)_value / (1 << _bits))));
+}
+
+float	Fixed::toFloat(void) const
+{
+	return ((float)_value / (1 << _bits));
+}
+
 Fixed &	Fixed::operator=(Fixed const & rhs) {
 	std::cout << "Copy assignement operator called" << std::endl;
 
 	if (this != &rhs)
 		this->_value = rhs.getRawBits();
 	return *this;
+}
+
+std::ostream &	operator<<(std::ostream & o, Fixed const & rhs) {
+	o << rhs.toFloat();
+	return o;
 }

@@ -6,18 +6,20 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 14:14:31 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 15:46:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 16:46:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+# include <iostream>
+
 class Fixed
 {
 private:
 	int					_value;
-	static int const	_bits;
+	static int const	_bits = 8;
 public:
 	Fixed(void);
 	Fixed(Fixed const & src);

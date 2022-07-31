@@ -6,12 +6,14 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:25:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 15:38:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:50:11 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Fixed.hpp"
+
+int const	Fixed::_bits = 8;
 
 Fixed::Fixed(void) : _value(0) {
 	std::cout << "Default Constructor called" << std::endl;

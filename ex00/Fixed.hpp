@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 14:14:31 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 15:33:46 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:46:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ class Fixed
 {
 private:
 	int					_value;
-	static int const	_bits = 8;
+	static int const	_bits;
 public:
 	Fixed(void);
 	Fixed(Fixed const & src);

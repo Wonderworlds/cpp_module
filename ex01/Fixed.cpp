@@ -6,17 +6,22 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:25:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 15:47:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:48:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Fixed.hpp"
 
-const int	Fixed::_bits = 8;
+int const	Fixed::_bits = 8;
 
 Fixed::Fixed(void) : _value(0) {
 	std::cout << "Default Constructor called" << std::endl;
+	return ;
+}
+
+Fixed::Fixed(int const newValue) : _value(newValue) {
+	std::cout << "Int Constructor called" << std::endl;
 	return ;
 }
 

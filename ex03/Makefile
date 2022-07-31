@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/07/31 18:31:29 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/07/31 21:56:58 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ DEBUGDIR			:=	./debugobj
 
 CPPSRC				:=	main.cpp		\
 						Fixed.cpp		\
+						bsp.cpp			\
 						Point.cpp
 
 CC					:=	c++

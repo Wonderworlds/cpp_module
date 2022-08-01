@@ -6,37 +6,47 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:06:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 16:49:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:05:03 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "ClapTrap.hpp"
 
-#define ATTACK(N, T, D) std::cout << "ClapTrap " << N << " attacks " << T << ", causing " << D << " points of damage!" << std::endl;
-#define HIT(N, D) std::cout << "ClapTrap " << N << " takes " << D << " points of damage!" << std::endl;
-#define REPAIR(N, D) std::cout << "ClapTrap " << N << " is repaired for " << D << " hit points!" << std::endl;
-#define USELESS(N) std::cout << "ClapTrap " << N << " can't move" << std::endl;
+#define PRINT(A) std::cout << A << std::endl
+
+#ifdef DEBUG
+#define DEBUG_LOG(A) PRINT(A)
+#else
+#define DEBUG_LOG(A)
+#endif
+
+#define TYPE "ClapTrap: "
+#define ATTACK(N, T, D) std::cout << TYPE << N << " attacks " << T << ", causing " << D << " points of damage!" << std::endl
+#define HIT(N, D) std::cout << TYPE << N << " takes " << D << " points of damage!" << std::endl
+#define REPAIR(N, D) std::cout << TYPE << N << " is repaired for " << D << " hit points!" << std::endl
+#define NO_HP(N) std::cout << TYPE << N << " is broken! Need repair" << std::endl
+#define NO_EP(N) std::cout << TYPE << N << " has no energy" << std::endl
 
 #ifndef __GNUC__
 #pragma region Constructor &&Destructor
 #endif
 
-ClapTrap::ClapTrap(void) : _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap(void) : _name("generic"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "Default Constructor called" << std::endl;
+	PRINT("ClapTrap: Default Constructor called");
 	return;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "String Constructor called" << std::endl;
+	PRINT("ClapTrap: String Constructor called");
 	return;
 }
 
 ClapTrap::ClapTrap(ClapTrap const &src)
 {
-	std::cout << "Copy Constructor called" << std::endl;
+	PRINT("ClapTrap: Copy Constructor called");
 	*this = src;
 
 	return;
@@ -44,7 +54,7 @@ ClapTrap::ClapTrap(ClapTrap const &src)
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	PRINT("ClapTrap: Destructor called");
 	return;
 }
 
@@ -58,45 +68,48 @@ ClapTrap::~ClapTrap(void)
 
 void ClapTrap::attack(const std::string &target)
 {
-#ifdef DEBUG
-	std::cout << "attack function member called" << std::endl;
-#endif
-	if (this->_hitPoints <= 0 || this->_energyPoints <= 0)
+	DEBUG_LOG("ClapTrap: attack function member called");
+
+	if (this->_hitPoints == 0)
+		NO_HP(this->_name);
+	else if (this->_energyPoints == 0)
+		NO_EP(this->_name);
+	else
 	{
-		USELESS(this->_name);
-		return;
+		this->_energyPoints--;
+		ATTACK(this->_name, target, this->_attackDamage);
 	}
-	this->_energyPoints--;
-	ATTACK(this->_name, target, this->_attackDamage)
 	return;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-#ifdef DEBUG
-	std::cout << "takeDamage function member called" << std::endl;
-#endif
-	if (amount > this->_hitPoints)
-		this->_hitPoints = 0;
+	DEBUG_LOG("ClapTrap: takedamage function member called");
+
+	if (this->_hitPoints == 0)
+		NO_HP(this->_name);
 	else
-		this->_hitPoints -= amount;
-	HIT(this->_name, amount)
+	{
+		if (amount > this->_hitPoints)
+			this->_hitPoints = 0;
+		else
+			this->_hitPoints -= amount;
+		HIT(this->_name, amount);
+	}
 	return;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-#ifdef DEBUG
-	std::cout << "beRepaired function member called" << std::endl;
-#endif
-	if (this->_hitPoints <= 0 || this->_energyPoints <= 0)
+	DEBUG_LOG("ClapTrap: beRepaired function member called");
+	if (this->_energyPoints == 0)
+		NO_EP(this->_name);
+	else
 	{
-		USELESS(this->_name);
-		return;
+		this->_energyPoints--;
+		this->_hitPoints += amount;
+		REPAIR(this->_name, amount);
 	}
-	this->_energyPoints--;
-	this->_hitPoints += amount;
-	REPAIR(this->_name, amount)
 	return;
 }
 
@@ -110,33 +123,25 @@ void ClapTrap::beRepaired(unsigned int amount)
 
 std::string ClapTrap::getName(void) const
 {
-#ifdef DEBUG
-	std::cout << "getName function member called" << std::endl;
-#endif
+	DEBUG_LOG("ClapTrap: getName function member called");
 	return this->_name;
 }
 
 unsigned int ClapTrap::getHitPoints(void) const
 {
-#ifdef DEBUG
-	std::cout << "getHitPoints function member called" << std::endl;
-#endif
+	DEBUG_LOG("ClapTrap: getHitPoints function member called");
 	return this->_hitPoints;
 }
 
 unsigned int ClapTrap::getEnergyPoints(void) const
 {
-#ifdef DEBUG
-	std::cout << "getenergyPoints function member called" << std::endl;
-#endif
+	DEBUG_LOG("ClapTrap: getenergyPoints function member called");
 	return this->_energyPoints;
 }
 
 unsigned int ClapTrap::getAttackDamage(void) const
 {
-#ifdef DEBUG
-	std::cout << "getAttackDamage function member called" << std::endl;
-#endif
+	DEBUG_LOG("ClapTrap: getAttackDamage function member called");
 	return this->_attackDamage;
 }
 
@@ -146,9 +151,7 @@ unsigned int ClapTrap::getAttackDamage(void) const
 
 ClapTrap &ClapTrap::operator=(ClapTrap const &rhs)
 {
-#ifdef DEBUG
-	std::cout << "Assignement operator called" << std::endl;
-#endif
+	DEBUG_LOG("ClapTrap: Assignement operator called");
 
 	if (this != &rhs)
 	{

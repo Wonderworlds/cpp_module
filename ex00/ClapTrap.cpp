@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:06:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 18:12:17 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:05:16 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ void ClapTrap::takeDamage(unsigned int amount)
 		NO_HP(this->_name);
 	else
 	{
-		this->_hitPoints -= amount;
+		if (amount > this->_hitPoints)
+			this->_hitPoints = 0;
+		else
+			this->_hitPoints -= amount;
 		HIT(this->_name, amount);
 	}
 	return;
@@ -99,9 +102,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	DEBUG_LOG("ClapTrap: beRepaired function member called");
-	if (this->_hitPoints == 0)
-		NO_HP(this->_name);
-	else if (this->_energyPoints == 0)
+	if (this->_energyPoints == 0)
 		NO_EP(this->_name);
 	else
 	{

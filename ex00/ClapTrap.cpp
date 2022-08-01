@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:06:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 19:05:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:18:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	DEBUG_LOG("ClapTrap: takedamage function member called");
 
 	if (this->_hitPoints == 0)
-		NO_HP(this->_name);
+		PRINT(TYPE << this->_name << " is already broken! You Monster!");
 	else
 	{
 		if (amount > this->_hitPoints)
@@ -143,6 +143,14 @@ unsigned int ClapTrap::getAttackDamage(void) const
 {
 	DEBUG_LOG("ClapTrap: getAttackDamage function member called");
 	return this->_attackDamage;
+}
+
+void ClapTrap::setAttackDamage(unsigned int ad)
+{
+	DEBUG_LOG("ClapTrap: setAttackDamage function member called");
+
+	this->_attackDamage = ad;
+	return;
 }
 
 #ifndef __GNUC__

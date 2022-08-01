@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 15:58:52 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 16:44:50 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:10:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ public:
 	unsigned int getHitPoints(void) const;
 	unsigned int getEnergyPoints(void) const;
 	unsigned int getAttackDamage(void) const;
+	void setAttackDamage(unsigned int ad);
 };
 
 #endif

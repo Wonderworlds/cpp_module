@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:37:55 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 19:04:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:33:32 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int main(void)
 		PRINT_STATE(a);
 		PRINT_STATE(b);
 		PRINT("");
+		b.attack(a.getName());
+		a.takeDamage(b.getAttackDamage());
 		b.attack(a.getName());
 		a.takeDamage(b.getAttackDamage());
 		b.attack(a.getName());

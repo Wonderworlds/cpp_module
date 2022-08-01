@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/01 16:53:29 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/01 19:29:09 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ DEBUGDIR			:=	./debugobj
 
 CPPSRC				:=	main.cpp		\
 						ClapTrap.cpp	\
-						ScavTrap.cpp
+						ScavTrap.cpp	\
+						FragTrap.cpp
 
 CC					:=	c++
 RM					:=	rm

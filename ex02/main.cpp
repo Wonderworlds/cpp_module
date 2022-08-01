@@ -6,12 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:37:55 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 19:04:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:32:15 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include "FragTrap.hpp"
 #include <iostream>
 #include <iomanip>
 
@@ -34,9 +35,9 @@ int main(void)
 		TITLE("CONSTRUCTOR");
 		ClapTrap a;
 		ClapTrap b("Joseph");
-		ScavTrap c("Albert");
-		ScavTrap d(c);
-		ScavTrap e;
+		FragTrap c("Albert");
+		FragTrap d(c);
+		FragTrap e;
 
 		TITLE("EASY");
 		PRINT_STATE(a);
@@ -49,19 +50,19 @@ int main(void)
 	{
 		TITLE("CHECK REPAIR");
 		ClapTrap a("Joseph");
-		ScavTrap b("Albert");
+		FragTrap b("Albert");
 		a.beRepaired(2);
 		b.beRepaired(2);
 	}
 	{
-		TITLE("CHECK GUARD");
-		ScavTrap b("Albert");
-		b.guardGate();
+		TITLE("CHECK HGH5");
+		FragTrap b("Albert");
+		b.highFivesGuys();
 	}
 	{
 		TITLE("CHECK ATTACK");
-		ScavTrap a("Albert");
-		ScavTrap b("Gasper");
+		FragTrap a("Albert");
+		FragTrap b("Gasper");
 		a.attack(b.getName());
 		b.takeDamage(a.getAttackDamage());
 		PRINT("");
@@ -88,25 +89,25 @@ int main(void)
 		TITLE("CHECK ATTACK DEATH");
 		a.attack(b.getName());
 		TITLE("CHECK GUARD DEATH");
-		a.guardGate();
+		a.highFivesGuys();
 		TITLE("CHECK REPAIR DEATH");
 		a.beRepaired(10);
-		a.guardGate();
+		a.highFivesGuys();
 	}
 	{
 		TITLE("CHECK ENERGY");
 		int i = 0;
-		ScavTrap b("joseph");
-		while (i < 50)
+		FragTrap b("joseph");
+		while (i < 100)
 		{
-			b.guardGate();
+			b.highFivesGuys();
 			i++;
 		}
 		PRINT("");
 		PRINT_STATE(b);
 		PRINT("");
-		TITLE("CHECK ENERGY guard");
-		b.guardGate();
+		TITLE("CHECK ENERGY High");
+		b.highFivesGuys();
 		TITLE("CHECK ENERGY attack");
 		b.attack("nothing");
 		TITLE("CHECK ENERGY repair");

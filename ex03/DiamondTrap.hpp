@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 19:23:30 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 22:17:11 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/08/01 19:40:40 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/01 22:29:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+#define DIAMONDTRAP_HPP
 
 #include <iostream>
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class FragTrap : public virtual ClapTrap
+class DiamondTrap : public FragTrap, public ScavTrap
 {
 private:
+	std::string _name;
+
 public:
-	FragTrap(void);
-	FragTrap(std::string name);
-	FragTrap(FragTrap const &src);
-	~FragTrap(void);
+	DiamondTrap(void);
+	DiamondTrap(std::string name);
+	DiamondTrap(DiamondTrap const &src);
+	~DiamondTrap(void);
 
-	FragTrap &operator=(FragTrap const &rhs);
+	DiamondTrap &operator=(DiamondTrap const &rhs);
 
-	void attack(const std::string &target);
-	void highFivesGuys(void);
+	using ScavTrap::attack;
+	void whoAmI(void);
+	std::string getName(void) const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:37:55 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 19:33:32 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/01 22:50:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int main(void)
 		ClapTrap b("Joseph");
 		ScavTrap c("Albert");
 		ScavTrap d(c);
-		ScavTrap e;
+		ScavTrap e = d;
+		ScavTrap f;
 
 		TITLE("EASY");
 		PRINT_STATE(a);
@@ -44,6 +45,7 @@ int main(void)
 		PRINT_STATE(c);
 		PRINT_STATE(d);
 		PRINT_STATE(e);
+		PRINT_STATE(f);
 		TITLE("DESTRUCTOR");
 	}
 	{

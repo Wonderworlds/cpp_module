@@ -6,13 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:37:55 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 19:36:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/01 22:46:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-#include "FragTrap.hpp"
-#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 #include <iostream>
 #include <iomanip>
 
@@ -33,85 +33,86 @@ int main(void)
 {
 	{
 		TITLE("CONSTRUCTOR");
-		ClapTrap a;
-		ClapTrap b("Joseph");
-		FragTrap c("Albert");
-		FragTrap d(c);
-		FragTrap e;
+		DiamondTrap a;
+		DiamondTrap b("jose");
+		DiamondTrap c = b;
+		DiamondTrap d(a);
 
 		TITLE("EASY");
 		PRINT_STATE(a);
 		PRINT_STATE(b);
 		PRINT_STATE(c);
 		PRINT_STATE(d);
-		PRINT_STATE(e);
+		PRINT("");
+		a.whoAmI();
+		b.whoAmI();
+		c.whoAmI();
+		d.whoAmI();
 		TITLE("DESTRUCTOR");
 	}
 	{
-		TITLE("CHECK REPAIR");
-		ClapTrap a("Joseph");
-		FragTrap b("Albert");
-		a.beRepaired(2);
-		b.beRepaired(2);
-	}
-	{
-		TITLE("CHECK HGH5");
-		FragTrap b("Albert");
-		b.highFivesGuys();
-	}
-	{
-		TITLE("CHECK ATTACK");
-		FragTrap a("Albert");
-		FragTrap b("Gasper");
-		a.attack(b.getName());
-		b.takeDamage(a.getAttackDamage());
-		PRINT("");
-		PRINT_STATE(a);
-		PRINT_STATE(b);
-		PRINT("");
-		b.attack(a.getName());
-		a.takeDamage(b.getAttackDamage());
-		PRINT("");
-		PRINT_STATE(a);
-		PRINT_STATE(b);
-		PRINT("");
-		b.attack(a.getName());
-		a.takeDamage(b.getAttackDamage());
-		b.attack(a.getName());
-		a.takeDamage(b.getAttackDamage());
-		b.attack(a.getName());
-		a.takeDamage(b.getAttackDamage());
-		b.attack(a.getName());
-		a.takeDamage(b.getAttackDamage());
+		TITLE("FUNCTION");
+		DiamondTrap a("jose");
 		PRINT("");
 		PRINT_STATE(a);
 		PRINT("");
-		TITLE("CHECK ATTACK DEATH");
-		a.attack(b.getName());
-		TITLE("CHECK High DEATH");
+		a.attack("nothing");
+		a.guardGate();
 		a.highFivesGuys();
-		TITLE("CHECK REPAIR DEATH");
+		a.whoAmI();
 		a.beRepaired(10);
+		a.takeDamage(5);
+		PRINT("");
+		PRINT_STATE(a);
+		PRINT("");
+		TITLE("DEATH");
+		a.takeDamage(110);
+		PRINT("");
+		PRINT_STATE(a);
+		PRINT("");
+		TITLE("DEATH attack");
+		a.attack("nothing");
+		TITLE("DEATH guard");
+		a.guardGate();
+		TITLE("DEATH high");
 		a.highFivesGuys();
-	}
-	{
-		TITLE("CHECK ENERGY");
-		int i = 0;
-		FragTrap b("joseph");
-		while (i < 100)
-		{
-			b.highFivesGuys();
-			i++;
-		}
+		TITLE("DEATH who");
+		a.whoAmI();
+		TITLE("DEATH ==> REPAIR");
 		PRINT("");
-		PRINT_STATE(b);
+		PRINT_STATE(a);
 		PRINT("");
-		TITLE("CHECK ENERGY High");
-		b.highFivesGuys();
-		TITLE("CHECK ENERGY attack");
-		b.attack("nothing");
-		TITLE("CHECK ENERGY repair");
-		b.beRepaired(10);
+		a.beRepaired(10);
+		PRINT("");
+		PRINT_STATE(a);
+		PRINT("");
+		TITLE("DEATH ==> repair attack");
+		a.attack("nothing");
+		TITLE("DEATH ==> repair guard");
+		a.guardGate();
+		TITLE("DEATH ==> repair high");
+		a.highFivesGuys();
+		TITLE("DEATH ==> repair who");
+		a.whoAmI();
+		TITLE("ENERGY");
+		PRINT("");
+		PRINT_STATE(a);
+		PRINT("");
+		int i = 40;
+		while (i--)
+			a.whoAmI();
+		PRINT("");
+		PRINT_STATE(a);
+		PRINT("");
+		TITLE("ENERGY attack");
+		a.attack("nothing");
+		TITLE("ENERGY guard");
+		a.guardGate();
+		TITLE("ENERGY high");
+		a.highFivesGuys();
+		TITLE("ENERGY who");
+		a.whoAmI();
+		TITLE("DESTRUCTOR");
 	}
 	return (0);
 }

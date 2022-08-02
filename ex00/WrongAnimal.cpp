@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 18:51:21 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/02 19:20:52 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/08/02 18:39:50 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/02 19:12:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
 #ifndef __GNUC__
 #pragma region Constructor &&Destructor
 #endif
 
-Cat::Cat(void) : Animal()
+WrongAnimal::WrongAnimal(void)
 {
-	DEBUG_LOG("Cat: Default Constructor called");
-
-	this->type = "Cat";
+	DEBUG_LOG("WrongAnimal: Default Constructor called");
 	return;
 }
 
-Cat::Cat(Cat const &src) : Animal()
+WrongAnimal::WrongAnimal(WrongAnimal const &src)
 {
-	DEBUG_LOG("Cat: Copy Constructor called");
+	DEBUG_LOG("WrongAnimal: Copy Constructor called");
 	*this = src;
 
 	return;
 }
 
-Cat::~Cat(void)
+WrongAnimal::~WrongAnimal(void)
 {
-	DEBUG_LOG("Cat: Destructor called");
+	DEBUG_LOG("WrongAnimal: Destructor called");
 	return;
 }
 
@@ -43,16 +41,22 @@ Cat::~Cat(void)
 #pragma endregion Constructor &&Destructor
 #endif
 
-void Cat::makeSound(void) const
+void WrongAnimal::makeSound(void) const
 {
-	DEBUG_LOG("Cat: makeSound function member called");
-	PRINT("MIAOU! MIAOU!");
+	DEBUG_LOG("WrongAnimal: makeSound function member called");
+	PRINT("WrongAnimal sound");
 	return;
 }
 
-Cat &Cat::operator=(Cat const &rhs)
+const std::string &WrongAnimal::getType(void) const
 {
-	DEBUG_LOG("Cat: Assignement operator called");
+	DEBUG_LOG("WrongAnimal: getType function member called");
+	return this->type;
+}
+
+WrongAnimal &WrongAnimal::operator=(WrongAnimal const &rhs)
+{
+	DEBUG_LOG("WrongAnimal: Assignement operator called");
 
 	if (this != &rhs)
 		this->type = rhs.getType();

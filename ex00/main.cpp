@@ -6,17 +6,14 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:33:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/02 19:10:15 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:21:13 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
+#include "WrongAnimal.hpp"
 #include <iostream>
 #include <iomanip>
-
-#define PRINT(A) std::cout << A << std::endl
 
 #define TITLE(A) PRINT(std::endl                         \
 					   << std::setw(30)                  \

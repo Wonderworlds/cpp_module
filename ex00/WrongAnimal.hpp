@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 18:34:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/02 19:20:45 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/08/02 19:16:45 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/02 19:24:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
 #include <iostream>
 
@@ -23,41 +23,29 @@
 #define DEBUG_LOG(A)
 #endif
 
-class Animal
+class WrongAnimal
 {
 protected:
 	std::string type;
 
 public:
-	Animal(void);
-	Animal(Animal const &src);
-	virtual ~Animal(void);
+	WrongAnimal(void);
+	WrongAnimal(WrongAnimal const &src);
+	~WrongAnimal(void);
 
-	Animal &operator=(Animal const &rhs);
-
+	WrongAnimal &operator=(WrongAnimal const &rhs);
 	const std::string &getType(void) const;
-	virtual void makeSound() const;
+	void makeSound() const;
 };
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
 public:
-	Cat(void);
-	Cat(Cat const &src);
-	virtual ~Cat(void);
+	WrongCat(void);
+	WrongCat(WrongCat const &src);
+	virtual ~WrongCat(void);
 
-	Cat &operator=(Cat const &rhs);
-	virtual void makeSound(void) const;
-};
-
-class Dog : public Animal
-{
-public:
-	Dog(void);
-	Dog(Dog const &src);
-	virtual ~Dog(void);
-
-	Dog &operator=(Dog const &rhs);
+	WrongCat &operator=(WrongCat const &rhs);
 	virtual void makeSound(void) const;
 };
 

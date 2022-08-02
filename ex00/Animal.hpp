@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:34:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/02 19:20:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:39:51 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class Cat : public Animal
 public:
 	Cat(void);
 	Cat(Cat const &src);
-	virtual ~Cat(void);
+	~Cat(void);
 
 	Cat &operator=(Cat const &rhs);
 	virtual void makeSound(void) const;
@@ -55,7 +55,7 @@ class Dog : public Animal
 public:
 	Dog(void);
 	Dog(Dog const &src);
-	virtual ~Dog(void);
+	~Dog(void);
 
 	Dog &operator=(Dog const &rhs);
 	virtual void makeSound(void) const;

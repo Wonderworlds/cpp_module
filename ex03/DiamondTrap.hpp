@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:40:40 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 22:29:33 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:17:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 private:
 	std::string _name;

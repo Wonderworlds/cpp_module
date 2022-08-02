@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:46:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 22:39:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:18:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@
 DiamondTrap::DiamondTrap(void) : ClapTrap("generic_clap_name"), _name("generic")
 {
 	PRINT("DiamondTrap: Default Constructor called");
-	this->_attackDamage = 30;
+	this->_energyPoints = 50;
 	return;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), _name(name)
 {
 	PRINT("DiamondTrap: String Constructor called");
-	this->_attackDamage = 30;
+	this->_energyPoints = 50;
 	return;
 }
 
-DiamondTrap::DiamondTrap(DiamondTrap const &src) : ClapTrap(src), FragTrap(src), ScavTrap(src)
+DiamondTrap::DiamondTrap(DiamondTrap const &src) : ClapTrap(src), ScavTrap(src), FragTrap(src)
 {
 	PRINT("DiamondTrap: Copy Constructor called");
 	*this = src;

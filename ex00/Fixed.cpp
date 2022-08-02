@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:25:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/07/31 17:08:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:34:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "Fixed.hpp"
 
 Fixed::Fixed(void) : _value(0) {
-	std::cout << "Default Constructor called" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 	return ;
 }
 
 Fixed::Fixed(Fixed const & src) {
-	std::cout << "Copy Constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 
 	return ;
@@ -42,7 +42,7 @@ void	Fixed::setRawBits(int const raw) {
 }
 
 Fixed &	Fixed::operator=(Fixed const & rhs) {
-	std::cout << "Copy assignement operator called" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 
 	if (this != &rhs)
 		this->_value = rhs.getRawBits();

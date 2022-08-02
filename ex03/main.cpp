@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:37:55 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 22:46:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/02 10:00:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ int main(void)
 		a.guardGate();
 		a.highFivesGuys();
 		a.whoAmI();
-		a.beRepaired(10);
+		a.beRepaired(4294967295);
 		a.takeDamage(5);
 		PRINT("");
 		PRINT_STATE(a);
 		PRINT("");
 		TITLE("DEATH");
-		a.takeDamage(110);
+		a.takeDamage(4294967295);
 		PRINT("");
 		PRINT_STATE(a);
 		PRINT("");

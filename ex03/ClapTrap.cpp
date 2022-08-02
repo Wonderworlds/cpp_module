@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:06:08 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 19:20:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:56:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 #define REPAIR(N, D) std::cout << TYPE << N << " is repaired for " << D << " hit points!" << std::endl
 #define NO_HP(N) std::cout << TYPE << N << " is broken! Need repair" << std::endl
 #define NO_EP(N) std::cout << TYPE << N << " has no energy" << std::endl
+#define MAX_HP 4294967295
 
 #ifndef __GNUC__
 #pragma region Constructor &&Destructor
@@ -107,7 +108,10 @@ void ClapTrap::beRepaired(unsigned int amount)
 	else
 	{
 		this->_energyPoints--;
-		this->_hitPoints += amount;
+		if (MAX_HP - amount < this->_hitPoints)
+			this->_hitPoints = MAX_HP;
+		else
+			this->_hitPoints += amount;
 		REPAIR(this->_name, amount);
 	}
 	return;

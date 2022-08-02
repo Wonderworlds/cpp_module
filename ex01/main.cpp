@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:37:55 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 22:50:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:58:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ int main(void)
 		TITLE("CHECK REPAIR");
 		ClapTrap a("Joseph");
 		ScavTrap b("Albert");
-		a.beRepaired(2);
+		a.beRepaired(4294967295);
 		b.beRepaired(2);
+		PRINT("");
+		PRINT_STATE(a);
+		PRINT_STATE(b);
+		PRINT("");
 	}
 	{
 		TITLE("CHECK GUARD");

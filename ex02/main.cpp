@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:37:55 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/01 22:49:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:58:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ int main(void)
 		ClapTrap a("Joseph");
 		FragTrap b("Albert");
 		a.beRepaired(2);
-		b.beRepaired(2);
+		b.beRepaired(4294967295);
+		PRINT("");
+		PRINT_STATE(a);
+		PRINT_STATE(b);
+		PRINT("");
 	}
 	{
 		TITLE("CHECK HGH5");

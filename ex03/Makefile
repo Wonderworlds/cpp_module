@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/03 15:51:19 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/03 16:20:50 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ DEBUGDIR			:=	./debugobj
 
 CPPSRC				:=	main.cpp		\
 						AMateria.cpp	\
+						Cure.cpp		\
+						Ice.cpp			\
 
 CC					:=	c++
 RM					:=	rm

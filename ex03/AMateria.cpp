@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:03:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 16:12:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 17:18:45 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ std::string const &AMateria::getType(void) const
 void AMateria::use(ICharacter &target)
 {
 	DEBUG_LOG("AMateria: use function member called");
+	PRINT("*use Materia at " << target.getName());
 	return;
 }
 

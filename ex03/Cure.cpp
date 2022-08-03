@@ -44,7 +44,7 @@ Cure::~Cure(void)
 void Cure::use(ICharacter &target)
 {
 	DEBUG_LOG("Cure: use function member called");
-	PRINT("* heals <name>’s wounds *");
+	PRINT("* heals " << target.getName() << "'s wounds *");
 	return;
 }
 

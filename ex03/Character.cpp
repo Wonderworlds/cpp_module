@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:32:23 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 17:03:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 18:00:17 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ Character::Character(std::string const &name) : ICharacter(), _name(name)
 Character::Character(Character const &src) : ICharacter()
 {
 	DEBUG_LOG("Character: Copy Constructor called");
+	unsigned int idx = 0;
+	while (idx < 4)
+		this->_inventory[idx++] = NULL;
 	*this = src;
 
 	return;
@@ -49,7 +52,7 @@ Character::~Character(void)
 	unsigned int idx = 0;
 
 	while (idx < 4)
-		delete this->_inventory[idx];
+		delete this->_inventory[idx++];
 	return;
 }
 
@@ -79,7 +82,7 @@ void Character::equip(AMateria *m)
 	while (idx < 4 && this->_inventory[idx])
 		idx++;
 	if (idx < 4)
-		this->_inventory[idx] = m->clone();
+		this->_inventory[idx] = m;
 	return;
 }
 

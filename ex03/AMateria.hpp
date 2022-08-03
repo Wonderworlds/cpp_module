@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:53:18 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 16:32:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 17:21:15 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 #define DEBUG_LOG(A)
 #endif
 
+class ICharacter;
+
 class AMateria
 {
 protected:
@@ -33,7 +35,7 @@ public:
 	AMateria(void);
 	AMateria(std::string const &type);
 	AMateria(AMateria const &src);
-	~AMateria(void);
+	virtual ~AMateria(void);
 
 	AMateria &operator=(AMateria const &rhs);
 	std::string const &getType(void) const;
@@ -63,4 +65,5 @@ public:
 	AMateria *clone(void) const;
 	virtual void use(ICharacter &target);
 };
+
 #endif

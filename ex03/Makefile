@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/03 16:20:50 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/03 17:41:16 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,12 @@ SRCDIR				:=	./
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-CPPSRC				:=	main.cpp		\
-						AMateria.cpp	\
+CPPSRC				:=	AMateria.cpp	\
 						Cure.cpp		\
 						Ice.cpp			\
+						Character.cpp	\
+						MateriaSource.cpp	\
+						main.cpp
 
 CC					:=	c++
 RM					:=	rm

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:12:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 16:21:30 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 17:19:43 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Ice::~Ice(void)
 void Ice::use(ICharacter &target)
 {
 	DEBUG_LOG("Ice: use function member called");
-	PRINT("* shoots an ice bolt at <target> *");
+	PRINT("* shoots an ice bolt at " << target.getName() << " *");
 	return;
 }
 

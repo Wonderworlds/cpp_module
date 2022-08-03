@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 23:08:46 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 23:45:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 00:24:26 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ Form::Form(void) : _name("default"), _isSigned(false), _gradeToSign(1), _gradeTo
 {
 	DEBUG_LOG("Form: Default Constructor called");
 	return;
+}
+
+Form::Form(const std::string &name, int gradeToSign, int gradeToExec) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExe(gradeToExec)
+{
+	if (gradeToSign < 1 || gradeToExec < 1)
+		throw GradeTooHighException();
+	if (gradeToSign > 150 || gradeToExec > 150)
+		throw GradeTooLowException();
 }
 
 Form::Form(Form const &src) : _name(src._name), _isSigned(src._isSigned), _gradeToSign(src._gradeToSign), _gradeToExe(src._gradeToExe)

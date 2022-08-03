@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 23:00:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 23:56:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 00:16:25 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ private:
 
 public:
 	Form(void);
+	Form(const std::string &name, int gradeToSign, int gradeToExec);
 	Form(Form const &src);
 	~Form(void);
 

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:52:50 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 18:31:49 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 19:23:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,109 @@
 
 int main()
 {
+	{
+		TITLE("ClASS CHECK");
+		{
+			TITLE("AMATERIA ICE");
+			AMateria *a = new Ice();
+			Ice *b = new Ice();
+			AMateria *c = new Ice(*b);
+			AMateria *d = new Ice();
+			AMateria *e;
+			Character bob("bob");
+			e = a->clone();
+			*d = *a;
+			a->use(bob);
+			delete a;
+			b->use(bob);
+			c->use(bob);
+			d->use(bob);
+			e->use(bob);
+			delete b;
+			delete c;
+			delete d;
+			delete e;
+		}
+		{
+			TITLE("AMATERIA CURE");
+			AMateria *a = new Cure();
+			Cure *b = new Cure();
+			AMateria *c = new Cure(*b);
+			AMateria *d = new Cure();
+			AMateria *e;
+			Character bob("bob");
+			e = a->clone();
+			*d = *a;
+			a->use(bob);
+			delete a;
+			b->use(bob);
+			c->use(bob);
+			d->use(bob);
+			e->use(bob);
+			delete b;
+			delete c;
+			delete d;
+			delete e;
+		}
+		{
+			TITLE("CHARACTER");
+			ICharacter *a = new Character();
+			Character *b = new Character("john");
+			ICharacter *c = new Character(*b);
+			Character *d = new Character("Evelynn");
+			Character *e = new Character();
+			Character bob("bob");
+			*e = *d;
+			PRINT("Character: a: " << a->getName());
+			delete a;
+			PRINT("Character: b: " << b->getName());
+			delete b;
+			PRINT("Character: c: " << c->getName());
+			delete c;
+			PRINT("Character: d: " << d->getName());
+			delete d;
+			PRINT("Character: e: " << e->getName());
+			delete e;
+		}
+		{
+			TITLE("MATERIASOURCE");
+			IMateriaSource *a = new MateriaSource();
+			MateriaSource *b = new MateriaSource();
+			b->learnMateria(new Ice());
+			IMateriaSource *c = new MateriaSource(*b);
+			MateriaSource *d = new MateriaSource();
+			d->learnMateria(new Cure());
+			AMateria *tmp;
+
+			PRINT("has Ice: a: " << ((tmp = a->createMateria("ice")) ? "true" : "false"));
+			delete tmp;
+			PRINT("has Cure: a: " << ((tmp = a->createMateria("cure")) ? "true" : "false"));
+			delete tmp;
+			delete a;
+			PRINT("\nhas Ice: b: " << ((tmp = b->createMateria("ice")) ? "true" : "false"));
+			delete tmp;
+			PRINT("has Cure: b: " << ((tmp = b->createMateria("cure")) ? "true" : "false"));
+			delete tmp;
+			PRINT("\nhas Ice: c: " << ((tmp = c->createMateria("ice")) ? "true" : "false"));
+			delete tmp;
+			PRINT("has Cure: c: " << ((tmp = c->createMateria("cure")) ? "true" : "false"));
+			delete tmp;
+			delete c;
+			PRINT("\nbefore assignment");
+			PRINT("has Ice: d: " << ((tmp = d->createMateria("ice")) ? "true" : "false"));
+			delete tmp;
+			PRINT("has Cure: d: " << ((tmp = d->createMateria("cure")) ? "true" : "false"));
+			delete tmp;
+			*d = *b;
+			delete b;
+			PRINT("\nd = b\nafter assignment");
+			PRINT("has Ice: d: " << ((tmp = d->createMateria("ice")) ? "true" : "false"));
+			delete tmp;
+			PRINT("has Cure: d: " << ((tmp = d->createMateria("cure")) ? "true" : "false"));
+			delete tmp;
+			delete d;
+		}
+	}
 	{
 		TITLE("MANDATORY");
 		IMateriaSource *src = new MateriaSource();
@@ -63,10 +166,13 @@ int main()
 	{
 		TITLE("TESTS CHARACTER");
 		MateriaSource *src = new MateriaSource();
-		src->learnMateria(new Ice());
-		src->learnMateria(new Cure());
 		Character me;
 		Character bob("bob");
+		AMateria *leftover = NULL;
+		const AMateria *todel[4];
+
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
 		TITLE("TESTS equip ice");
 		me.equip(src->createMateria("ice"));
 		me.use(0, bob);
@@ -79,7 +185,6 @@ int main()
 		me.equip(src->createMateria("cure"));
 		me.use(1, bob);
 		TITLE("TESTS equip ice overload");
-		AMateria *leftover;
 		me.equip(src->createMateria("ice"));
 		me.equip(src->createMateria("ice"));
 		leftover = src->createMateria("ice");
@@ -94,7 +199,6 @@ int main()
 		me.use(4, bob);
 		me.use(-1, bob);
 		TITLE("TESTS unequip");
-		const AMateria *todel[4];
 		todel[0] = me.getIndexInventory(0);
 		todel[1] = me.getIndexInventory(1);
 		todel[2] = me.getIndexInventory(2);

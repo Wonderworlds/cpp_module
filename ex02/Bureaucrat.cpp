@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:19:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 00:08:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:07:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void Bureaucrat::demote(void)
 	return;
 }
 
-void Bureaucrat::signForm(Form &f) const
+void Bureaucrat::signAForm(AForm &f) const
 {
-	DEBUG_LOG("Bureaucrat: signForm function member called");
+	DEBUG_LOG("Bureaucrat: signAForm function member called");
 
 	try
 	{
@@ -99,9 +99,9 @@ void Bureaucrat::signForm(Form &f) const
 	return;
 }
 
-void Bureaucrat::executeForm(Form const &f) const
+void Bureaucrat::executeForm(AForm const &f) const
 {
-	DEBUG_LOG("Bureaucrat: executeForm function member called");
+	DEBUG_LOG("Bureaucrat: executeAForm function member called");
 	try
 	{
 		// f.beSigned(*this);

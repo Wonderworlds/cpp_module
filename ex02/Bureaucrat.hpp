@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:05:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 00:06:21 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:07:36 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #define PRINT(A) std::cout << A << std::endl
 
@@ -24,7 +24,7 @@
 #define DEBUG_LOG(A)
 #endif
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -45,8 +45,8 @@ public:
 
 	void promote();
 	void demote();
-	void signForm(Form &f) const;
-	void executeForm(Form const &form) const;
+	void signAForm(AForm &f) const;
+	void executeForm(AForm const &form) const;
 
 	class GradeTooHighException : public std::exception
 	{

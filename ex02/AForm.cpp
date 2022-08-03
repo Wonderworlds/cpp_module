@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 23:08:46 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 23:45:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:07:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #ifndef __GNUC__
 #pragma region Constructor &&Destructor
 #endif
 
-Form::Form(void) : _name("default"), _isSigned(false), _gradeToSign(1), _gradeToExe(1)
+AForm::AForm(void) : _name("default"), _isSigned(false), _gradeToSign(1), _gradeToExe(1)
 {
-	DEBUG_LOG("Form: Default Constructor called");
+	DEBUG_LOG("AForm: Default Constructor called");
 	return;
 }
 
-Form::Form(Form const &src) : _name(src._name), _isSigned(src._isSigned), _gradeToSign(src._gradeToSign), _gradeToExe(src._gradeToExe)
+AForm::AForm(const std::string &name, int gradeToSign, int gradeToExec) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExe(gradeToExec)
 {
-	DEBUG_LOG("Form: Copy Constructor called");
+	if (gradeToSign < 1 || gradeToExec < 1)
+		throw GradeTooHighException();
+	if (gradeToSign > 150 || gradeToExec > 150)
+		throw GradeTooLowException();
+}
+
+AForm::AForm(AForm const &src) : _name(src._name), _isSigned(src._isSigned), _gradeToSign(src._gradeToSign), _gradeToExe(src._gradeToExe)
+{
+	DEBUG_LOG("AForm: Copy Constructor called");
 	return;
 }
 
-Form::~Form(void)
+AForm::~AForm(void)
 {
-	DEBUG_LOG("Form: Destructor called");
+	DEBUG_LOG("AForm: Destructor called");
 	return;
 }
 
@@ -43,30 +51,30 @@ Form::~Form(void)
 #pragma region Accessor
 #endif
 
-std::string const &Form::getName(void) const
+std::string const &AForm::getName(void) const
 {
-	DEBUG_LOG("Form: getName function member called");
+	DEBUG_LOG("AForm: getName function member called");
 
 	return this->_name;
 }
 
-bool const &Form::getIsSigned(void) const
+bool const &AForm::getIsSigned(void) const
 {
-	DEBUG_LOG("Form: getIsSigned function member called");
+	DEBUG_LOG("AForm: getIsSigned function member called");
 
 	return this->_isSigned;
 }
 
-unsigned int const &Form::getGradeToSign(void) const
+unsigned int const &AForm::getGradeToSign(void) const
 {
-	DEBUG_LOG("Form: getGradeToSign function member called");
+	DEBUG_LOG("AForm: getGradeToSign function member called");
 
 	return this->_gradeToSign;
 }
 
-unsigned int const &Form::getGradeToExe(void) const
+unsigned int const &AForm::getGradeToExe(void) const
 {
-	DEBUG_LOG("Form: getGradeToExe function member called");
+	DEBUG_LOG("AForm: getGradeToExe function member called");
 
 	return this->_gradeToExe;
 }
@@ -75,9 +83,9 @@ unsigned int const &Form::getGradeToExe(void) const
 #pragma endregion Accessor
 #endif
 
-void Form::beSigned(Bureaucrat const &bur)
+void AForm::beSigned(Bureaucrat const &bur)
 {
-	DEBUG_LOG("Form: beSigned function member called");
+	DEBUG_LOG("AForm: beSigned function member called");
 
 	if (bur.getGrade() <= this->_gradeToSign)
 		this->_isSigned = true;
@@ -86,9 +94,9 @@ void Form::beSigned(Bureaucrat const &bur)
 	return;
 }
 
-Form &Form::operator=(Form const &rhs)
+AForm &AForm::operator=(AForm const &rhs)
 {
-	DEBUG_LOG("Form: Assignment operator called");
+	DEBUG_LOG("AForm: Assignment operator called");
 
 	if (this != &rhs)
 	{
@@ -97,7 +105,7 @@ Form &Form::operator=(Form const &rhs)
 	return *this;
 }
 
-std::ostream &operator<<(std::ostream &o, Form const &rhs)
+std::ostream &operator<<(std::ostream &o, AForm const &rhs)
 {
 	o << "form:\t" << rhs.getName()
 	  << "\n\t| is signed: " << ((rhs.getIsSigned()) ? "true" : "false")

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:13:39 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 00:13:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:07:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 #pragma region Constructor &&Destructor
 #endif
 
-PresidentialPardonForm::PresidentialPardonForm(void) : _value(0)
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("formulaire de pardon présidentiel", 25, 5), _target("empty")
 {
 	DEBUG_LOG("PresidentialPardonForm: Default Constructor called");
 	return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(int newValue) : _value(newValue)
+PresidentialPardonForm::PresidentialPardonForm(std::string const &target) : AForm("formulaire de pardon présidentiel", 25, 5), _target(target)
 {
 	DEBUG_LOG("PresidentialPardonForm: Parametric Constructor called");
 	return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &src)
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &src) : AForm(src)
 {
 	DEBUG_LOG("PresidentialPardonForm: Copy Constructor called");
 	*this = src;
@@ -47,9 +47,21 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 #pragma endregion Constructor &&Destructor
 #endif
 
-int PresidentialPardonForm::getValue(void) const
+std::string const &PresidentialPardonForm::getTarget(void) const
 {
-	return this->_value;
+	DEBUG_LOG("PresidentialPardonForm: getTarget function member called");
+	return this->_target;
+}
+
+void PresidentialPardonForm::execute(Bureaucrat const &executor) const
+{
+	DEBUG_LOG("PresidentialPardonForm: execute function member called");
+
+	if (executor.getGrade() <= this->getGradeToExe())
+		PRINT(this->_target << ", You are therefore pardonned by Zaphod Beeblebrox");
+	else
+		throw GradeTooLowException();
+	return;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm const &rhs)
@@ -57,6 +69,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm
 	DEBUG_LOG("PresidentialPardonForm: Assignment operator called");
 
 	if (this != &rhs)
-		this->_value = rhs.getValue();
+		this->_target = rhs.getTarget();
 	return *this;
 }

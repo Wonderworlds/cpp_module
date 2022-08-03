@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:11:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 00:13:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:07:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 #define PRESIDENTIALPARDONFORM_HPP
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-class PresidentialPardonForm : public Form
+class PresidentialPardonForm : public AForm
 {
+private:
+	std::string _target;
+
 public:
 	PresidentialPardonForm(void);
+	PresidentialPardonForm(std::string const &target);
 	PresidentialPardonForm(PresidentialPardonForm const &src);
 	~PresidentialPardonForm(void);
 
 	PresidentialPardonForm &operator=(PresidentialPardonForm const &rhs);
 
+	std::string const &getTarget(void) const;
 	virtual void execute(Bureaucrat const &executor) const;
 };
 

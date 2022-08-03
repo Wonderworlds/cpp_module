@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:34:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/02 19:39:51 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:24:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define ANIMAL_HPP
 
 #include <iostream>
+#include "Brain.hpp"
 
 #define PRINT(A) std::cout << A << std::endl
 
@@ -35,29 +36,37 @@ public:
 
 	Animal &operator=(Animal const &rhs);
 
-	const std::string &getType(void) const;
+	std::string const &getType(void) const;
 	virtual void makeSound() const;
 };
 
 class Cat : public Animal
 {
+private:
+	Brain *_brain;
+
 public:
 	Cat(void);
 	Cat(Cat const &src);
 	~Cat(void);
 
 	Cat &operator=(Cat const &rhs);
+	Brain const *getBrain(void) const;
 	virtual void makeSound(void) const;
 };
 
 class Dog : public Animal
 {
+private:
+	Brain *_brain;
+
 public:
 	Dog(void);
 	Dog(Dog const &src);
 	~Dog(void);
 
 	Dog &operator=(Dog const &rhs);
+	Brain const *getBrain(void) const;
 	virtual void makeSound(void) const;
 };
 

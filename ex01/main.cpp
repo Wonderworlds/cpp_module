@@ -6,12 +6,11 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:33:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 14:25:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:28:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
-#include "WrongAnimal.hpp"
 #include <iostream>
 #include <iomanip>
 
@@ -25,53 +24,72 @@ int main()
 	{
 		TITLE("CONSTRUCTOR");
 		{
-			TITLE("Animal");
-			Animal a;
-			Animal b(a);
-			Animal c;
-			c = b;
-			PRINT("");
-		}
-		{
 			TITLE("Cat");
-			Cat a;
-			Cat b(a);
-			Cat c;
-			c = b;
+			Cat *a = new (std::nothrow) Cat();
+			Cat *b = new (std::nothrow) Cat(*a);
+			Cat *c = new (std::nothrow) Cat();
+			if (c && b)
+				*c = *b;
 			PRINT("");
+			if (a)
+				delete a;
+			if (b)
+				delete b;
+			if (c)
+				delete c;
 		}
 		{
 			TITLE("Dog");
-			Dog a;
-			Dog b(a);
-			Dog c;
-			c = b;
+			Dog *a = new (std::nothrow) Dog();
+			Dog *b = new (std::nothrow) Dog(*a);
+			Dog *c = new (std::nothrow) Dog();
+			if (c && b)
+				*c = *b;
 			PRINT("");
+			if (a)
+				delete a;
+			if (b)
+				delete b;
+			if (c)
+				delete c;
 		}
 	}
 	{
 		TITLE("MANDATORY");
-		const Animal *meta = new Animal();
 		const Animal *j = new Dog();
 		const Animal *i = new Cat();
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
-		i->makeSound(); // will output the cat sound!
-		j->makeSound();
-		meta->makeSound();
-		delete meta;
-		delete j;
+		delete j; // should not create a leak
 		delete i;
 	}
 	{
-		TITLE("WRONG");
-		const WrongAnimal *meta = new WrongAnimal();
-		const WrongAnimal *i = new WrongCat();
-		std::cout << i->getType() << " " << std::endl;
-		i->makeSound(); // will output the cat sound!
-		meta->makeSound();
-		delete meta;
-		delete i;
+		TITLE("CHECK COPY");
+		const Cat c;
+		const Cat *j = new Cat(c);
+
+		PRINT("");
+		PRINT("c brain adress " << c.getBrain());
+		PRINT("j brain adress " << j->getBrain());
+		PRINT("");
+		delete j;
+	}
+	{
+		TITLE("Loop");
+		Animal *j[10];
+		int i = 10;
+		while (--i)
+		{
+			if (i % 2)
+				j[i] = new Cat();
+			else
+				j[i] = new Dog();
+			PRINT("");
+		}
+		i = 10;
+		while (--i)
+		{
+			PRINT("");
+			delete j[i];
+		}
 	}
 	return 0;
 }

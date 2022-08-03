@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:30:04 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 14:36:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:49:53 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ Brain::~Brain(void)
 
 std::string const *Brain::getIdeas(void) const
 {
-	DEBUG_LOG("Brain: getIdeas funstion member");
+	DEBUG_LOG("Brain: getIdeas function member");
 	return this->ideas;
 }
 

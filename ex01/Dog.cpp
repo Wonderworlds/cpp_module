@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:51:21 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 14:26:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:24:42 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ Dog::Dog(void) : Animal()
 	PRINT("Dog: Default Constructor called");
 
 	this->type = "Dog";
+	this->_brain = new Brain();
 	return;
 }
 
 Dog::Dog(Dog const &src) : Animal()
 {
 	PRINT("Dog: Copy Constructor called");
+	this->_brain = new Brain();
 	*this = src;
 
 	return;
@@ -36,6 +38,7 @@ Dog::Dog(Dog const &src) : Animal()
 Dog::~Dog(void)
 {
 	PRINT("Dog: Destructor called");
+	delete this->_brain;
 	return;
 }
 
@@ -50,11 +53,20 @@ void Dog::makeSound(void) const
 	return;
 }
 
+Brain const *Dog::getBrain(void) const
+{
+	DEBUG_LOG("Cat: getBrain function member called");
+	return this->_brain;
+}
+
 Dog &Dog::operator=(Dog const &rhs)
 {
 	DEBUG_LOG("Dog: Assignment operator called");
 
 	if (this != &rhs)
+	{
 		this->type = rhs.getType();
+		*this->_brain = *rhs.getBrain();
+	}
 	return *this;
 }

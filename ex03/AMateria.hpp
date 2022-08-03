@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:53:18 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 16:19:22 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:32:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define AMATERIA_HPP
 
 #include <iostream>
-#include "ICharacter.hpp"
+#include "Character.hpp"
 
 #define PRINT(A) std::cout << A << std::endl
 

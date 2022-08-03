@@ -19,7 +19,7 @@
 
 WrongCat::WrongCat(void) : WrongAnimal()
 {
-	DEBUG_LOG("WrongCat: Default Constructor called");
+	PRINT("WrongCat: Default Constructor called");
 
 	this->type = "WrongCat";
 	return;
@@ -27,7 +27,7 @@ WrongCat::WrongCat(void) : WrongAnimal()
 
 WrongCat::WrongCat(WrongCat const &src) : WrongAnimal()
 {
-	DEBUG_LOG("WrongCat: Copy Constructor called");
+	PRINT("WrongCat: Copy Constructor called");
 	*this = src;
 
 	return;
@@ -35,7 +35,7 @@ WrongCat::WrongCat(WrongCat const &src) : WrongAnimal()
 
 WrongCat::~WrongCat(void)
 {
-	DEBUG_LOG("WrongCat: Destructor called");
+	PRINT("WrongCat: Destructor called");
 	return;
 }
 
@@ -52,7 +52,7 @@ void WrongCat::makeSound(void) const
 
 WrongCat &WrongCat::operator=(WrongCat const &rhs)
 {
-	DEBUG_LOG("WrongCat: Assignement operator called");
+	DEBUG_LOG("WrongCat: Assignment operator called");
 
 	if (this != &rhs)
 		this->type = rhs.getType();

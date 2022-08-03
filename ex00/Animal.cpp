@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:39:50 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/02 19:12:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:24:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@
 
 Animal::Animal(void)
 {
-	DEBUG_LOG("Animal: Default Constructor called");
+	PRINT("Animal: Default Constructor called");
 	return;
 }
 
 Animal::Animal(Animal const &src)
 {
-	DEBUG_LOG("Animal: Copy Constructor called");
+	PRINT("Animal: Copy Constructor called");
 	*this = src;
 
 	return;
@@ -41,7 +41,7 @@ Animal::Animal(Animal const &src)
 
 Animal::~Animal(void)
 {
-	DEBUG_LOG("Animal: Destructor called");
+	PRINT("Animal: Destructor called");
 	return;
 }
 
@@ -64,7 +64,7 @@ const std::string &Animal::getType(void) const
 
 Animal &Animal::operator=(Animal const &rhs)
 {
-	DEBUG_LOG("Animal: Assignement operator called");
+	DEBUG_LOG("Animal: Assignment operator called");
 
 	if (this != &rhs)
 		this->type = rhs.getType();

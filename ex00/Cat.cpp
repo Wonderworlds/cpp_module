@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:51:21 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/02 19:20:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:23:55 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 Cat::Cat(void) : Animal()
 {
-	DEBUG_LOG("Cat: Default Constructor called");
+	PRINT("Cat: Default Constructor called");
 
 	this->type = "Cat";
 	return;
@@ -27,7 +27,7 @@ Cat::Cat(void) : Animal()
 
 Cat::Cat(Cat const &src) : Animal()
 {
-	DEBUG_LOG("Cat: Copy Constructor called");
+	PRINT("Cat: Copy Constructor called");
 	*this = src;
 
 	return;
@@ -35,7 +35,7 @@ Cat::Cat(Cat const &src) : Animal()
 
 Cat::~Cat(void)
 {
-	DEBUG_LOG("Cat: Destructor called");
+	PRINT("Cat: Destructor called");
 	return;
 }
 
@@ -52,7 +52,7 @@ void Cat::makeSound(void) const
 
 Cat &Cat::operator=(Cat const &rhs)
 {
-	DEBUG_LOG("Cat: Assignement operator called");
+	DEBUG_LOG("Cat: Assignment operator called");
 
 	if (this != &rhs)
 		this->type = rhs.getType();

@@ -19,13 +19,13 @@
 
 WrongAnimal::WrongAnimal(void)
 {
-	DEBUG_LOG("WrongAnimal: Default Constructor called");
+	PRINT("WrongAnimal: Default Constructor called");
 	return;
 }
 
 WrongAnimal::WrongAnimal(WrongAnimal const &src)
 {
-	DEBUG_LOG("WrongAnimal: Copy Constructor called");
+	PRINT("WrongAnimal: Copy Constructor called");
 	*this = src;
 
 	return;
@@ -33,7 +33,7 @@ WrongAnimal::WrongAnimal(WrongAnimal const &src)
 
 WrongAnimal::~WrongAnimal(void)
 {
-	DEBUG_LOG("WrongAnimal: Destructor called");
+	PRINT("WrongAnimal: Destructor called");
 	return;
 }
 
@@ -56,7 +56,7 @@ const std::string &WrongAnimal::getType(void) const
 
 WrongAnimal &WrongAnimal::operator=(WrongAnimal const &rhs)
 {
-	DEBUG_LOG("WrongAnimal: Assignement operator called");
+	DEBUG_LOG("WrongAnimal: Assignment operator called");
 
 	if (this != &rhs)
 		this->type = rhs.getType();

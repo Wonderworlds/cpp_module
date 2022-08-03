@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 18:33:37 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 15:28:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:40:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,35 @@ int main()
 	{
 		TITLE("CHECK COPY");
 		const Cat c;
-		const Cat *j = new Cat(c);
+		const Cat *j = new (std::nothrow) Cat(c);
 
 		PRINT("");
 		PRINT("c brain adress " << c.getBrain());
-		PRINT("j brain adress " << j->getBrain());
-		PRINT("");
-		delete j;
+		if (j)
+		{
+			PRINT("j brain adress " << j->getBrain());
+			PRINT("");
+			delete j;
+		}
 	}
 	{
 		TITLE("Loop");
-		Animal *j[10];
-		int i = 10;
-		while (--i)
+		Animal *j[5];
+		int i = -1;
+		while (++i < 5)
 		{
 			if (i % 2)
-				j[i] = new Cat();
+				j[i] = new (std::nothrow) Cat();
 			else
-				j[i] = new Dog();
+				j[i] = new (std::nothrow) Dog();
 			PRINT("");
+			if (j[i] == NULL)
+			{
+				PRINT("error alloc");
+				break;
+			}
 		}
-		i = 10;
-		while (--i)
+		while (i--)
 		{
 			PRINT("");
 			delete j[i];

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:52:50 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 18:06:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/03 18:31:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@
 
 int main()
 {
-	// {
-	// 	TITLE("CONSTRUCTOR");
-	// 	{
-	// 		ICharacter *c = new Character();
-	// 		Character t("jose");
-
-	// 		c->use(0, t);
-	// 		c->unequip(0);
-	// 		PRINT("");
-	// 		delete c;
-	// 	}
-	// }
 	{
 		TITLE("MANDATORY");
 		IMateriaSource *src = new MateriaSource();
@@ -71,6 +59,79 @@ int main()
 		cp1.use(0, *bob);
 		cp1.use(1, *bob);
 		delete bob;
+	}
+	{
+		TITLE("TESTS CHARACTER");
+		MateriaSource *src = new MateriaSource();
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		Character me;
+		Character bob("bob");
+		TITLE("TESTS equip ice");
+		me.equip(src->createMateria("ice"));
+		me.use(0, bob);
+		TITLE("TESTS createMateria false");
+		if (!src->createMateria("false"))
+			PRINT("CREATE FAIL");
+		if (!src->createMateria(""))
+			PRINT("CREATE FAIL");
+		TITLE("TESTS equip cure");
+		me.equip(src->createMateria("cure"));
+		me.use(1, bob);
+		TITLE("TESTS equip ice overload");
+		AMateria *leftover;
+		me.equip(src->createMateria("ice"));
+		me.equip(src->createMateria("ice"));
+		leftover = src->createMateria("ice");
+		me.equip(leftover);
+		me.equip(leftover);
+		me.equip(leftover);
+		delete leftover;
+		me.use(0, bob);
+		me.use(1, bob);
+		me.use(2, bob);
+		me.use(3, bob);
+		me.use(4, bob);
+		me.use(-1, bob);
+		TITLE("TESTS unequip");
+		const AMateria *todel[4];
+		todel[0] = me.getIndexInventory(0);
+		todel[1] = me.getIndexInventory(1);
+		todel[2] = me.getIndexInventory(2);
+		todel[3] = me.getIndexInventory(3);
+		me.unequip(0);
+		me.unequip(1);
+		me.unequip(2);
+		me.unequip(3);
+		me.unequip(4);
+		me.unequip(-1);
+		me.use(0, bob);
+		me.use(1, bob);
+		me.use(2, bob);
+		me.use(3, bob);
+		me.use(4, bob);
+		delete todel[0];
+		delete todel[1];
+		delete todel[2];
+		delete todel[3];
+		PRINT("if empty == ok");
+		TITLE("TESTS Equip unequip and equip again");
+		me.equip(src->createMateria("ice"));
+		me.equip(src->createMateria("ice"));
+		me.use(0, bob);
+		me.use(1, bob);
+		PRINT("");
+		todel[0] = me.getIndexInventory(0);
+		me.unequip(0);
+		me.use(0, bob);
+		delete todel[0];
+		PRINT("");
+		me.equip(src->createMateria("cure"));
+		me.equip(src->createMateria("cure"));
+		me.use(0, bob);
+		me.use(1, bob);
+		me.use(2, bob);
+		delete src;
 	}
 	return 0;
 }

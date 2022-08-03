@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 23:00:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 23:56:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 00:05:33 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ public:
 	bool const &getIsSigned() const;
 	unsigned int const &getGradeToSign() const;
 	unsigned int const &getGradeToExe() const;
+
 	void beSigned(Bureaucrat const &bur);
+	virtual void execute(Bureaucrat const &executor) const = 0;
 
 	class GradeTooHighException : public std::exception
 	{

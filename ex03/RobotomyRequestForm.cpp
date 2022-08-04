@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:50:14 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 13:38:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:43:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #pragma region Constructor &&Destructor
 #endif
 
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("formulaire de demande de robotomie", 72, 45), _target("empty")
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 72, 45), _target("empty")
 {
 	DEBUG_LOG("RobotomyRequestForm: Default Constructor called");
 	return;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string const &target) : AForm("formulaire de demande de robotomie", 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string const &target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
 	DEBUG_LOG("RobotomyRequestForm: Parametric Constructor called");
 	return;

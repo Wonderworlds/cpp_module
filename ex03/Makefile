@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/04 02:49:15 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/04 13:58:33 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ DEBUGDIR			:=	./debugobj
 
 CPPSRC				:=	main.cpp		\
 						AForm.cpp		\
+						Intern.cpp		\
 						PresidentialPardonForm.cpp	\
 						RobotomyRequestForm.cpp	\
 						ShrubberyCreationForm.cpp	\

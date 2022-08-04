@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:12:11 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 13:55:36 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:04:47 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 #pragma region Constructor &&Destructor
 #endif
 
-const std::string Intern::formTab[NB_FORM] = {"presidential pardon", "robotom request", "shrubbery creation"};
+const std::string Intern::formTab[NB_FORM] = {"presidential pardon", "robotomy request", "shrubbery creation"};
 AForm *(*Intern::f_make[NB_FORM])(std::string const &) = {PresidentialPardonForm::make, RobotomyRequestForm::make, ShrubberyCreationForm::make};
 
 Intern::Intern(void)

@@ -28,13 +28,13 @@ _- -   | | _- _\n\
 #pragma region Constructor &&Destructor
 #endif
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("formulaire de création d’arbustes", 145, 137), _target("empty")
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137), _target("empty")
 {
 	DEBUG_LOG("ShrubberyCreationForm: Default Constructor called");
 	return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) : AForm("formulaire de création d’arbustes", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
 	DEBUG_LOG("ShrubberyCreationForm: Parametric Constructor called");
 	return;

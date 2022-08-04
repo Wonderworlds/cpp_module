@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 23:00:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:42:12 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:19:29 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ public:
 	AForm(void);
 	AForm(const std::string &name, int gradeToSign, int gradeToExec);
 	AForm(AForm const &src);
-	~AForm(void);
+	virtual ~AForm(void);
 
 	AForm &operator=(AForm const &rhs);
 

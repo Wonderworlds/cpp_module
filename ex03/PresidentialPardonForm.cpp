@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:13:39 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 13:37:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:43:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 #pragma region Constructor &&Destructor
 #endif
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm("formulaire de pardon présidentiel", 25, 5), _target("empty")
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("PresidentialPardonForm", 25, 5), _target("empty")
 {
 	DEBUG_LOG("PresidentialPardonForm: Default Constructor called");
 	return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string const &target) : AForm("formulaire de pardon présidentiel", 25, 5), _target(target)
+PresidentialPardonForm::PresidentialPardonForm(std::string const &target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
 	DEBUG_LOG("PresidentialPardonForm: Parametric Constructor called");
 	return;
@@ -80,7 +80,7 @@ AForm *PresidentialPardonForm::make(std::string const &target)
 	DEBUG_LOG("PresidentialPardonForm: make function non member called");
 	PresidentialPardonForm *ptr = new (std::nothrow) PresidentialPardonForm(target);
 
-	if (ptr = NULL)
+	if (!ptr)
 		throw Intern::NoPapersException();
 	return ptr;
 }

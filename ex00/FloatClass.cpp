@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 18:35:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 19:42:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ FloatClass::FloatClass(double const &d)
 	{
 		if (d > std::numeric_limits<float>::max())
 			this->_err = "impossible";
-		else if (d < std::numeric_limits<float>::min())
+		else if (d < -std::numeric_limits<float>::max() - 1)
 			this->_err = "impossible";
 		else
 			this->_valueFloat = static_cast<float>(d);

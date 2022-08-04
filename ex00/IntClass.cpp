@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 19:23:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 20:05:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ IntClass::IntClass(int const &i) : _valueInt(i)
 IntClass::IntClass(float const &f)
 {
 	DEBUG_LOG("IntClass: Float Constructor called");
-	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || f == std::numeric_limits<float>::quiet_NaN())
+	float checkNan = f;
+	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || f != checkNan)
 		this->_err = "impossible";
 	else if (f > std::numeric_limits<int>::max())
 		this->_err = "impossible";
@@ -54,8 +55,9 @@ IntClass::IntClass(float const &f)
 
 IntClass::IntClass(double const &d)
 {
-	DEBUG_LOG("IntClass: Double Constructor called");
-	if (d == std::numeric_limits<double>::infinity() || d == -std::numeric_limits<double>::infinity() || d == std::numeric_limits<double>::quiet_NaN())
+	double checkNan = d
+		DEBUG_LOG("IntClass: Double Constructor called");
+	if (d == std::numeric_limits<double>::infinity() || d == -std::numeric_limits<double>::infinity() || d != checkNan)
 		this->_err = "impossible";
 	else if (d > std::numeric_limits<int>::max())
 		this->_err = "impossible";

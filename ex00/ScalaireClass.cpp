@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:03:36 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 19:21:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 19:55:17 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,19 @@ ScalaireClass::~ScalaireClass(void)
 #pragma endregion Constructor &&Destructor
 #endif
 
-#define PRINT_SCALAIRE(A, B, C, D) \
-	if (!A.empty())                \
-		PRINT(C << A);             \
-	else                           \
-		PRINT(C << D << std::fixed << std::setprecision(1) << B << D);
+#define PRINT_SCALAIRE(A, B, C, D, F) \
+	if (!A.empty())                   \
+		PRINT(C << A);                \
+	else                              \
+		PRINT(C << D << std::fixed << std::setprecision(1) << B << F << D);
 
 void ScalaireClass::print(void) const
 {
 	DEBUG_LOG("ScalaireClass: print function member called");
-	PRINT_SCALAIRE(CharClass::_err, this->_valueChar, "char: ", "'")
-	PRINT_SCALAIRE(IntClass::_err, this->_valueInt, "int: ", "")
-	PRINT_SCALAIRE(FloatClass::_err, this->_valueFloat, "float: ", "")
-	PRINT_SCALAIRE(DoubleClass::_err, this->_valueDouble, "double: ", "")
+	PRINT_SCALAIRE(CharClass::_err, this->_valueChar, "char: ", "'", "")
+	PRINT_SCALAIRE(IntClass::_err, this->_valueInt, "int: ", "", "")
+	PRINT_SCALAIRE(FloatClass::_err, this->_valueFloat, "float: ", "", "f")
+	PRINT_SCALAIRE(DoubleClass::_err, this->_valueDouble, "double: ", "", "")
 	return;
 }
 

@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CharClass.hpp                                      :+:      :+:    :+:   */
+/*   FloatClass.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/04 17:36:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 17:47:16 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/08/04 17:46:05 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/04 17:46:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARCLASS_HPP
-#define CHARCLASS_HPP
+#ifndef FLOATCLASS_HPP
+#define FLOATCLASS_HPP
 
 #include <iostream>
 
-class CharClass
+class FloatClass
 {
 protected:
-	char _valueChar;
+	float _valueFloat;
 	std::string _err;
 
 public:
-	CharClass(void);
-	explicit CharClass(int const &i);
-	explicit CharClass(float const &f);
-	explicit CharClass(double const &d);
-	explicit CharClass(char const &c);
-	CharClass(CharClass const &src);
-	virtual ~CharClass(void);
+	FloatClass(void);
+	explicit FloatClass(int const &i);
+	explicit FloatClass(float const &f);
+	explicit FloatClass(double const &d);
+	explicit FloatClass(char const &c);
+	FloatClass(FloatClass const &src);
+	virtual ~FloatClass(void);
 
-	CharClass &operator=(CharClass const &rhs);
+	FloatClass &operator=(FloatClass const &rhs);
 
-	char const getValue(void) const;
+	float const getValue(void) const;
 	std::string const &getErr(void) const;
 };
 

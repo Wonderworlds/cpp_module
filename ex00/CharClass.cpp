@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 17:40:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 17:49:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ CharClass::CharClass(void) : _valueChar(0)
 CharClass::CharClass(int const &i)
 {
 	DEBUG_LOG("CharClass: Int Constructor called");
+	if (i > std::numeric_limits<char>::max())
+		this->_err = "impossible";
+	else if (i < std::numeric_limits<char>::min())
+		this->_err = "impossible";
+	else
+		this->_valueChar = static_cast<char>(i);
 	return;
 }
 
@@ -43,9 +49,9 @@ CharClass::CharClass(float const &f)
 	DEBUG_LOG("CharClass: Float Constructor called");
 	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || f == std::numeric_limits<float>::quiet_NaN())
 		this->_err = "impossible";
-	else if (f > INT32_MAX)
+	else if (f > std::numeric_limits<char>::max())
 		this->_err = "impossible";
-	else if (f < INT32_MIN)
+	else if (f < std::numeric_limits<char>::min())
 		this->_err = "impossible";
 	else
 		this->_valueChar = static_cast<char>(f);
@@ -57,12 +63,12 @@ CharClass::CharClass(double const &d)
 	DEBUG_LOG("CharClass: Double Constructor called");
 	if (d == std::numeric_limits<double>::infinity() || d == -std::numeric_limits<double>::infinity() || d == std::numeric_limits<double>::quiet_NaN())
 		this->_err = "impossible";
-	else if (d > INT32_MAX)
+	else if (d > std::numeric_limits<char>::max())
 		this->_err = "impossible";
-	else if (d < INT32_MIN)
+	else if (d < std::numeric_limits<char>::min())
 		this->_err = "impossible";
 	else
-		this->_valueChar = static_cast<int>(d);
+		this->_valueChar = static_cast<char>(d);
 	return;
 }
 
@@ -90,7 +96,7 @@ CharClass::~CharClass(void)
 #pragma endregion Constructor &&Destructor
 #endif
 
-int const CharClass::getValue(void) const
+char const CharClass::getValue(void) const
 {
 	DEBUG_LOG("CharClass: getValue function member called");
 	return this->_valueChar;

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:13:39 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:07:38 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:57:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
 	DEBUG_LOG("PresidentialPardonForm: execute function member called");
 
-	if (executor.getGrade() <= this->getGradeToExe())
-		PRINT(this->_target << ", You are therefore pardonned by Zaphod Beeblebrox");
-	else
+	if (executor.getGrade() > this->getGradeToExe())
 		throw GradeTooLowException();
+	if (!this->getIsSigned())
+		throw FormNotSignedException();
+	PRINT(this->_target << ", You are therefore pardonned by Zaphod Beeblebrox");
 	return;
 }
 

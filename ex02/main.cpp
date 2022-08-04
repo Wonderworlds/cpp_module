@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:37:47 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:11:05 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 02:25:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
@@ -40,21 +41,38 @@
 		std::cout << RED << e.what() << STOPC << std::endl;         \
 	}
 
-#define TEST_F(A, B)                                \
-	{                                               \
-		PRINT("\ntest: " << A << "\tgrade: " << B); \
-		Bureaucrat a(A, B);                         \
-		AForm f;                                    \
-		PRINT(f);                                   \
-		a.signAForm(f);                             \
-		PRINT(f);                                   \
+#define TEST_SIGN(A, B, FORM, T)                                    \
+	{                                                               \
+		std::cout << "\nSign: " << std::setw(8) << A                \
+				  << " | grade: " << std::setw(3) << B              \
+				  << " | form: " << #FORM                           \
+				  << std::endl;                                     \
+		Bureaucrat a(A, B);                                         \
+		FORM f(T);                                                  \
+		PRINT(f << "\n\t| target: " << f.getTarget() << std::endl); \
+		a.signForm(f);                                              \
+	}
+
+#define TEST_EXEC(A, B, FORM, T, S)                                 \
+	{                                                               \
+		std::cout << "\nExecute: " << std::setw(8) << A             \
+				  << " | grade: " << std::setw(3) << B              \
+				  << " | form: " << #FORM                           \
+				  << "| signed: " << ((S) ? "true" : "false")       \
+				  << std::endl;                                     \
+		Bureaucrat a(A, B);                                         \
+		FORM f(T);                                                  \
+		if (S)                                                      \
+			a.signForm(f);                                          \
+		PRINT(f << "\n\t| target: " << f.getTarget() << std::endl); \
+		a.executeForm(f);                                           \
 	}
 
 int main()
 {
 	{
-		TITLE("CONSTRUCTOR");
 		{
+			TITLE("CONSTRUCTOR ppf");
 			PresidentialPardonForm a;
 			PresidentialPardonForm b("lucky");
 			PresidentialPardonForm c(a);
@@ -66,6 +84,42 @@ int main()
 			PRINT(d << "\n\t| target: " << d.getTarget() << std::endl);
 
 			TEST_CREATE(PresidentialPardonForm, "lucky")
+			TITLE("Sign & exec ppf");
+			TEST_SIGN("darmanain", 26, PresidentialPardonForm, "unlucky")
+			TEST_SIGN("BIG BOSS", 1, PresidentialPardonForm, "lucky")
+			TEST_EXEC("Prime minister", 6, PresidentialPardonForm, "unlucky", 1)
+			TEST_EXEC("BIG BOSS", 1, PresidentialPardonForm, "lucky", 1)
+			TEST_EXEC("BIG BOSS", 1, PresidentialPardonForm, "unlucky", 0)
+		}
+		TITLE("CONSTRUCTOR rrf");
+		{
+			RobotomyRequestForm a;
+			RobotomyRequestForm b("unlucky");
+			RobotomyRequestForm c(a);
+			RobotomyRequestForm d;
+			d = b;
+			PRINT(a << "\n\t| target: " << a.getTarget() << std::endl);
+			PRINT(b << "\n\t| target: " << b.getTarget() << std::endl);
+			PRINT(c << "\n\t| target: " << c.getTarget() << std::endl);
+			PRINT(d << "\n\t| target: " << d.getTarget() << std::endl);
+
+			TITLE("Sign & exec ppf");
+			TEST_CREATE(RobotomyRequestForm, "unlucky")
+			TEST_CREATE(RobotomyRequestForm, "lucky")
+			TEST_SIGN("darmanain", 73, RobotomyRequestForm, "unlucky")
+			TEST_SIGN("BIG BOSS", 1, RobotomyRequestForm, "lucky")
+			TEST_EXEC("Prime minister", 6, RobotomyRequestForm, "unlucky", 1)
+			TEST_EXEC("BIG BOSS", 1, RobotomyRequestForm, "lucky", 1)
+			TITLE("exec rand");
+			std::srand(std::time(NULL));
+			Bureaucrat bb("BIG BOSS", 1);
+			PRINT("");
+			bb.signForm(b);
+			for (size_t i = 0; i < 10; i++)
+			{
+				PRINT("");
+				bb.executeForm(b);
+			}
 		}
 		TITLE("TESTS");
 		{

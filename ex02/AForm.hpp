@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 23:00:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:07:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:42:12 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ public:
 		virtual const char *what() const throw()
 		{
 			return ("Grade is too damn Low!");
+		}
+	};
+	class FormNotSignedException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw()
+		{
+			return ("Where's the signature!");
 		}
 	};
 };

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:19:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:07:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:55:16 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void Bureaucrat::demote(void)
 	return;
 }
 
-void Bureaucrat::signAForm(AForm &f) const
+void Bureaucrat::signForm(AForm &f) const
 {
 	DEBUG_LOG("Bureaucrat: signAForm function member called");
 
@@ -99,17 +99,17 @@ void Bureaucrat::signAForm(AForm &f) const
 	return;
 }
 
-void Bureaucrat::executeForm(AForm const &f) const
+void Bureaucrat::executeForm(AForm const &form) const
 {
 	DEBUG_LOG("Bureaucrat: executeAForm function member called");
 	try
 	{
-		// f.beSigned(*this);
-		PRINT(this->_name << " executed " << f.getName());
+		form.execute(*this);
+		PRINT(this->_name << " executed " << form.getName());
 	}
 	catch (std::exception &e)
 	{
-		PRINT(this->_name << " couldn't execute " << f.getName() << " because " << e.what());
+		PRINT(this->_name << " couldn't execute " << form.getName() << " because " << e.what());
 	}
 	return;
 }

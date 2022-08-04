@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:05:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:07:36 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:35:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ public:
 
 	void promote();
 	void demote();
-	void signAForm(AForm &f) const;
+	void signForm(AForm &f) const;
 	void executeForm(AForm const &form) const;
 
 	class GradeTooHighException : public std::exception

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:37:47 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 02:48:51 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 03:13:59 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int main()
 			TEST_SIGN("darmanain", 73, RobotomyRequestForm, "unlucky")
 			TEST_SIGN("BIG BOSS", 1, RobotomyRequestForm, "lucky")
 			TEST_EXEC("Prime minister", 6, RobotomyRequestForm, "unlucky", 1)
+			TEST_EXEC("BIG BOSS", 1, RobotomyRequestForm, "unlucky", 0)
 			TEST_EXEC("BIG BOSS", 1, RobotomyRequestForm, "lucky", 1)
 			TITLE("exec rand");
 			std::srand(std::time(NULL));
@@ -122,7 +123,7 @@ int main()
 				bb.executeForm(b);
 			}
 		}
-		TITLE("TESTS");
+		TITLE("CONSTRUCTOR scf");
 		{
 			ShrubberyCreationForm a;
 			ShrubberyCreationForm b("unlucky");
@@ -134,19 +135,20 @@ int main()
 			PRINT(c << "\n\t| target: " << c.getTarget() << std::endl);
 			PRINT(d << "\n\t| target: " << d.getTarget() << std::endl);
 
-			TITLE("Sign & exec ppf");
+			TITLE("Sign & exec scf");
 			TEST_CREATE(ShrubberyCreationForm, "unlucky")
 			TEST_CREATE(ShrubberyCreationForm, "lucky")
 			TEST_SIGN("darmanain", 73, ShrubberyCreationForm, "unlucky")
 			TEST_SIGN("BIG BOSS", 1, ShrubberyCreationForm, "lucky")
 			TEST_EXEC("Prime minister", 6, ShrubberyCreationForm, "unlucky", 1)
+			TEST_EXEC("BIG BOSS", 1, ShrubberyCreationForm, "unlucky", 0)
 			TEST_EXEC("BIG BOSS", 1, ShrubberyCreationForm, "lucky", 1)
-			TITLE("exec rand");
+			TITLE("exec");
 			std::srand(std::time(NULL));
 			Bureaucrat bb("BIG BOSS", 1);
 			PRINT("");
 			bb.signForm(b);
-			for (size_t i = 0; i < 10; i++)
+			for (size_t i = 0; i < 3; i++)
 			{
 				PRINT("");
 				bb.executeForm(b);

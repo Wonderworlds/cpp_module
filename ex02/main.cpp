@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:37:47 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 02:25:01 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 02:48:51 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
@@ -123,6 +124,33 @@ int main()
 		}
 		TITLE("TESTS");
 		{
+			ShrubberyCreationForm a;
+			ShrubberyCreationForm b("unlucky");
+			ShrubberyCreationForm c(a);
+			ShrubberyCreationForm d;
+			d = b;
+			PRINT(a << "\n\t| target: " << a.getTarget() << std::endl);
+			PRINT(b << "\n\t| target: " << b.getTarget() << std::endl);
+			PRINT(c << "\n\t| target: " << c.getTarget() << std::endl);
+			PRINT(d << "\n\t| target: " << d.getTarget() << std::endl);
+
+			TITLE("Sign & exec ppf");
+			TEST_CREATE(ShrubberyCreationForm, "unlucky")
+			TEST_CREATE(ShrubberyCreationForm, "lucky")
+			TEST_SIGN("darmanain", 73, ShrubberyCreationForm, "unlucky")
+			TEST_SIGN("BIG BOSS", 1, ShrubberyCreationForm, "lucky")
+			TEST_EXEC("Prime minister", 6, ShrubberyCreationForm, "unlucky", 1)
+			TEST_EXEC("BIG BOSS", 1, ShrubberyCreationForm, "lucky", 1)
+			TITLE("exec rand");
+			std::srand(std::time(NULL));
+			Bureaucrat bb("BIG BOSS", 1);
+			PRINT("");
+			bb.signForm(b);
+			for (size_t i = 0; i < 10; i++)
+			{
+				PRINT("");
+				bb.executeForm(b);
+			}
 		}
 	}
 	return (0);

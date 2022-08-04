@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 #include <fstream>
 
 #define ASCII_TREE "       _-_\n\
@@ -88,4 +89,14 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 	if (this != &rhs)
 		this->_target = rhs.getTarget();
 	return *this;
+}
+
+AForm *ShrubberyCreationForm::make(std::string const &target)
+{
+	DEBUG_LOG("ShrubberyCreationForm: make function non member called");
+	ShrubberyCreationForm *ptr = new (std::nothrow) ShrubberyCreationForm(target);
+
+	if (!ptr)
+		throw Intern::NoPapersException();
+	return ptr;
 }

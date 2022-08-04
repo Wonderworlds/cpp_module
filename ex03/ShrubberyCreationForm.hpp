@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 02:28:14 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 03:09:28 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:37:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ public:
 
 	std::string const &getTarget(void) const;
 	virtual void execute(Bureaucrat const &executor) const;
+	static AForm *make(std::string const &target);
 	class ConstructionNotAllowedException : public std::exception
 	{
 	public:

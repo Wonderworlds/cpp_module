@@ -6,12 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:13:39 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:57:52 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:37:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 #ifndef __GNUC__
 #pragma region Constructor &&Destructor
@@ -72,4 +73,14 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm
 	if (this != &rhs)
 		this->_target = rhs.getTarget();
 	return *this;
+}
+
+AForm *PresidentialPardonForm::make(std::string const &target)
+{
+	DEBUG_LOG("PresidentialPardonForm: make function non member called");
+	PresidentialPardonForm *ptr = new (std::nothrow) PresidentialPardonForm(target);
+
+	if (ptr = NULL)
+		throw Intern::NoPapersException();
+	return ptr;
 }

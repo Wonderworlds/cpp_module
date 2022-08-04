@@ -6,11 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:50:14 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 02:26:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:38:00 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
+#include "Intern.hpp"
 
 #ifndef __GNUC__
 #pragma region Constructor &&Destructor
@@ -74,4 +75,14 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &r
 	if (this != &rhs)
 		this->_target = rhs.getTarget();
 	return *this;
+}
+
+AForm *RobotomyRequestForm::make(std::string const &target)
+{
+	DEBUG_LOG("RobotomyRequestForm: make function non member called");
+	RobotomyRequestForm *ptr = new (std::nothrow) RobotomyRequestForm(target);
+
+	if (!ptr)
+		throw Intern::NoPapersException();
+	return ptr;
 }

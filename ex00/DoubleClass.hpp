@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:46:05 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 17:55:50 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:35:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ public:
 
 	DoubleClass &operator=(DoubleClass const &rhs);
 
-	double const getValue(void) const;
-	std::string const &getErr(void) const;
+	virtual double getValue(void) const;
+	virtual std::string const &getErr(void) const;
 };
 
 #endif

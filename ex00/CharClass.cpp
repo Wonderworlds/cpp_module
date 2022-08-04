@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 17:56:25 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 19:28:04 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ CharClass::CharClass(int const &i)
 	else if (i < std::numeric_limits<char>::min())
 		this->_err = "impossible";
 	else
+	{
+		if (i < 32 || i == 127)
+			this->_err = "not displayable";
 		this->_valueChar = static_cast<char>(i);
+	}
 	return;
 }
 
@@ -54,7 +58,11 @@ CharClass::CharClass(float const &f)
 	else if (f < std::numeric_limits<char>::min())
 		this->_err = "impossible";
 	else
+	{
+		if (f < 32 || f == 127)
+			this->_err = "not displayable";
 		this->_valueChar = static_cast<char>(f);
+	}
 	return;
 }
 
@@ -68,13 +76,19 @@ CharClass::CharClass(double const &d)
 	else if (d < std::numeric_limits<char>::min())
 		this->_err = "impossible";
 	else
+	{
+		if (d < 32 || d == 127)
+			this->_err = "not displayable";
 		this->_valueChar = static_cast<char>(d);
+	}
 	return;
 }
 
 CharClass::CharClass(char const &c) : _valueChar(c)
 {
 	DEBUG_LOG("CharClass: Char Constructor called");
+	if (c < 32 || c == 127)
+		this->_err = "not displayable";
 	return;
 }
 
@@ -96,7 +110,7 @@ CharClass::~CharClass(void)
 #pragma endregion Constructor &&Destructor
 #endif
 
-char const CharClass::getValue(void) const
+char CharClass::getValue(void) const
 {
 	DEBUG_LOG("CharClass: getValue function member called");
 	return this->_valueChar;

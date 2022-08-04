@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 17:58:47 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:35:51 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ DoubleClass::~DoubleClass(void)
 #pragma endregion Constructor &&Destructor
 #endif
 
-double const DoubleClass::getValue(void) const
+double DoubleClass::getValue(void) const
 {
 	DEBUG_LOG("DoubleClass: getValue function member called");
 	return this->_valueDouble;

@@ -6,10 +6,11 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:03:36 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 18:19:07 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 19:21:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iomanip>
 #include <iostream>
 #include "ScalaireClass.hpp"
 
@@ -37,6 +38,24 @@ ScalaireClass::ScalaireClass(int const &i) : CharClass(i), IntClass(i), FloatCla
 	return;
 }
 
+ScalaireClass::ScalaireClass(char const &c) : CharClass(c), IntClass(c), FloatClass(c), DoubleClass(c)
+{
+	DEBUG_LOG("ScalaireClass: Parametric Constructor called");
+	return;
+}
+
+ScalaireClass::ScalaireClass(float const &f) : CharClass(f), IntClass(f), FloatClass(f), DoubleClass(f)
+{
+	DEBUG_LOG("ScalaireClass: Parametric Constructor called");
+	return;
+}
+
+ScalaireClass::ScalaireClass(double const &d) : CharClass(d), IntClass(d), FloatClass(d), DoubleClass(d)
+{
+	DEBUG_LOG("ScalaireClass: Parametric Constructor called");
+	return;
+}
+
 ScalaireClass::ScalaireClass(ScalaireClass const &src) : CharClass(), IntClass(), FloatClass(), DoubleClass()
 {
 	DEBUG_LOG("ScalaireClass: Copy Constructor called");
@@ -56,15 +75,15 @@ ScalaireClass::~ScalaireClass(void)
 #endif
 
 #define PRINT_SCALAIRE(A, B, C, D) \
-	if (A.empty())                 \
+	if (!A.empty())                \
 		PRINT(C << A);             \
 	else                           \
-		PRINT(C << B << D);
+		PRINT(C << D << std::fixed << std::setprecision(1) << B << D);
 
 void ScalaireClass::print(void) const
 {
 	DEBUG_LOG("ScalaireClass: print function member called");
-	PRINT_SCALAIRE(CharClass::_err, this->_valueChar, "char: '", "'")
+	PRINT_SCALAIRE(CharClass::_err, this->_valueChar, "char: ", "'")
 	PRINT_SCALAIRE(IntClass::_err, this->_valueInt, "int: ", "")
 	PRINT_SCALAIRE(FloatClass::_err, this->_valueFloat, "float: ", "")
 	PRINT_SCALAIRE(DoubleClass::_err, this->_valueDouble, "double: ", "")

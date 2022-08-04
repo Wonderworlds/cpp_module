@@ -6,7 +6,7 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2022/08/04 16:08:29 by fmauguin         ###   ########.fr        #
+#    Updated: 2022/08/04 18:39:08 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,12 @@ SRCDIR				:=	./
 OBJDIR				:=	./obj
 DEBUGDIR			:=	./debugobj
 
-CPPSRC				:=	main.cpp		\
-						Convert.cpp
+CPPSRC				:=	main.cpp			\
+						ScalaireClass.cpp	\
+						IntClass.cpp		\
+						CharClass.cpp		\
+						FloatClass.cpp		\
+						DoubleClass.cpp
 
 CC					:=	c++
 RM					:=	rm

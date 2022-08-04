@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 17:56:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:35:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ FloatClass::~FloatClass(void)
 #pragma endregion Constructor &&Destructor
 #endif
 
-float const FloatClass::getValue(void) const
+float FloatClass::getValue(void) const
 {
 	DEBUG_LOG("FloatClass: getValue function member called");
 	return this->_valueFloat;

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:36:34 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 18:35:24 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 19:04:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ public:
 
 	CharClass &operator=(CharClass const &rhs);
 
-	virtual char getValue(void) const;
+	virtual char const &getValue(void) const;
 	virtual std::string const &getErr(void) const;
 };
 

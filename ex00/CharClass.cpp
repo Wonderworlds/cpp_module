@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 10:03:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 19:03:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ CharClass::~CharClass(void)
 #pragma endregion Constructor &&Destructor
 #endif
 
-char CharClass::getValue(void) const
+char const &CharClass::getValue(void) const
 {
 	DEBUG_LOG("CharClass: getValue function member called");
 	return this->_valueChar;

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:46:05 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 18:35:17 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 19:04:49 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ public:
 
 	FloatClass &operator=(FloatClass const &rhs);
 
-	virtual float getValue(void) const;
+	virtual float const &getValue(void) const;
 	virtual std::string const &getErr(void) const;
 };
 

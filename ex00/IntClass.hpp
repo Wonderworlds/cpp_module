@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:55:00 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 18:35:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 19:05:47 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ public:
 
 	IntClass &operator=(IntClass const &rhs);
 
-	virtual int getValue(void) const;
+	virtual int const &getValue(void) const;
 	virtual std::string const &getErr(void) const;
 };
 

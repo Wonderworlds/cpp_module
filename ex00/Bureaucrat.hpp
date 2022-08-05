@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:05:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 22:38:08 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:35:03 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 class Bureaucrat
 {
 private:
-	std::string _name;
+	std::string const _name;
 	unsigned int _grade;
 
 public:

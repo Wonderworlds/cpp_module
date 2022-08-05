@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:05:02 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:35:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:35:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class AForm;
 class Bureaucrat
 {
 private:
-	std::string _name;
+	std::string const _name;
 	unsigned int _grade;
 
 public:

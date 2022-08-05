@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:19:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:55:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:36:28 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 	DEBUG_LOG("Bureaucrat: Assignement operator called");
 
 	if (this != &rhs)
-	{
-		this->_name = rhs.getName();
 		this->_grade = rhs.getGrade();
-	}
 	return *this;
 }
 

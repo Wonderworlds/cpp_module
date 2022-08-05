@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:21:46 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 15:34:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:12:18 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 #include "Base.hpp"
 
-class A : public Base
-{
-};
+class A : public Base {};
 
 #endif

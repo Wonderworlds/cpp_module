@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 02:28:14 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 14:42:10 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:34:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 	ShrubberyCreationForm(void);
 	ShrubberyCreationForm(std::string const &target);
 	ShrubberyCreationForm(ShrubberyCreationForm const &src);
-	~ShrubberyCreationForm(void);
+	virtual ~ShrubberyCreationForm(void);
 
 	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &rhs);
 

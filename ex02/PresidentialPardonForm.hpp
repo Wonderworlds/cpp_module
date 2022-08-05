@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:11:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 01:07:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:33:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 	PresidentialPardonForm(void);
 	PresidentialPardonForm(std::string const &target);
 	PresidentialPardonForm(PresidentialPardonForm const &src);
-	~PresidentialPardonForm(void);
+	virtual ~PresidentialPardonForm(void);
 
 	PresidentialPardonForm &operator=(PresidentialPardonForm const &rhs);
 

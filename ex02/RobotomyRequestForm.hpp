@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 01:12:53 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 02:19:23 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:33:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 	RobotomyRequestForm(void);
 	RobotomyRequestForm(std::string const &target);
 	RobotomyRequestForm(RobotomyRequestForm const &src);
-	~RobotomyRequestForm(void);
+	virtual ~RobotomyRequestForm(void);
 
 	RobotomyRequestForm &operator=(RobotomyRequestForm const &rhs);
 

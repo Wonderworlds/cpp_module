@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:19:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 16:35:44 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:48:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ Bureaucrat::Bureaucrat(std::string const &name, unsigned int const &grade) : _na
 	return;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &src)
+Bureaucrat::Bureaucrat(Bureaucrat const &src) : _name(src.getName()), _grade(src.getGrade())
 {
 	DEBUG_LOG("Bureaucrat: Copy Constructor called");
-	*this = src;
 
 	return;
 }
@@ -86,7 +85,6 @@ void Bureaucrat::demote(void)
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 {
 	DEBUG_LOG("Bureaucrat: Assignement operator called");
-
 	if (this != &rhs)
 		this->_grade = rhs.getGrade();
 	return *this;

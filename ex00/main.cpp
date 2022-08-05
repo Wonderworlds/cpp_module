@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:37:47 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/03 22:56:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:49:10 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,10 @@ int main()
 			Bureaucrat a;
 			Bureaucrat b("cadre", 10);
 			Bureaucrat c(b);
-			Bureaucrat d;
-			d = b;
+
 			PRINT(a);
 			PRINT(b);
 			PRINT(c);
-			PRINT(d);
 		}
 		TITLE("TESTS");
 		{

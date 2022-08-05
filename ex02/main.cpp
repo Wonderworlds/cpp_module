@@ -26,9 +26,9 @@
 #endif
 
 
-Base * makeA(void) { return (new A());}
-Base * makeB(void) { return (new B());}
-Base * makeC(void) { return (new C());}
+Base * makeA(void) { return (new (std::nothrow) A());}
+Base * makeB(void) { return (new (std::nothrow) B());}
+Base * makeC(void) { return (new (std::nothrow) C());}
 
 Base * generate(void)
 {
@@ -90,9 +90,12 @@ int main(void)
 	while (i--)
 	{
 		ptr = generate();
-		identify(ptr);
-		identify(*ptr);
-		delete ptr;
+		if (ptr)
+		{
+			identify(ptr);
+			identify(*ptr);
+			delete ptr;
+		}
 		PRINT("");
 	}
 	return (0);

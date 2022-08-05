@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 20:04:36 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 10:03:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ CharClass::CharClass(void) : _valueChar(0)
 CharClass::CharClass(int const &i)
 {
 	DEBUG_LOG("CharClass: Int Constructor called");
+
 	if (i > std::numeric_limits<char>::max() || i < std::numeric_limits<char>::min())
 		this->_err = "impossible";
 	else
@@ -50,18 +51,15 @@ CharClass::CharClass(int const &i)
 CharClass::CharClass(float const &f)
 {
 	DEBUG_LOG("CharClass: Float Constructor called");
-	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity())
-		this->_err = "impossible";
-	else if (f == std::numeric_limits<float>::quiet_NaN())
+	float checkNan = f;
+
+	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || checkNan != f)
 		this->_err = "impossible";
 	else if (f > std::numeric_limits<char>::max() || f < std::numeric_limits<char>::min())
 		this->_err = "impossible";
 	else
 	{
-		float checkNan = f;
-		if (f != checkNan)
-			this->_err = "impossible";
-		else if (f < 32 || f == 127)
+		if (f < 32 || f == 127)
 			this->_err = "not displayable";
 		this->_valueChar = static_cast<char>(f);
 	}
@@ -71,16 +69,15 @@ CharClass::CharClass(float const &f)
 CharClass::CharClass(double const &d)
 {
 	DEBUG_LOG("CharClass: Double Constructor called");
-	if (d == std::numeric_limits<double>::infinity() || d == -std::numeric_limits<double>::infinity())
+	double checkNan = d;
+
+	if (d == std::numeric_limits<double>::infinity() || d == -std::numeric_limits<double>::infinity() || checkNan != d)
 		this->_err = "impossible";
 	else if (d > std::numeric_limits<char>::max() || d < std::numeric_limits<char>::min())
 		this->_err = "impossible";
 	else
 	{
-		double checkNan = d;
-		if (d != checkNan)
-			this->_err = "impossible";
-		else if (d < 32 || d == 127)
+		if (d < 32 || d == 127)
 			this->_err = "not displayable";
 		this->_valueChar = static_cast<char>(d);
 	}
@@ -90,6 +87,7 @@ CharClass::CharClass(double const &d)
 CharClass::CharClass(char const &c) : _valueChar(c)
 {
 	DEBUG_LOG("CharClass: Char Constructor called");
+
 	if (c < 32 || c == 127)
 		this->_err = "not displayable";
 	return;
@@ -122,7 +120,6 @@ char CharClass::getValue(void) const
 std::string const &CharClass::getErr(void) const
 {
 	DEBUG_LOG("CharClass: getErr function member called");
-
 	return this->_err;
 }
 

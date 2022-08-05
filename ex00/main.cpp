@@ -6,13 +6,15 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:21:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 20:24:06 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:53:55 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <cctype>
+#include <cmath>
 #include <limits>
 #include "ScalaireClass.hpp"
 
@@ -29,45 +31,89 @@ void __err_arg(const char *str)
 	std::cerr << str << std::endl;
 }
 
-int __getNumber(double *number, const char *str)
+void	_strToLower(std::string &str)
 {
-	char *endstr;
-	long double ld = std::strtold(str, &endstr);
-	if (ld > std::numeric_limits<double>::max() || ld < -std::numeric_limits<double>::max() - 1)
-		return (__err_arg("arg invalid: overflow"), 1);
-	if (endstr && endstr[0])
-		return (__err_arg("arg invalid: not entirely digit"), 1);
-	*number = static_cast<double>(ld);
-	return (0);
+	std::string::iterator it = str.begin();
+	char c;
+
+	while (it != str.end())
+	{
+		c = static_cast<char>(std::tolower(*it));
+		*it = c;
+		it++;
+	}
 }
 
-void __convert(std::string arg)
+int __convert(std::string arg)
 {
-	ScalaireClass *ptr = NULL;
-	double number;
 	std::size_t size;
+	char *endstr = NULL;
 
 	size = arg.size();
+
 	if (size == 1)
-		ptr = new ScalaireClass(arg[0]);
+	{
+		ScalaireClass tmp(arg[0]);
+		tmp.print();
+	}
 	else
 	{
-		if (__getNumber(&number, arg.c_str()))
-			return;
-		if (arg.find('.') == std::string::npos && number <= std::numeric_limits<int>::max() && number >= -std::numeric_limits<int>::max() - 1)
+		_strToLower(arg);
+		if (arg.find_first_not_of("0123456789") == std::string::npos)
 		{
-			ptr = new ScalaireClass(static_cast<int>(number));
+			long int li = std::strtol(arg.c_str(), &endstr, 10);
+			if (li > std::numeric_limits<int>::max() || li < std::numeric_limits<int>::min())
+				return (__err_arg("arg invalid: int overflow"), 1);
+			if (endstr == arg.c_str() && li == 0)
+				return (__err_arg("arg invalid: no conversion can be performed"), 1);
+			if (endstr && endstr[0])
+				return (__err_arg("arg invalid: not entirely digit"), 1);
+			ScalaireClass tmp(static_cast<int>(li));
+			tmp.print();
 		}
-		else if (number <= std::numeric_limits<float>::max() && number >= -std::numeric_limits<float>::max() - 1)
-			ptr = new ScalaireClass(static_cast<float>(number));
+		else if (arg.find('f') == std::string::npos)
+		{
+			double d = std::strtod(arg.c_str(), &endstr);
+			if (d == HUGE_VAL)
+				return (__err_arg("arg invalid: double overflow"), 1);
+			if (endstr == arg.c_str() && d == 0)
+				return (__err_arg("1arg invalid: no conversion can be performed"), 1);
+			if (endstr && endstr[0])
+				return (__err_arg("arg invalid: not entirely digit"), 1);
+			ScalaireClass tmp(d);
+			tmp.print();
+		}
 		else
-			ptr = new ScalaireClass(number);
+		{
+			float f;
+			double d = std::strtod(arg.c_str(), &endstr);
+			if (arg.find("inff", 0) == std::string::npos
+				&& (d == std::numeric_limits<double>::infinity()
+					|| d == -std::numeric_limits<double>::infinity()))
+			{
+				ScalaireClass tmp(d);
+				tmp.print();
+				return (0);
+			}
+			if (d == std::numeric_limits<float>::infinity())
+				f = std::numeric_limits<float>::infinity();
+			else if (d == -std::numeric_limits<float>::infinity())
+				f = -std::numeric_limits<float>::infinity();
+			else
+			{
+				if (d > std::numeric_limits<float>::max() || d < -std::numeric_limits<float>::max())
+					return (__err_arg("arg invalid: float overflow"), 1);
+				if (endstr == arg.c_str() && d == 0)
+					return (__err_arg("arg invalid: no conversion can be performed"), 1);
+				if (endstr && endstr[0] && !(endstr[0] == 'f' && !endstr[1]))
+					return (__err_arg("arg invalid: not entirely digit"), 1);
+				f = static_cast<float>(d);
+			}
+			ScalaireClass tmp(f);
+			tmp.print();
+		}
 	}
-	if (ptr)
-	{
-		ptr->print();
-		delete ptr;
-	}
+	return (0);
 }
 
 int main(int ac, char **av)

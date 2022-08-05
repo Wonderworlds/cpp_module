@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 20:05:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 10:44:40 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,17 @@ IntClass::IntClass(int const &i) : _valueInt(i)
 	DEBUG_LOG("IntClass: Int Constructor called");
 	return;
 }
-
+#include <iomanip>
 IntClass::IntClass(float const &f)
 {
 	DEBUG_LOG("IntClass: Float Constructor called");
 	float checkNan = f;
+
 	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || f != checkNan)
 		this->_err = "impossible";
-	else if (f > std::numeric_limits<int>::max())
+	else if (f > static_cast<float>(std::numeric_limits<int>::max()))
 		this->_err = "impossible";
-	else if (f < std::numeric_limits<int>::min())
+	else if (f < static_cast<float>(std::numeric_limits<int>::min()))
 		this->_err = "impossible";
 	else
 		this->_valueInt = static_cast<int>(f);
@@ -55,8 +56,9 @@ IntClass::IntClass(float const &f)
 
 IntClass::IntClass(double const &d)
 {
-	double checkNan = d
-		DEBUG_LOG("IntClass: Double Constructor called");
+	DEBUG_LOG("IntClass: Double Constructor called");
+	double checkNan = d;
+
 	if (d == std::numeric_limits<double>::infinity() || d == -std::numeric_limits<double>::infinity() || d != checkNan)
 		this->_err = "impossible";
 	else if (d > std::numeric_limits<int>::max())

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 19:42:39 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 10:05:01 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ FloatClass::FloatClass(void) : _valueFloat(0)
 FloatClass::FloatClass(int const &i)
 {
 	DEBUG_LOG("FloatClass: Int Constructor called");
+
 	this->_valueFloat = static_cast<float>(i);
 	return;
 }
@@ -48,6 +49,7 @@ FloatClass::FloatClass(float const &f) : _valueFloat(f)
 FloatClass::FloatClass(double const &d)
 {
 	DEBUG_LOG("FloatClass: Double Constructor called");
+
 	if (d == std::numeric_limits<double>::infinity())
 		this->_valueFloat = std::numeric_limits<float>::infinity();
 	else if (d == -std::numeric_limits<double>::infinity())
@@ -69,6 +71,7 @@ FloatClass::FloatClass(double const &d)
 FloatClass::FloatClass(char const &c)
 {
 	DEBUG_LOG("FloatClass: Char Constructor called");
+
 	this->_valueFloat = static_cast<float>(c);
 	return;
 }
@@ -76,8 +79,8 @@ FloatClass::FloatClass(char const &c)
 FloatClass::FloatClass(FloatClass const &src)
 {
 	DEBUG_LOG("FloatClass: Copy Constructor called");
-	*this = src;
 
+	*this = src;
 	return;
 }
 

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 18:35:51 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/05 10:04:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ DoubleClass::DoubleClass(void) : _valueDouble(0)
 DoubleClass::DoubleClass(int const &i)
 {
 	DEBUG_LOG("DoubleClass: Int Constructor called");
+
 	this->_valueDouble = static_cast<double>(i);
 	return;
 }
@@ -42,6 +43,7 @@ DoubleClass::DoubleClass(int const &i)
 DoubleClass::DoubleClass(float const &f)
 {
 	DEBUG_LOG("DoubleClass: Float Constructor called");
+
 	if (f == std::numeric_limits<float>::infinity())
 		this->_valueDouble = std::numeric_limits<double>::infinity();
 	else if (f == -std::numeric_limits<float>::infinity())
@@ -56,13 +58,13 @@ DoubleClass::DoubleClass(float const &f)
 DoubleClass::DoubleClass(double const &d) : _valueDouble(d)
 {
 	DEBUG_LOG("DoubleClass: Double Constructor called");
-
 	return;
 }
 
 DoubleClass::DoubleClass(char const &c)
 {
 	DEBUG_LOG("DoubleClass: Char Constructor called");
+
 	this->_valueDouble = static_cast<double>(c);
 	return;
 }
@@ -70,8 +72,8 @@ DoubleClass::DoubleClass(char const &c)
 DoubleClass::DoubleClass(DoubleClass const &src)
 {
 	DEBUG_LOG("DoubleClass: Copy Constructor called");
-	*this = src;
 
+	*this = src;
 	return;
 }
 

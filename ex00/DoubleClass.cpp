@@ -6,12 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 19:04:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/06 17:38:55 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <limits>
+#include <climits>
+#include <cmath>
 #include "DoubleClass.hpp"
 
 #define PRINT(A) std::cout << A << std::endl
@@ -44,14 +45,7 @@ DoubleClass::DoubleClass(float const &f)
 {
 	DEBUG_LOG("DoubleClass: Float Constructor called");
 
-	if (f == std::numeric_limits<float>::infinity())
-		this->_valueDouble = std::numeric_limits<double>::infinity();
-	else if (f == -std::numeric_limits<float>::infinity())
-		this->_valueDouble = -std::numeric_limits<double>::infinity();
-	else if (f == std::numeric_limits<float>::quiet_NaN())
-		this->_valueDouble = std::numeric_limits<double>::quiet_NaN();
-	else
-		this->_valueDouble = static_cast<double>(f);
+	this->_valueDouble = static_cast<double>(f);
 	return;
 }
 

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:01:31 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 18:40:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/06 16:45:02 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,21 @@
 
 class ScalaireClass : public CharClass, public IntClass, public FloatClass, public DoubleClass
 {
+private:
+	int _precision;
+
 public:
 	ScalaireClass(void);
-	explicit ScalaireClass(int const &i);
-	explicit ScalaireClass(char const &c);
-	explicit ScalaireClass(float const &f);
-	explicit ScalaireClass(double const &d);
+	explicit ScalaireClass(int const &i, int const &p);
+	explicit ScalaireClass(char const &c, int const &p);
+	explicit ScalaireClass(float const &f, int const &p);
+	explicit ScalaireClass(double const &d, int const &p);
 	ScalaireClass(ScalaireClass const &src);
 	~ScalaireClass(void);
 
 	ScalaireClass &operator=(ScalaireClass const &rhs);
 	void print(void) const;
+	int const &getPrecision(void) const;
 };
 
 #endif

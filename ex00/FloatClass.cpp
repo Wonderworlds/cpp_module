@@ -6,12 +6,13 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 19:04:41 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/06 17:37:22 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <limits>
+#include <climits>
+#include <cmath>
 #include "FloatClass.hpp"
 
 #define PRINT(A) std::cout << A << std::endl
@@ -50,17 +51,15 @@ FloatClass::FloatClass(double const &d)
 {
 	DEBUG_LOG("FloatClass: Double Constructor called");
 
-	if (d == std::numeric_limits<double>::infinity())
-		this->_valueFloat = std::numeric_limits<float>::infinity();
-	else if (d == -std::numeric_limits<double>::infinity())
-		this->_valueFloat = -std::numeric_limits<float>::infinity();
-	else if (d == std::numeric_limits<double>::quiet_NaN())
-		this->_valueFloat = std::numeric_limits<float>::quiet_NaN();
+	if (d == INFINITY)
+		this->_valueFloat = INFINITY;
+	else if (d == -INFINITY)
+		this->_valueFloat = -INFINITY;
 	else
 	{
-		if (d > std::numeric_limits<float>::max())
+		if (d > __FLT_MAX__)
 			this->_err = "impossible";
-		else if (d < -std::numeric_limits<float>::max() - 1)
+		else if (d < -__FLT_MAX__)
 			this->_err = "impossible";
 		else
 			this->_valueFloat = static_cast<float>(d);

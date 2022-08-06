@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:21:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 12:53:55 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/06 17:28:51 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <cstdlib>
 #include <cctype>
 #include <cmath>
-#include <limits>
+#include <climits>
 #include "ScalaireClass.hpp"
 
 #define PRINT(A) std::cout << A << std::endl
@@ -31,87 +31,119 @@ void __err_arg(const char *str)
 	std::cerr << str << std::endl;
 }
 
-void	_strToLower(std::string &str)
+void _strToLower(char *&str)
 {
-	std::string::iterator it = str.begin();
-	char c;
+	std::size_t index = 0;
 
-	while (it != str.end())
+	while (str[index])
 	{
-		c = static_cast<char>(std::tolower(*it));
-		*it = c;
-		it++;
+		if (str[index] >= 'A' && str[index] <= 'Z')
+			str[index] -= 32;
+		index++;
 	}
 }
 
-int __convert(std::string arg)
+bool strIsDigit(const char *str)
 {
-	std::size_t size;
-	char *endstr = NULL;
-
-	size = arg.size();
-
-	if (size == 1)
+	while (*str)
 	{
-		ScalaireClass tmp(arg[0]);
-		tmp.print();
+		if (!(*str >= '0' && *str <= '9'))
+			return (false);
+		str++;
 	}
-	else
+	return (true);
+}
+
+int _strType(const char *str, int *precision)
+{
+	std::size_t index = 0;
+	bool hasDecimal = false;
+
+	while (*str && ((*str >= 9 && *str <= 13) || *str == ' '))
+		str++;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (str[index])
 	{
-		_strToLower(arg);
-		if (arg.find_first_not_of("0123456789") == std::string::npos)
+		if (str[index] == '.')
+			hasDecimal = true;
+		if (hasDecimal && str[index] >= '0' && str[index] <= '9')
+			*precision += 1;
+		index++;
+	}
+	if (*precision == 0)
+		*precision = 1;
+	if (!index)
+		return -1;
+	else if (index == 1)
+		return (0);
+	else if (strIsDigit(str))
+		return (1);
+	else if (str[index - 1] == 'f')
+		return (2);
+	else
+		return (3);
+}
+
+int __convert(char *arg)
+{
+	char *endstr = NULL;
+	double d;
+	long int li;
+	int precision = 0;
+	int choice;
+	ScalaireClass *ptr = NULL;
+
+	_strToLower(arg);
+	choice = _strType(arg, &precision);
+	switch (choice)
+	{
+	case 0:
+		ptr = new (std::nothrow) ScalaireClass(arg[0], precision);
+		break;
+	case 1:
+		li = std::strtol(arg, &endstr, 10);
+		if (endstr == arg && li == 0)
+			return (__err_arg("arg invalid: no conversion can be performed"), 1);
+		else if (endstr && endstr[0])
+			return (__err_arg("arg invalid: not entirely digit"), 1);
+		else if (li > INT_MAX || li < INT_MIN)
+			return (__err_arg("arg invalid: int overflow"), 1);
+		ptr = new (std::nothrow) ScalaireClass(static_cast<int>(li), precision);
+		break;
+	case 2:
+		d = std::strtod(arg, &endstr);
+		if (endstr == arg && d == 0)
+			return (__err_arg("arg invalid: no conversion can be performed"), 1);
+		if ((d == INFINITY || d == -INFINITY) && endstr && !endstr[0])
 		{
-			long int li = std::strtol(arg.c_str(), &endstr, 10);
-			if (li > std::numeric_limits<int>::max() || li < std::numeric_limits<int>::min())
-				return (__err_arg("arg invalid: int overflow"), 1);
-			if (endstr == arg.c_str() && li == 0)
-				return (__err_arg("arg invalid: no conversion can be performed"), 1);
-			if (endstr && endstr[0])
-				return (__err_arg("arg invalid: not entirely digit"), 1);
-			ScalaireClass tmp(static_cast<int>(li));
-			tmp.print();
+			ptr = new (std::nothrow) ScalaireClass(d, precision);
+			break;
 		}
-		else if (arg.find('f') == std::string::npos)
-		{
-			double d = std::strtod(arg.c_str(), &endstr);
-			if (d == HUGE_VAL)
-				return (__err_arg("arg invalid: double overflow"), 1);
-			if (endstr == arg.c_str() && d == 0)
-				return (__err_arg("1arg invalid: no conversion can be performed"), 1);
-			if (endstr && endstr[0])
-				return (__err_arg("arg invalid: not entirely digit"), 1);
-			ScalaireClass tmp(d);
-			tmp.print();
-		}
-		else
-		{
-			float f;
-			double d = std::strtod(arg.c_str(), &endstr);
-			if (arg.find("inff", 0) == std::string::npos
-				&& (d == std::numeric_limits<double>::infinity()
-					|| d == -std::numeric_limits<double>::infinity()))
-			{
-				ScalaireClass tmp(d);
-				tmp.print();
-				return (0);
-			}
-			if (d == std::numeric_limits<float>::infinity())
-				f = std::numeric_limits<float>::infinity();
-			else if (d == -std::numeric_limits<float>::infinity())
-				f = -std::numeric_limits<float>::infinity();
-			else
-			{
-				if (d > std::numeric_limits<float>::max() || d < -std::numeric_limits<float>::max())
-					return (__err_arg("arg invalid: float overflow"), 1);
-				if (endstr == arg.c_str() && d == 0)
-					return (__err_arg("arg invalid: no conversion can be performed"), 1);
-				if (endstr && endstr[0] && !(endstr[0] == 'f' && !endstr[1]))
-					return (__err_arg("arg invalid: not entirely digit"), 1);
-				f = static_cast<float>(d);
-			}
-			ScalaireClass tmp(f);
-			tmp.print();
-		}
+		if (endstr && !(endstr[0] == 'f' && !endstr[1]))
+			return (__err_arg("arg invalid: not entirely digit"), 1);
+		else if (!(d == INFINITY || d == -INFINITY) && (d == HUGE_VAL || d > __FLT_MAX__ || d < -__FLT_MAX__))
+			return (__err_arg("arg invalid: float overflow"), 1);
+		ptr = new (std::nothrow) ScalaireClass(static_cast<float>(d), precision);
+		break;
+	case 3:
+		d = std::strtod(arg, &endstr);
+		if (endstr == arg && d == 0)
+			return (__err_arg("1arg invalid: no conversion can be performed"), 1);
+		if (endstr && endstr[0])
+			return (__err_arg("arg invalid: not entirely digit"), 1);
+		if (d == HUGE_VAL)
+			return (__err_arg("arg invalid: double overflow"), 1);
+		ptr = new (std::nothrow) ScalaireClass(d, precision);
+		break;
+	default:
+		return (__err_arg("arg invalid"), 1);
+		break;
+	}
+	if (ptr)
+	{
+		ptr->print();
+		delete ptr;
 	}
 	return (0);
 }

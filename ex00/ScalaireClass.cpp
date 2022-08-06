@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:03:36 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 10:05:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/06 17:02:03 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,31 @@
 #pragma region Constructor &&Destructor
 #endif
 
-ScalaireClass::ScalaireClass(void) : CharClass(), IntClass(), FloatClass(), DoubleClass()
+ScalaireClass::ScalaireClass(void) : CharClass(), IntClass(), FloatClass(), DoubleClass(), _precision(0)
 {
 	DEBUG_LOG("ScalaireClass: Default Constructor called");
 	return;
 }
 
-ScalaireClass::ScalaireClass(int const &i) : CharClass(i), IntClass(i), FloatClass(i), DoubleClass(i)
+ScalaireClass::ScalaireClass(int const &i, int const &p) : CharClass(i), IntClass(i), FloatClass(i), DoubleClass(i), _precision(p)
 {
 	DEBUG_LOG("ScalaireClass: Parametric Constructor called");
 	return;
 }
 
-ScalaireClass::ScalaireClass(char const &c) : CharClass(c), IntClass(c), FloatClass(c), DoubleClass(c)
+ScalaireClass::ScalaireClass(char const &c, int const &p) : CharClass(c), IntClass(c), FloatClass(c), DoubleClass(c), _precision(p)
 {
 	DEBUG_LOG("ScalaireClass: Parametric Constructor called");
 	return;
 }
 
-ScalaireClass::ScalaireClass(float const &f) : CharClass(f), IntClass(f), FloatClass(f), DoubleClass(f)
+ScalaireClass::ScalaireClass(float const &f, int const &p) : CharClass(f), IntClass(f), FloatClass(f), DoubleClass(f), _precision(p)
 {
 	DEBUG_LOG("ScalaireClass: Parametric Constructor called");
 	return;
 }
 
-ScalaireClass::ScalaireClass(double const &d) : CharClass(d), IntClass(d), FloatClass(d), DoubleClass(d)
+ScalaireClass::ScalaireClass(double const &d, int const &p) : CharClass(d), IntClass(d), FloatClass(d), DoubleClass(d), _precision(p)
 {
 	DEBUG_LOG("ScalaireClass: Parametric Constructor called");
 	return;
@@ -78,16 +78,23 @@ ScalaireClass::~ScalaireClass(void)
 	if (!A.empty())                   \
 		PRINT(C << A);                \
 	else                              \
-		PRINT(C << D << std::fixed << std::setprecision(1) << B << F << D);
+		PRINT(C << D << std::fixed << B << F << D);
 
 void ScalaireClass::print(void) const
 {
 	DEBUG_LOG("ScalaireClass: print function member called");
 	PRINT_SCALAIRE(CharClass::_err, this->_valueChar, "char: ", "'", "")
 	PRINT_SCALAIRE(IntClass::_err, this->_valueInt, "int: ", "", "")
+	std::cout.precision(this->_precision);
 	PRINT_SCALAIRE(FloatClass::_err, this->_valueFloat, "float: ", "", "f")
 	PRINT_SCALAIRE(DoubleClass::_err, this->_valueDouble, "double: ", "", "")
 	return;
+}
+
+int const &ScalaireClass::getPrecision(void) const
+{
+	DEBUG_LOG("ScalaireClass: getPrecision function member called");
+	return this->_precision;
 }
 
 ScalaireClass &ScalaireClass::operator=(ScalaireClass const &rhs)
@@ -104,6 +111,7 @@ ScalaireClass &ScalaireClass::operator=(ScalaireClass const &rhs)
 		CharClass::_err = rhs.CharClass::_err;
 		FloatClass::_err = rhs.FloatClass::_err;
 		DoubleClass::_err = rhs.DoubleClass::_err;
+		this->_precision = rhs.getPrecision();
 	}
 	return *this;
 }

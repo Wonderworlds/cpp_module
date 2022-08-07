@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:50:14 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 02:26:35 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:24:51 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ RobotomyRequestForm::RobotomyRequestForm(std::string const &target) : AForm("for
 	return;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src) : AForm(src)
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src) : AForm(src), _target(src.getTarget())
 {
 	DEBUG_LOG("RobotomyRequestForm: Copy Constructor called");
-	*this = src;
 
 	return;
 }
@@ -71,7 +70,6 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &r
 {
 	DEBUG_LOG("RobotomyRequestForm: Assignment operator called");
 
-	if (this != &rhs)
-		this->_target = rhs.getTarget();
+	(void)rhs;
 	return *this;
 }

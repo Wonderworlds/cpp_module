@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 23:00:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 00:16:25 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:11:31 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,12 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 	public:
-		virtual const char *what() const throw()
-		{
-			return ("Grade is too damn High!");
-		}
+		virtual const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
 	public:
-		virtual const char *what() const throw()
-		{
-			return ("Grade is too damn Low!");
-		}
+		virtual const char *what() const throw();
 	};
 };
 

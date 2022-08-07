@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:19:43 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 16:48:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:09:21 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,14 @@ std::ostream &operator<<(std::ostream &o, Bureaucrat const &rhs)
 {
 	o << rhs.getName() << " , bureaucrat grade " << rhs.getGrade();
 	return o;
+}
+
+const char *Bureaucrat::GradeTooHighException::what(void) const throw()
+{
+	return ("Grade is too damn High!");
+}
+
+const char *Bureaucrat::GradeTooLowException::what(void) const throw()
+{
+	return ("Grade is too damn Low!");
 }

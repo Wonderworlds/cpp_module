@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 23:00:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 14:19:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:13:41 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,17 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 	public:
-		virtual const char *what() const throw()
-		{
-			return ("Grade is too damn High!");
-		}
+		virtual const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
 	public:
-		virtual const char *what() const throw()
-		{
-			return ("Grade is too damn Low!");
-		}
+		virtual const char *what() const throw();
 	};
 	class FormNotSignedException : public std::exception
 	{
 	public:
-		virtual const char *what() const throw()
-		{
-			return ("Where's the signature!");
-		}
+		virtual const char *what() const throw();
 	};
 };
 

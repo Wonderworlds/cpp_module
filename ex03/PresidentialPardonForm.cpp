@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:13:39 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 14:43:41 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:24:43 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ PresidentialPardonForm::PresidentialPardonForm(std::string const &target) : AFor
 	return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &src) : AForm(src)
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &src) : AForm(src), _target(src.getTarget())
 {
 	DEBUG_LOG("PresidentialPardonForm: Copy Constructor called");
-	*this = src;
 
 	return;
 }
@@ -70,8 +69,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm
 {
 	DEBUG_LOG("PresidentialPardonForm: Assignment operator called");
 
-	if (this != &rhs)
-		this->_target = rhs.getTarget();
+	(void)rhs;
 	return *this;
 }
 

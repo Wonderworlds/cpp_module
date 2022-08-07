@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 01:12:53 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 13:34:16 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:22:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 class RobotomyRequestForm : public AForm
 {
 private:
-	std::string _target;
+	std::string const _target;
 
 public:
 	RobotomyRequestForm(void);

@@ -39,10 +39,9 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) : AForm(
 	return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src) : AForm(src)
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src) : AForm(src), _target(src.getTarget())
 {
 	DEBUG_LOG("ShrubberyCreationForm: Copy Constructor called");
-	*this = src;
 
 	return;
 }
@@ -85,7 +84,11 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 {
 	DEBUG_LOG("ShrubberyCreationForm: Assignment operator called");
 
-	if (this != &rhs)
-		this->_target = rhs.getTarget();
+	(void)rhs;
 	return *this;
+}
+
+const char *ShrubberyCreationForm::ConstructionNotAllowedException::what() const throw()
+{
+	return ("Construction permission denied in this zone");
 }

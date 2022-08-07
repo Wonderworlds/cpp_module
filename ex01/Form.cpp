@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 23:08:46 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 00:24:26 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:11:21 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,14 @@ std::ostream &operator<<(std::ostream &o, Form const &rhs)
 	  << "\n\t| grade to sign: " << rhs.getGradeToSign()
 	  << "\n\t| grade to exe: " << rhs.getGradeToExe();
 	return o;
+}
+
+const char *Form::GradeTooHighException::what(void) const throw()
+{
+	return ("Grade is too damn High!");
+}
+
+const char *Form::GradeTooLowException::what(void) const throw()
+{
+	return ("Grade is too damn Low!");
 }

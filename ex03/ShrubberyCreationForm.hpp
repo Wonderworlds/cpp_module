@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 02:28:14 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 13:34:09 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:22:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 class ShrubberyCreationForm : public AForm
 {
-protected:
-	std::string _target;
+private:
+	std::string const _target;
 
 public:
 	ShrubberyCreationForm(void);
@@ -36,10 +36,7 @@ public:
 	class ConstructionNotAllowedException : public std::exception
 	{
 	public:
-		virtual const char *what() const throw()
-		{
-			return ("Construction permission denied");
-		}
+		virtual const char *what() const throw();
 	};
 };
 

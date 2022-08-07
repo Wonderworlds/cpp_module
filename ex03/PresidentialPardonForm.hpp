@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:11:33 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 13:34:14 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:22:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class PresidentialPardonForm : public AForm
 {
 private:
-	std::string _target;
+	std::string const _target;
 
 public:
 	PresidentialPardonForm(void);

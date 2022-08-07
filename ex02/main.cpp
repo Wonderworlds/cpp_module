@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 21:37:47 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/04 14:15:50 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 20:27:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,11 @@ int main()
 			TITLE("CONSTRUCTOR ppf");
 			PresidentialPardonForm a;
 			PresidentialPardonForm b("lucky");
-			PresidentialPardonForm c(a);
-			PresidentialPardonForm d;
-			d = b;
+			PresidentialPardonForm c(b);
+
 			PRINT(a << "\n\t| target: " << a.getTarget() << std::endl);
 			PRINT(b << "\n\t| target: " << b.getTarget() << std::endl);
 			PRINT(c << "\n\t| target: " << c.getTarget() << std::endl);
-			PRINT(d << "\n\t| target: " << d.getTarget() << std::endl);
 
 			TEST_CREATE(PresidentialPardonForm, "lucky")
 			TITLE("Sign & exec ppf");
@@ -96,13 +94,11 @@ int main()
 		{
 			RobotomyRequestForm a;
 			RobotomyRequestForm b("unlucky");
-			RobotomyRequestForm c(a);
-			RobotomyRequestForm d;
-			d = b;
+			RobotomyRequestForm c(b);
+
 			PRINT(a << "\n\t| target: " << a.getTarget() << std::endl);
 			PRINT(b << "\n\t| target: " << b.getTarget() << std::endl);
 			PRINT(c << "\n\t| target: " << c.getTarget() << std::endl);
-			PRINT(d << "\n\t| target: " << d.getTarget() << std::endl);
 
 			TITLE("Sign & exec ppf");
 			TEST_CREATE(RobotomyRequestForm, "unlucky")
@@ -126,13 +122,11 @@ int main()
 		{
 			ShrubberyCreationForm a;
 			ShrubberyCreationForm b("unlucky");
-			ShrubberyCreationForm c(a);
-			ShrubberyCreationForm d;
-			d = b;
+			ShrubberyCreationForm c(b);
+
 			PRINT(a << "\n\t| target: " << a.getTarget() << std::endl);
 			PRINT(b << "\n\t| target: " << b.getTarget() << std::endl);
 			PRINT(c << "\n\t| target: " << c.getTarget() << std::endl);
-			PRINT(d << "\n\t| target: " << d.getTarget() << std::endl);
 
 			TITLE("Sign & exec scf");
 			TEST_CREATE(ShrubberyCreationForm, "unlucky")

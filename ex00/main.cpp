@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:08:32 by adesgran          #+#    #+#             */
-/*   Updated: 2022/08/07 21:43:40 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 21:44:54 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <vector>
 #include <list>
 #include <deque>
-#include <array>
 #include <map>
 #include <iterator>
 #include <exception>

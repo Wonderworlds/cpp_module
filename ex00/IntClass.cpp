@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/06 17:42:34 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 15:39:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ IntClass::IntClass(double const &d)
 		this->_err = "impossible";
 	else if (d > INT_MAX)
 		this->_err = "impossible";
-	else if (d < INT_MAX)
+	else if (d < INT_MIN)
 		this->_err = "impossible";
 	else
 		this->_valueInt = static_cast<int>(d);

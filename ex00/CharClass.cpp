@@ -6,12 +6,12 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:00:13 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/05 19:03:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 15:41:23 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <limits>
+#include <climits>
 #include <cmath>
 #include "CharClass.hpp"
 
@@ -37,7 +37,7 @@ CharClass::CharClass(int const &i)
 {
 	DEBUG_LOG("CharClass: Int Constructor called");
 
-	if (i > std::numeric_limits<char>::max() || i < std::numeric_limits<char>::min())
+	if (i > CHAR_MAX || i < CHAR_MIN)
 		this->_err = "impossible";
 	else
 	{
@@ -53,9 +53,9 @@ CharClass::CharClass(float const &f)
 	DEBUG_LOG("CharClass: Float Constructor called");
 	float checkNan = f;
 
-	if (f == std::numeric_limits<float>::infinity() || f == -std::numeric_limits<float>::infinity() || checkNan != f)
+	if (f == INFINITY || f == -INFINITY || checkNan != f)
 		this->_err = "impossible";
-	else if (f > std::numeric_limits<char>::max() || f < std::numeric_limits<char>::min())
+	else if (f > CHAR_MAX || f < CHAR_MIN)
 		this->_err = "impossible";
 	else
 	{
@@ -71,9 +71,9 @@ CharClass::CharClass(double const &d)
 	DEBUG_LOG("CharClass: Double Constructor called");
 	double checkNan = d;
 
-	if (d == std::numeric_limits<double>::infinity() || d == -std::numeric_limits<double>::infinity() || checkNan != d)
+	if (d == INFINITY || d == -INFINITY || checkNan != d)
 		this->_err = "impossible";
-	else if (d > std::numeric_limits<char>::max() || d < std::numeric_limits<char>::min())
+	else if (d > CHAR_MAX || d < CHAR_MIN)
 		this->_err = "impossible";
 	else
 	{

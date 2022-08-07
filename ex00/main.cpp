@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:21:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/06 17:28:51 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 15:35:56 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,6 @@
 void __err_arg(const char *str)
 {
 	std::cerr << str << std::endl;
-}
-
-void _strToLower(char *&str)
-{
-	std::size_t index = 0;
-
-	while (str[index])
-	{
-		if (str[index] >= 'A' && str[index] <= 'Z')
-			str[index] -= 32;
-		index++;
-	}
 }
 
 bool strIsDigit(const char *str)
@@ -79,7 +67,7 @@ int _strType(const char *str, int *precision)
 		return (0);
 	else if (strIsDigit(str))
 		return (1);
-	else if (str[index - 1] == 'f')
+	else if (str[index - 1] == 'f' || str[index - 1] == 'F')
 		return (2);
 	else
 		return (3);
@@ -89,47 +77,39 @@ int __convert(char *arg)
 {
 	char *endstr = NULL;
 	double d;
-	long int li;
 	int precision = 0;
 	int choice;
 	ScalaireClass *ptr = NULL;
 
-	_strToLower(arg);
 	choice = _strType(arg, &precision);
+	d = std::strtod(arg, &endstr);
+	if (endstr == arg && d == 0)
+		return (__err_arg("arg invalid: no conversion can be performed"), 1);
 	switch (choice)
 	{
 	case 0:
 		ptr = new (std::nothrow) ScalaireClass(arg[0], precision);
 		break;
 	case 1:
-		li = std::strtol(arg, &endstr, 10);
-		if (endstr == arg && li == 0)
-			return (__err_arg("arg invalid: no conversion can be performed"), 1);
-		else if (endstr && endstr[0])
+		if (endstr && endstr[0])
 			return (__err_arg("arg invalid: not entirely digit"), 1);
-		else if (li > INT_MAX || li < INT_MIN)
+		else if (d > INT_MAX || d < INT_MIN)
 			return (__err_arg("arg invalid: int overflow"), 1);
-		ptr = new (std::nothrow) ScalaireClass(static_cast<int>(li), precision);
+		ptr = new (std::nothrow) ScalaireClass(static_cast<int>(d), precision);
 		break;
 	case 2:
-		d = std::strtod(arg, &endstr);
-		if (endstr == arg && d == 0)
-			return (__err_arg("arg invalid: no conversion can be performed"), 1);
 		if ((d == INFINITY || d == -INFINITY) && endstr && !endstr[0])
 		{
 			ptr = new (std::nothrow) ScalaireClass(d, precision);
 			break;
 		}
-		if (endstr && !(endstr[0] == 'f' && !endstr[1]))
+		if (endstr && !((endstr[0] == 'f' || endstr[0] == 'F') && !endstr[1]))
 			return (__err_arg("arg invalid: not entirely digit"), 1);
 		else if (!(d == INFINITY || d == -INFINITY) && (d == HUGE_VAL || d > __FLT_MAX__ || d < -__FLT_MAX__))
 			return (__err_arg("arg invalid: float overflow"), 1);
 		ptr = new (std::nothrow) ScalaireClass(static_cast<float>(d), precision);
 		break;
 	case 3:
-		d = std::strtod(arg, &endstr);
-		if (endstr == arg && d == 0)
-			return (__err_arg("1arg invalid: no conversion can be performed"), 1);
 		if (endstr && endstr[0])
 			return (__err_arg("arg invalid: not entirely digit"), 1);
 		if (d == HUGE_VAL)

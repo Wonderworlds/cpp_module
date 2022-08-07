@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:59:19 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/07 23:22:37 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/07 23:53:27 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,11 @@ int Span::longestSpan(void) const
 {
 	DEBUG_LOG("Span: shortestSpan function member called");
 
-	int ret = 0;
-
 	if (this->_numbers.size() < 2)
 		throw NotEnoughNumbersStoredException();
-	std::list<int> tmp = this->_numbers;
-	tmp.sort();
-	ret = (*(--tmp.end()) - *(tmp.begin()));
-	return ret;
+	int min = *std::min_element(this->_numbers.begin(), this->_numbers.end());
+	int max = *std::max_element(this->_numbers.begin(), this->_numbers.end());
+	return max - min;
 }
 Span &Span::operator=(Span const &rhs)
 {
@@ -131,4 +128,13 @@ const char *Span::NotEnoughNumbersStoredException::what() const throw()
 const char *Span::MaxSizeReachedException::what() const throw()
 {
 	return ("list full");
+}
+
+void Span::fillList(std::list<int>::iterator first, std::list<int>::iterator last)
+{
+	while (first != last)
+	{
+		this->addNumber(*first);
+		first++;
+	}
 }

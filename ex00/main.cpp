@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:08:32 by adesgran          #+#    #+#             */
-/*   Updated: 2022/08/07 21:44:54 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/08 00:02:46 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 					   << YELLOW << A << STOPC \
 					   << std::endl)
 
-#define PRINT_CONTAINER(A, B, T)                       \
+#define PRINT_CONTAINER(A, T)                          \
 	std::cout << PURPLE "Array: " YELLOW;              \
 	for (T::iterator i = A.begin(); i != A.end(); i++) \
 	{                                                  \
@@ -70,7 +70,7 @@
 			a.push_back(i * 3);                                     \
 		a.push_back(15);                                            \
 		a.push_back(42);                                            \
-		PRINT_CONTAINER(a, 12, T)                                   \
+		PRINT_CONTAINER(a, T)                                       \
 		try                                                         \
 		{                                                           \
 			PRINT(BLUE "easyfind(a, 18) basic" STOPC);              \

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:01:31 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/06 16:45:02 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/08 15:08:19 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	explicit ScalaireClass(float const &f, int const &p);
 	explicit ScalaireClass(double const &d, int const &p);
 	ScalaireClass(ScalaireClass const &src);
-	~ScalaireClass(void);
+	virtual ~ScalaireClass(void);
 
 	ScalaireClass &operator=(ScalaireClass const &rhs);
 	void print(void) const;

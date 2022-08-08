@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 16:03:44 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/07 16:44:36 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:04:38 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,35 +50,25 @@ void strToUpper(std::string &line)
 	}
 }
 
-void print_int(int &v)
-{
-	std::cout << v << "\t";
-}
-
-void print_str(std::string &s)
-{
-	std::cout << s << "\t";
-}
-
 int main(void)
 {
 	TITLE("TAB INT ==> *2");
 	int tab[6] = {0, 1, 2, 3, 4, 5};
 
 	PRINT("Start");
-	iter(tab, 6, print_int);
+	iter(tab, 6, print);
 	iter(tab, 6, mult);
 	PRINT("\nafter");
-	iter(tab, 6, print_int);
+	iter(tab, 6, print);
 	PRINT("");
 	TITLE("TAB strs ==> toUpper");
 
 	std::string strs[4] = {"Hello", " 42 ", "world", "!"};
 	PRINT("Start");
-	iter(strs, 4, print_str);
+	iter(strs, 4, print);
 	iter(strs, 4, strToUpper);
 	PRINT("\nafter");
-	iter(strs, 4, print_str);
+	iter(strs, 4, print);
 	PRINT("");
 
 	return (0);

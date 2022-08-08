@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:57:35 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/07 16:36:04 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:05:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void iter(T *tab, S size, void (*fct)(T &))
 		(*fct)(tab[index]);
 		index++;
 	}
+}
+
+template <typename T>
+void print(T &toPrint)
+{
+	std::cout << toPrint << "\t";
 }
 
 #endif

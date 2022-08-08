@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   templateHeader.hpp                                 :+:      :+:    :+:   */
+/*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:48:46 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/07 15:55:45 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:09:34 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATEHEADER_HPP
-#define TEMPLATEHEADER_HPP
+#ifndef WHATEVER_HPP
+#define WHATEVER_HPP
 
 #include <iostream>
 

@@ -1,24 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/05 15:20:56 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/08 13:48:24 by fmauguin         ###   ########.fr       */
+/*   Created: 2022/08/08 13:47:34 by fmauguin          #+#    #+#             */
+/*   Updated: 2022/08/08 13:48:58 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-# define BASE_HPP
+#include "Base.hpp"
 
-# include <iostream>
-
-class Base
-{
-public:
-	virtual ~Base(void);
-};
-
-#endif
+Base::~Base(void) {}

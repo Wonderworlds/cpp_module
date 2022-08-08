@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:21:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/07 15:35:56 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/08 15:44:29 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ int __convert(char *arg)
 	ScalaireClass *ptr = NULL;
 
 	choice = _strType(arg, &precision);
-	d = std::strtod(arg, &endstr);
-	if (endstr == arg && d == 0)
-		return (__err_arg("arg invalid: no conversion can be performed"), 1);
 	switch (choice)
 	{
 	case 0:
 		ptr = new (std::nothrow) ScalaireClass(arg[0], precision);
 		break;
 	case 1:
+		d = std::strtod(arg, &endstr);
+		if (endstr == arg && d == 0)
+			return (__err_arg("arg invalid: no conversion can be performed"), 1);
 		if (endstr && endstr[0])
 			return (__err_arg("arg invalid: not entirely digit"), 1);
 		else if (d > INT_MAX || d < INT_MIN)
@@ -98,6 +98,9 @@ int __convert(char *arg)
 		ptr = new (std::nothrow) ScalaireClass(static_cast<int>(d), precision);
 		break;
 	case 2:
+		d = std::strtod(arg, &endstr);
+		if (endstr == arg && d == 0)
+			return (__err_arg("arg invalid: no conversion can be performed"), 1);
 		if ((d == INFINITY || d == -INFINITY) && endstr && !endstr[0])
 		{
 			ptr = new (std::nothrow) ScalaireClass(d, precision);
@@ -110,6 +113,9 @@ int __convert(char *arg)
 		ptr = new (std::nothrow) ScalaireClass(static_cast<float>(d), precision);
 		break;
 	case 3:
+		d = std::strtod(arg, &endstr);
+		if (endstr == arg && d == 0)
+			return (__err_arg("arg invalid: no conversion can be performed"), 1);
 		if (endstr && endstr[0])
 			return (__err_arg("arg invalid: not entirely digit"), 1);
 		if (d == HUGE_VAL)

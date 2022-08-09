@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:21:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/08 15:44:29 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:34:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,10 @@ int __convert(char *arg)
 	{
 		ptr->print();
 		delete ptr;
+	}
+	else
+	{
+		std::cerr << "Fail alloc" << std::endl;
 	}
 	return (0);
 }

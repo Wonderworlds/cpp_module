@@ -6,26 +6,26 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:53:31 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/08 16:56:48 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:57:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 
 template <typename T>
-MutantStack<T>::MutantStack(void) :  std::stack<T>()
+MutantStack<T>::MutantStack(void) : std::stack<T>()
 {
 	DEBUG_LOG("MutantStack<T>: Default constructor called");
 
-	return ;
+	return;
 }
 
 template <typename T>
-MutantStack<T>::MutantStack(MutantStack<T> const & src) :  std::stack<T>(src)
+MutantStack<T>::MutantStack(MutantStack<T> const &src) : std::stack<T>(src)
 {
 	DEBUG_LOG("MutantStack<T>: Copy constructor called");
 
-	return ;
+	return;
 }
 
 template <typename T>
@@ -33,16 +33,16 @@ MutantStack<T>::~MutantStack(void)
 {
 	DEBUG_LOG("MutantStack<T>: Destructor called");
 
-	return ;
+	return;
 }
 
 template <typename T>
-MutantStack<T> & MutantStack<T>::operator=(MutantStack<T> const & rhs)
+MutantStack<T> &MutantStack<T>::operator=(MutantStack<T> const &rhs)
 {
 	DEBUG_LOG("MutantStack<T>: assignment operator called");
 
 	(void)rhs;
-	return ;
+	return *this;
 }
 
 template <typename T>

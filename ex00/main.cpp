@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:21:26 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/09 14:34:14 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:46:06 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,19 @@ bool strIsDigit(const char *str)
 
 int _strType(const char *str, int *precision)
 {
-	std::size_t index = 0;
+	std::size_t index = 0, before = 0;
 	bool hasDecimal = false;
 
 	while (*str && ((*str >= 9 && *str <= 13) || *str == ' '))
+	{
 		str++;
+		before++;
+	}
 	if (*str == '-' || *str == '+')
+	{
+		before++;
 		str++;
+	}
 	while (str[index])
 	{
 		if (str[index] == '.')
@@ -61,9 +67,7 @@ int _strType(const char *str, int *precision)
 	}
 	if (*precision == 0)
 		*precision = 1;
-	if (!index)
-		return -1;
-	else if (index == 1)
+	if ((index <= 1 && before == 0) || (index == 0 && before == 1))
 		return (0);
 	else if (strIsDigit(str))
 		return (1);

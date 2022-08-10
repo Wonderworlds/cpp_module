@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:59:19 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/07 23:53:27 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/10 10:01:44 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,22 @@ const char *Span::MaxSizeReachedException::what() const throw()
 }
 
 void Span::fillList(std::list<int>::iterator first, std::list<int>::iterator last)
+{
+	while (first != last)
+	{
+		this->addNumber(*first);
+		first++;
+	}
+}
+void Span::fillList(std::vector<int>::iterator first, std::vector<int>::iterator last)
+{
+	while (first != last)
+	{
+		this->addNumber(*first);
+		first++;
+	}
+}
+void Span::fillList(std::deque<int>::iterator first, std::deque<int>::iterator last)
 {
 	while (first != last)
 	{

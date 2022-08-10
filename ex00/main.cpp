@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:08:32 by adesgran          #+#    #+#             */
-/*   Updated: 2022/08/08 00:02:46 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/10 09:47:48 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ int main(void)
 	TEST("vector", std::vector<int>)
 	TEST("list", std::list<int>)
 	TEST("deque", std::deque<int>)
+	//easyfind(new int[20], 0);
 	return (0);
 }

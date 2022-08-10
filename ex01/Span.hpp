@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:48:12 by fmauguin          #+#    #+#             */
-/*   Updated: 2022/08/07 23:52:36 by fmauguin         ###   ########.fr       */
+/*   Updated: 2022/08/10 10:01:40 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <vector>
+#include <deque>
 #include <algorithm>
 #include <iterator>
 
@@ -50,6 +52,8 @@ public:
 	int longestSpan() const;
 	std::list<int> const &getList() const;
 	void fillList(std::list<int>::iterator first, std::list<int>::iterator last);
+	void fillList(std::deque<int>::iterator first, std::deque<int>::iterator last);
+	void fillList(std::vector<int>::iterator first, std::vector<int>::iterator last);
 };
 
 #endif

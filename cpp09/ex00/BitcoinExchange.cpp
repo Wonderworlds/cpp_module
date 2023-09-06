@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/06 17:46:57 by fmauguin          #+#    #+#             */
+/*   Updated: 2023/09/06 17:48:18 by fmauguin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "BitcoinExchange.hpp"
 #include "cstdlib"
 
@@ -7,40 +19,40 @@
 #define DB "data.csv"
 
 #ifdef DEBUG
-	#define DEBUG_LOG(A) PRINT(A)
+#define DEBUG_LOG(A) PRINT(A)
 #else
-	#define DEBUG_LOG(A)
+#define DEBUG_LOG(A)
 #endif
 
-int	CompareDate(std::string d1, std::string & d2)
+int CompareDate(std::string d1, std::string &d2)
 {
-	int	ymd1[3];
-	int	ymd2[3];
-	std::string	y[2];
-	std::string	m[2];
-	std::string	d[2];
+	int ymd1[3];
+	int ymd2[3];
+	std::string y[2];
+	std::string m[2];
+	std::string d[2];
 	if (d1 == d2)
 		return 1;
 	else
 	{
-		y[0] =  d1.substr(0, 4);
-		y[1] =  d2.substr(0, 4);
+		y[0] = d1.substr(0, 4);
+		y[1] = d2.substr(0, 4);
 		ymd1[0] = std::atoi(y[0].c_str());
 		ymd2[0] = std::atoi(y[1].c_str());
 		if (ymd1[0] > ymd2[0])
 			return 2;
 		else if (ymd1[0] < ymd2[0])
 			return 0;
-		m[0] =  d1.substr(5, 2);
-		m[1] =  d2.substr(5, 2);
+		m[0] = d1.substr(5, 2);
+		m[1] = d2.substr(5, 2);
 		ymd1[1] = std::atoi(m[0].c_str());
 		ymd2[1] = std::atoi(m[1].c_str());
 		if (ymd1[1] > ymd2[1])
 			return 2;
 		else if (ymd1[1] < ymd2[1])
 			return 0;
-		d[0] =  d1.substr(8, 2);
-		d[1] =  d2.substr(8, 2);
+		d[0] = d1.substr(8, 2);
+		d[1] = d2.substr(8, 2);
 		ymd1[2] = std::atoi(d[0].c_str());
 		ymd2[2] = std::atoi(d[1].c_str());
 		if (ymd1[2] > ymd2[2])
@@ -49,12 +61,13 @@ int	CompareDate(std::string d1, std::string & d2)
 	return 0;
 }
 
-double	BitcoinExchange::_GetBitcoinRate(std::string date) const {
-	std::ifstream							f;
-	char									c;
-	std::pair<std::string, std::string> 	p;
-	std::pair<std::string, std::string> 	lastp;
-	int										compare;
+double BitcoinExchange::_GetBitcoinRate(std::string date) const
+{
+	std::ifstream f;
+	char c;
+	std::pair<std::string, std::string> p;
+	std::pair<std::string, std::string> lastp;
+	int compare;
 	f.open(DB, std::ifstream::in);
 	if (f.fail())
 	{
@@ -66,7 +79,7 @@ double	BitcoinExchange::_GetBitcoinRate(std::string date) const {
 	{
 		c = f.get();
 		if (!f.good())
-			break ;
+			break;
 	}
 	c = f.get();
 	while (f.good())
@@ -76,7 +89,7 @@ double	BitcoinExchange::_GetBitcoinRate(std::string date) const {
 			p.first += c;
 			c = f.get();
 			if (!f.good())
-				break ;
+				break;
 		}
 		if (c == ',')
 		{
@@ -86,7 +99,7 @@ double	BitcoinExchange::_GetBitcoinRate(std::string date) const {
 				p.second += c;
 				c = f.get();
 				if (!f.good())
-					break ;
+					break;
 			}
 		}
 		compare = CompareDate(p.first, date);
@@ -107,35 +120,36 @@ double	BitcoinExchange::_GetBitcoinRate(std::string date) const {
 	}
 	f.close();
 	return 0;
-
 }
 
-void BitcoinExchange::printList(void) const {
+void BitcoinExchange::printList(void) const
+{
 
-	std::list<std::pair<std::string, float> >::const_iterator	itlist;
-	double														match;
+	std::list<std::pair<std::string, float> >::const_iterator itlist;
+	double match;
 	itlist = this->file.begin();
 	while (itlist != this->file.end())
 	{
 		if ((*itlist).second > 1000 || (*itlist).second < 0)
 			PRINT((*itlist).first);
-		else 
+		else
 		{
 			match = this->_GetBitcoinRate((*itlist).first);
 			if (match < 0)
 				PRINT("Error : No Match in DB => " << (*itlist).first << " | " << (*itlist).second);
 			else
-				PRINT((*itlist).first << " => " << (*itlist).second \
-				<< " = " << ((*itlist).second * match));
+				PRINT((*itlist).first << " => " << (*itlist).second
+									  << " = " << ((*itlist).second * match));
 		}
 		itlist++;
 	}
 }
 
-int strIsNumber(std::string str, bool dec) {
+int strIsNumber(std::string str, bool dec)
+{
 
-	std::string::const_iterator	it;
-	bool						point;
+	std::string::const_iterator it;
+	bool point;
 
 	point = false;
 	it = str.begin();
@@ -156,18 +170,19 @@ int strIsNumber(std::string str, bool dec) {
 	return 1;
 }
 
-int dateFormat(std::string date) {
+int dateFormat(std::string date)
+{
 
-	int	ymd[3];
-	std::string	y;
-	std::string	m;
-	std::string	d;
+	int ymd[3];
+	std::string y;
+	std::string m;
+	std::string d;
 
 	if (!(date[4] == '-' && date[7] == '-'))
 		return 1;
-	y =  date.substr(0, 4);
-	m =  date.substr(5, 2);
-	d =  date.substr(8, 2);
+	y = date.substr(0, 4);
+	m = date.substr(5, 2);
+	d = date.substr(8, 2);
 	if (!strIsNumber(y, 0) || !strIsNumber(m, 0) || !strIsNumber(d, 0))
 		return (1);
 	ymd[0] = std::atoi(y.c_str());
@@ -177,28 +192,26 @@ int dateFormat(std::string date) {
 	if (ymd[1] > 12)
 		return 1;
 	ymd[2] = std::atoi(d.c_str());
-	if (ymd[2] > 31 || (ymd[2] > 29 && ymd[1] == 2) || (ymd[2] > 30\
-		&& (ymd[1] == 4 || ymd[1] == 6 || ymd[1] == 9 || ymd[1] == 11)))
+	if (ymd[2] > 31 || (ymd[2] > 29 && ymd[1] == 2) || (ymd[2] > 30 && (ymd[1] == 4 || ymd[1] == 6 || ymd[1] == 9 || ymd[1] == 11)))
 		return 1;
 	return 0;
 }
 
-
 void BitcoinExchange::_addToList(std::string str)
 {
-	std::pair<std::string, float>	p;
-	std::string						value;
-	size_t							sep;
+	std::pair<std::string, float> p;
+	std::string value;
+	size_t sep;
 
 	if (str == "date | value" && this->file.size() == 0)
-		return ;
+		return;
 	sep = str.find(" | ", 0);
 	p.second = -1;
 	if (sep == std::string::npos || sep != 10)
 	{
 		p.first = "Error : bad input => " + str;
 		this->file.push_back(p);
-		return ;
+		return;
 	}
 	value = str.substr(sep + 3, std::string::npos);
 	if (!strIsNumber(value, true))
@@ -223,11 +236,12 @@ void BitcoinExchange::_addToList(std::string str)
 	this->file.push_back(p);
 }
 
-int	BitcoinExchange::setFile(char *file) {
+int BitcoinExchange::setFile(char *file)
+{
 
-	std::ifstream	f;
-	char			c;
-	std::string		str;
+	std::ifstream f;
+	char c;
+	std::string str;
 
 	f.open(file, std::ifstream::in);
 	if (f.fail())
@@ -243,7 +257,7 @@ int	BitcoinExchange::setFile(char *file) {
 			str += c;
 			c = f.get();
 			if (!f.good())
-				break ;
+				break;
 		}
 		this->_addToList(str);
 		str.clear();
@@ -253,7 +267,8 @@ int	BitcoinExchange::setFile(char *file) {
 	return 0;
 }
 
-std::list<std::pair<std::string, float> >	BitcoinExchange::getFile(void) const {
+std::list<std::pair<std::string, float> > BitcoinExchange::getFile(void) const
+{
 	return this->file;
 }
 
@@ -261,34 +276,39 @@ std::list<std::pair<std::string, float> >	BitcoinExchange::getFile(void) const {
 #pragma region Constructor && Destructor
 #endif
 
-BitcoinExchange::BitcoinExchange(void) {
+BitcoinExchange::BitcoinExchange(void)
+{
 	DEBUG_LOG("BitcoinExchange: Default Constructor called");
-	return ;
+	return;
 }
 
-BitcoinExchange::BitcoinExchange(char *file) {
+BitcoinExchange::BitcoinExchange(char *file)
+{
 	DEBUG_LOG("BitcoinExchange: Parametric Constructor called");
 	this->setFile(file);
-	return ;
+	return;
 }
 
-BitcoinExchange::BitcoinExchange(BitcoinExchange const & src) {
+BitcoinExchange::BitcoinExchange(BitcoinExchange const &src)
+{
 	DEBUG_LOG("BitcoinExchange: Copy Constructor called");
 	*this = src;
 
-	return ;
+	return;
 }
 
-BitcoinExchange::~BitcoinExchange(void) {
+BitcoinExchange::~BitcoinExchange(void)
+{
 	DEBUG_LOG("BitcoinExchange: Destructor called");
-	return ;
+	return;
 }
 
 #ifndef __GNUC__
-#pragma endregion Constructor && Destructor
+#pragma endregion Constructor &&Destructor
 #endif
 
-BitcoinExchange &	BitcoinExchange::operator=(BitcoinExchange const & rhs) {
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs)
+{
 	DEBUG_LOG("BitcoinExchange: Assignement operator called");
 
 	if (this != &rhs)

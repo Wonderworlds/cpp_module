@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:46:52 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/06 18:00:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2023/09/06 22:55:09 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,33 @@
 
 #include <iostream>
 #include <fstream>
-#include <list>
+#include <map>
 #include <string>
 
 class BitcoinExchange
 {
 private:
-	std::list<std::pair<std::string, float> > file;
+	std::map<std::string, float> 	_db;
 
-	int _DateFormat(std::string const &date) const;
-	int _StrIsNumber(std::string const &str, bool dec) const;
-	int _CompareDate(std::string const &d1, std::string const &d2) const;
-	void _AddToList(std::string const &str);
-	double _GetBitcoinRate(std::string const &date) const;
+	int		_strIsDate(std::string const &date) const;
+	int		_strIsNumber(std::string const &str, bool dec) const;
+	int		_compareDate(std::string const &d1, std::string const &d2) const;
+	void	 _parseLineDB(std::string const &line, const char *sep, const size_t sepSize);
+	void	 _parseLineFile(std::string const &line, const char *sep, const size_t sepSize);
+	double	_getBitcoinRate(std::string const &date) const;
 
 public:
 	BitcoinExchange(void);
-	BitcoinExchange(char *file);
+	BitcoinExchange(std::map<std::string, float> const &db);
 	BitcoinExchange(BitcoinExchange const &src);
 	~BitcoinExchange(void);
 
 	BitcoinExchange &operator=(BitcoinExchange const &rhs);
-	int SetFile(char const *file);
-	void PrintList(void) const;
-	std::list<std::pair<std::string, float> >getFile(void) const;
+	void printOutput(void) const;
+	std::map<std::string, float> getDB(void) const;
+	std::string const &getFile(void) const;
+	int setFile(std::string const &file);
+	int	initDB(std::string const &dbFile);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:46:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/06 18:04:00 by fmauguin         ###   ########.fr       */
+/*   Updated: 2023/09/06 22:59:20 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #define DEBUG_LOG(A)
 #endif
 
-int BitcoinExchange::_CompareDate(std::string const &d1, std::string const &d2) const
+int BitcoinExchange::_compareDate(std::string const &d1, std::string const &d2) const
 {
 	int ymd1[3];
 	int ymd2[3];
@@ -61,91 +61,30 @@ int BitcoinExchange::_CompareDate(std::string const &d1, std::string const &d2) 
 	return 0;
 }
 
-double BitcoinExchange::_GetBitcoinRate(std::string const &date) const
+double BitcoinExchange::_getBitcoinRate(std::string const &date) const
 {
-	std::ifstream f;
-	char c;
-	std::pair<std::string, std::string> p;
-	std::pair<std::string, std::string> lastp;
+	std::map<std::string, float>::const_iterator it;
 	int compare;
-	f.open(DB, std::ifstream::in);
-	if (f.fail())
+	it = _db.begin();
+	while (it != _db.end())
 	{
-		PRINT("Error : database couldn't open!");
-		return 1;
-	}
-	c = f.get();
-	while (c != '\n')
-	{
-		c = f.get();
-		if (!f.good())
-			break;
-	}
-	c = f.get();
-	while (f.good())
-	{
-		while (c != ',')
-		{
-			p.first += c;
-			c = f.get();
-			if (!f.good())
-				break;
-		}
-		if (c == ',')
-		{
-			c = f.get();
-			while (c != '\n')
-			{
-				p.second += c;
-				c = f.get();
-				if (!f.good())
-					break;
-			}
-		}
-		compare = _CompareDate(p.first, date);
+		compare = _compareDate(it->first, date);
 		if (compare > 0)
 		{
-			f.close();
-			if (compare == 1)
-				return (std::atof(p.second.c_str()));
-			else if (compare == 2 && !lastp.second.empty())
-				return (std::atof(lastp.second.c_str()));
-			else if (lastp.second.empty())
+			if (it == _db.begin())
 				return -1;
-		}
-		lastp = p;
-		p.first.clear();
-		p.second.clear();
-		c = f.get();
-	}
-	f.close();
-	return (std::atof(lastp.second.c_str()));
-}
-
-void BitcoinExchange::PrintList(void) const
-{
-
-	std::list<std::pair<std::string, float> >::const_iterator itlist;
-	double match;
-	itlist = this->file.begin();
-	while (itlist != this->file.end())
-	{
-		if ((*itlist).second > 1000 || (*itlist).second < 0)
-			PRINT((*itlist).first);
-		else
-		{
-			match = this->_GetBitcoinRate((*itlist).first);
-			if (match < 0)
-				PRINT("Error : No Match in DB => " << (*itlist).first << " | " << (*itlist).second);
+			else if (compare == 1)
+				return it->second;
 			else
-				PRINT((*itlist).first << " => " << (*itlist).second
-									  << " = " << ((*itlist).second * match));
+				return (--it)->second;
 		}
-		itlist++;
+		else
+		it++;
 	}
+	return -1;
 }
 
-int BitcoinExchange::_StrIsNumber(std::string const &str, bool dec) const
+int BitcoinExchange::_strIsNumber(std::string const &str, bool dec) const
 {
 
 	std::string::const_iterator it;
@@ -170,9 +109,8 @@ int BitcoinExchange::_StrIsNumber(std::string const &str, bool dec) const
 	return 1;
 }
 
-int BitcoinExchange::_DateFormat(std::string const &date) const
+int BitcoinExchange::_strIsDate(std::string const &date) const
 {
-
 	int ymd[3];
 	std::string y;
 	std::string m;
@@ -183,93 +121,42 @@ int BitcoinExchange::_DateFormat(std::string const &date) const
 	y = date.substr(0, 4);
 	m = date.substr(5, 2);
 	d = date.substr(8, 2);
-	if (!_StrIsNumber(y, 0) || !_StrIsNumber(m, 0) || !_StrIsNumber(d, 0))
-		return (1);
+	if (!_strIsNumber(y, 0) || !_strIsNumber(m, 0) || !_strIsNumber(d, 0))
+		return 0;
 	ymd[0] = std::atoi(y.c_str());
 	if (ymd[0] > MAX_YEAR)
-		return 1;
+		return 0;
 	ymd[1] = std::atoi(m.c_str());
 	if (ymd[1] > 12)
-		return 1;
+		return 0;
 	ymd[2] = std::atoi(d.c_str());
 	if (ymd[2] > 31 || (ymd[2] > 29 && ymd[1] == 2) || (ymd[2] > 30 && (ymd[1] == 4 || ymd[1] == 6 || ymd[1] == 9 || ymd[1] == 11)))
-		return 1;
-	return 0;
+		return 0;
+	return 1;
 }
 
-void BitcoinExchange::_AddToList(std::string const &str)
+int BitcoinExchange::setFile(std::string const &file)
 {
-	std::pair<std::string, float> p;
-	std::string value;
-	size_t sep;
-
-	if (str == "date | value" && this->file.size() == 0)
-		return;
-	sep = str.find(" | ", 0);
-	p.second = -1;
-	if (sep == std::string::npos || sep != 10)
-	{
-		p.first = "Error : bad input => " + str;
-		this->file.push_back(p);
-		return;
-	}
-	value = str.substr(sep + 3, std::string::npos);
-	if (!_StrIsNumber(value, true))
-		p.first = "Error : bad input => " + str;
-	else
-	{
-		p.second = std::atof(value.c_str());
-		if (p.second < 0)
-			p.first = "Error: not a positive number.";
-		else if (p.second > 1000)
-			p.first = "Error: too large a number.";
-		else
-		{
-			p.first = str.substr(0, sep);
-			if (_DateFormat(p.first))
-			{
-				p.second = -1;
-				p.first = "Error: bad date => " + str;
-			}
-		}
-	}
-	this->file.push_back(p);
-}
-
-int BitcoinExchange::SetFile(char const *file)
-{
-
 	std::ifstream f;
-	char c;
-	std::string str;
+	std::string line;
 
-	f.open(file, std::ifstream::in);
+	f.open(file.c_str(), std::ifstream::in);
 	if (f.fail())
 	{
-		PRINT("Error : File couldn't open!");
+		PRINT("Error: File couldn't open!");
 		return 1;
 	}
-	c = f.get();
-	while (f.good())
+	std::getline(f, line);
+	if (line == "date | value")
+		std::getline(f, line);
+	while (!f.eof())
 	{
-		while (c != '\n')
-		{
-			str += c;
-			c = f.get();
-			if (!f.good())
-				break;
-		}
-		this->_AddToList(str);
-		str.clear();
-		c = f.get();
+		_parseLineFile(line, " | ", 3);
+		std::getline(f, line);
 	}
+	_parseLineFile(line, " | ", 3);
 	f.close();
 	return 0;
-}
-
-std::list<std::pair<std::string, float> >BitcoinExchange::getFile(void) const
-{
-	return this->file;
 }
 
 #ifndef __GNUC__
@@ -282,10 +169,9 @@ BitcoinExchange::BitcoinExchange(void)
 	return;
 }
 
-BitcoinExchange::BitcoinExchange(char *file)
+BitcoinExchange::BitcoinExchange(std::map<std::string, float> const &db) : _db(db)
 {
 	DEBUG_LOG("BitcoinExchange: Parametric Constructor called");
-	this->SetFile(file);
 	return;
 }
 
@@ -293,7 +179,6 @@ BitcoinExchange::BitcoinExchange(BitcoinExchange const &src)
 {
 	DEBUG_LOG("BitcoinExchange: Copy Constructor called");
 	*this = src;
-
 	return;
 }
 
@@ -312,6 +197,90 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs)
 	DEBUG_LOG("BitcoinExchange: Assignement operator called");
 
 	if (this != &rhs)
-		this->file = rhs.getFile();
+		this->_db = rhs.getDB();
 	return *this;
+}
+
+std::map<std::string, float> BitcoinExchange::getDB(void) const
+{
+	return this->_db;
+}
+
+void BitcoinExchange::_parseLineDB(std::string const &line, const char *sep, const size_t sepSize)
+{
+	size_t sepPos;
+	std::string date;
+	std::string value;
+
+	sepPos = line.find(sep);
+	if (sepPos != std::string::npos)
+	{
+		date = line.substr(0, sepPos);
+		if (!_strIsDate(date))
+			return;
+		value = line.substr(sepPos + sepSize, line.size() - sepPos);
+		if (!_strIsNumber(value, true))
+			return;
+	}
+	this->_db[date.c_str()] = std::atof(value.c_str());
+}
+
+void BitcoinExchange::_parseLineFile(std::string const &line, const char *sep, const size_t sepSize)
+{
+	size_t sepPos;
+	std::string date;
+	std::string value;
+	float valuef;
+	double rate;
+
+	sepPos = line.find(sep);
+	if (sepPos != std::string::npos)
+	{
+		date = line.substr(0, sepPos);
+		if (!_strIsDate(date))
+		{
+			PRINT("Error: bad input => " << line);
+			return;
+		}
+		value = line.substr(sepPos + sepSize, line.size() - sepPos);
+		if (!_strIsNumber(value, true))
+		{
+			PRINT("Error: bad input => " << line);
+			return;
+		}
+		valuef = std::atof(value.c_str());
+		if (valuef < 0)
+			PRINT("Error: not a positive number.");
+		else if (valuef > 1000)
+			PRINT("Error: too large a number.");
+		else
+		{
+			rate = _getBitcoinRate(date);
+			if (rate == -1)
+				PRINT("Error: No Match in DB => " << line);
+			else
+				PRINT(date <<  " => " << value << " = " << (rate * valuef));
+		}
+	}
+	else
+		PRINT("Error: bad input => " << line);
+}
+
+int BitcoinExchange::initDB(std::string const &dbFile)
+{
+	std::ifstream dbStream;
+	std::string line;
+
+	dbStream.open(dbFile.c_str(), std::istream::in);
+	if (dbStream.fail())
+	{
+		PRINT("Error: file database.");
+		return 1;
+	}
+	while (!dbStream.eof())
+	{
+		std::getline(dbStream, line);
+		_parseLineDB(line, ",", 1);
+	}
+	return 0;
 }

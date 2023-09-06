@@ -6,13 +6,13 @@
 #    By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/03 14:23:03 by fmauguin          #+#    #+#              #
-#    Updated: 2023/09/06 13:00:46 by fmauguin         ###   ########.fr        #
+#    Updated: 2023/09/06 13:38:45 by fmauguin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL				=	/bin/sh
 
-PROGNAME			:=	a.out
+PROGNAME			:=	btc
 
 INCLUDEDIR			:=	./
 SRCDIR				:=	./

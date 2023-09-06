@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:46:57 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/06 17:48:18 by fmauguin         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:04:00 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #define DEBUG_LOG(A)
 #endif
 
-int CompareDate(std::string d1, std::string &d2)
+int BitcoinExchange::_CompareDate(std::string const &d1, std::string const &d2) const
 {
 	int ymd1[3];
 	int ymd2[3];
@@ -61,7 +61,7 @@ int CompareDate(std::string d1, std::string &d2)
 	return 0;
 }
 
-double BitcoinExchange::_GetBitcoinRate(std::string date) const
+double BitcoinExchange::_GetBitcoinRate(std::string const &date) const
 {
 	std::ifstream f;
 	char c;
@@ -102,7 +102,7 @@ double BitcoinExchange::_GetBitcoinRate(std::string date) const
 					break;
 			}
 		}
-		compare = CompareDate(p.first, date);
+		compare = _CompareDate(p.first, date);
 		if (compare > 0)
 		{
 			f.close();
@@ -119,10 +119,10 @@ double BitcoinExchange::_GetBitcoinRate(std::string date) const
 		c = f.get();
 	}
 	f.close();
-	return 0;
+	return (std::atof(lastp.second.c_str()));
 }
 
-void BitcoinExchange::printList(void) const
+void BitcoinExchange::PrintList(void) const
 {
 
 	std::list<std::pair<std::string, float> >::const_iterator itlist;
@@ -145,7 +145,7 @@ void BitcoinExchange::printList(void) const
 	}
 }
 
-int strIsNumber(std::string str, bool dec)
+int BitcoinExchange::_StrIsNumber(std::string const &str, bool dec) const
 {
 
 	std::string::const_iterator it;
@@ -170,7 +170,7 @@ int strIsNumber(std::string str, bool dec)
 	return 1;
 }
 
-int dateFormat(std::string date)
+int BitcoinExchange::_DateFormat(std::string const &date) const
 {
 
 	int ymd[3];
@@ -183,7 +183,7 @@ int dateFormat(std::string date)
 	y = date.substr(0, 4);
 	m = date.substr(5, 2);
 	d = date.substr(8, 2);
-	if (!strIsNumber(y, 0) || !strIsNumber(m, 0) || !strIsNumber(d, 0))
+	if (!_StrIsNumber(y, 0) || !_StrIsNumber(m, 0) || !_StrIsNumber(d, 0))
 		return (1);
 	ymd[0] = std::atoi(y.c_str());
 	if (ymd[0] > MAX_YEAR)
@@ -197,7 +197,7 @@ int dateFormat(std::string date)
 	return 0;
 }
 
-void BitcoinExchange::_addToList(std::string str)
+void BitcoinExchange::_AddToList(std::string const &str)
 {
 	std::pair<std::string, float> p;
 	std::string value;
@@ -214,7 +214,7 @@ void BitcoinExchange::_addToList(std::string str)
 		return;
 	}
 	value = str.substr(sep + 3, std::string::npos);
-	if (!strIsNumber(value, true))
+	if (!_StrIsNumber(value, true))
 		p.first = "Error : bad input => " + str;
 	else
 	{
@@ -226,7 +226,7 @@ void BitcoinExchange::_addToList(std::string str)
 		else
 		{
 			p.first = str.substr(0, sep);
-			if (dateFormat(p.first))
+			if (_DateFormat(p.first))
 			{
 				p.second = -1;
 				p.first = "Error: bad date => " + str;
@@ -236,7 +236,7 @@ void BitcoinExchange::_addToList(std::string str)
 	this->file.push_back(p);
 }
 
-int BitcoinExchange::setFile(char *file)
+int BitcoinExchange::SetFile(char const *file)
 {
 
 	std::ifstream f;
@@ -259,7 +259,7 @@ int BitcoinExchange::setFile(char *file)
 			if (!f.good())
 				break;
 		}
-		this->_addToList(str);
+		this->_AddToList(str);
 		str.clear();
 		c = f.get();
 	}
@@ -267,7 +267,7 @@ int BitcoinExchange::setFile(char *file)
 	return 0;
 }
 
-std::list<std::pair<std::string, float> > BitcoinExchange::getFile(void) const
+std::list<std::pair<std::string, float> >BitcoinExchange::getFile(void) const
 {
 	return this->file;
 }
@@ -285,7 +285,7 @@ BitcoinExchange::BitcoinExchange(void)
 BitcoinExchange::BitcoinExchange(char *file)
 {
 	DEBUG_LOG("BitcoinExchange: Parametric Constructor called");
-	this->setFile(file);
+	this->SetFile(file);
 	return;
 }
 

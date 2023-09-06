@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:46:52 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/06 17:47:57 by fmauguin         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:00:57 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ class BitcoinExchange
 {
 private:
 	std::list<std::pair<std::string, float> > file;
-	std::list<std::pair<std::string, float> > db;
 
-	int _CheckFormatFile(void);
-	void _addToList(std::string str);
-	double _GetBitcoinRate(std::string date) const;
+	int _DateFormat(std::string const &date) const;
+	int _StrIsNumber(std::string const &str, bool dec) const;
+	int _CompareDate(std::string const &d1, std::string const &d2) const;
+	void _AddToList(std::string const &str);
+	double _GetBitcoinRate(std::string const &date) const;
 
 public:
 	BitcoinExchange(void);
@@ -35,9 +36,9 @@ public:
 	~BitcoinExchange(void);
 
 	BitcoinExchange &operator=(BitcoinExchange const &rhs);
-	int setFile(char *file);
-	void printList(void) const;
-	std::list<std::pair<std::string, float> > getFile(void) const;
+	int SetFile(char const *file);
+	void PrintList(void) const;
+	std::list<std::pair<std::string, float> >getFile(void) const;
 };
 
 #endif

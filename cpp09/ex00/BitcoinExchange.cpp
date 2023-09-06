@@ -12,7 +12,7 @@
 	#define DEBUG_LOG(A)
 #endif
 
-int	CompareDate(std::string d1, std::string d2)
+int	CompareDate(std::string d1, std::string & d2)
 {
 	int	ymd1[3];
 	int	ymd2[3];
@@ -62,6 +62,13 @@ double	BitcoinExchange::_GetBitcoinRate(std::string date) const {
 		return 1;
 	}
 	c = f.get();
+	while (c != '\n')
+	{
+		c = f.get();
+		if (!f.good())
+			break ;
+	}
+	c = f.get();
 	while (f.good())
 	{
 		while (c != ',')
@@ -73,6 +80,7 @@ double	BitcoinExchange::_GetBitcoinRate(std::string date) const {
 		}
 		if (c == ',')
 		{
+			c = f.get();
 			while (c != '\n')
 			{
 				p.second += c;
@@ -83,13 +91,15 @@ double	BitcoinExchange::_GetBitcoinRate(std::string date) const {
 		}
 		compare = CompareDate(p.first, date);
 		if (compare > 0)
+		{
 			f.close();
-		if (compare == 1)
-			return (std::atof(p.second.c_str()));
-		else if (compare == 2 && !lastp.second.empty())
-			return (std::atof(lastp.second.c_str()));
-		else if (lastp.second.empty())
-
+			if (compare == 1)
+				return (std::atof(p.second.c_str()));
+			else if (compare == 2 && !lastp.second.empty())
+				return (std::atof(lastp.second.c_str()));
+			else if (lastp.second.empty())
+				return -1;
+		}
 		lastp = p;
 		p.first.clear();
 		p.second.clear();

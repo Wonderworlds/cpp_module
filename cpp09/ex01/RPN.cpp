@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 20:33:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/06 20:33:43 by fmauguin         ###   ########.fr       */
+/*   Updated: 2023/09/07 00:34:05 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 	#define DEBUG_LOG(A)
 #endif
 
-int	RPN::_SetRPN(std::string const &rpn) {
-
-}
 
 #ifndef __GNUC__
 #pragma region Constructor && Destructor
@@ -33,9 +30,8 @@ RPN::RPN(void) {
 	return ;
 }
 
-RPN::RPN(std::string const &rpn) {
+RPN::RPN(std::string const &str) : _str(str) {
 	DEBUG_LOG("RPN: Parametric Constructor called");
-	this->_SetRPN(rpn);
 	return ;
 }
 
@@ -60,10 +56,49 @@ RPN &	RPN::operator=(RPN const & rhs) {
 	DEBUG_LOG("RPN: Assignement operator called");
 
 	if (this != &rhs)
-		this->rpn = rhs.GetValue();
+		this->_str = rhs.getStr();
 	return *this;
 }
 
-std::deque<char> const & RPN::GetValue(void) const {
-	return this->rpn;
+void RPN::setStr(std::string const &str) {
+	this->_str = str;
+}
+
+std::string const &RPN::getStr(void) const {
+	return this->_str;
+}
+
+int	RPN::_calculator(int n1, int n2, char op) const
+{
+	if (op == '+')
+		return n1 + n2;
+	if (op == '-')
+		return n2 - n1;
+	if (op == '*')
+		return n1 * n2;
+	if (op == '/')
+	{
+		if (n1 == 0)
+		return n2 / n1;
+	}
+}
+
+int	RPN::_resolve(void) {
+
+	int	n1, n2;
+	int result;
+	std::string::const_iterator	it;
+
+	it = _str.begin();
+	while (it != _str.end())
+	{
+		if (*it == '+' || *it == '-' || *it == '*' || *it == '/')
+		{
+			n1 = _rpn.top();
+			_rpn.pop();
+			n2 = _rpn.top();
+			_rpn.pop();
+		}
+		it++
+	}
 }

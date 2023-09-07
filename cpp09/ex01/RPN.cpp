@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 20:33:17 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/07 14:01:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:15:22 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,41 @@
 #define PRINT(A) std::cout << A << std::endl
 
 #ifdef DEBUG
-	#define DEBUG_LOG(A) PRINT(A)
+#define DEBUG_LOG(A) PRINT(A)
 #else
-	#define DEBUG_LOG(A)
+#define DEBUG_LOG(A)
 #endif
-
 
 #ifndef __GNUC__
 #pragma region Constructor && Destructor
 #endif
 
-RPN::RPN(void) {
+RPN::RPN(void)
+{
 	DEBUG_LOG("RPN: Default Constructor called");
-	return ;
+	return;
 }
 
-RPN::RPN(RPN const & src) {
+RPN::RPN(RPN const &src)
+{
 	DEBUG_LOG("RPN: Copy Constructor called");
 	*this = src;
 
-	return ;
+	return;
 }
 
-RPN::~RPN(void) {
+RPN::~RPN(void)
+{
 	DEBUG_LOG("RPN: Destructor called");
-	return ;
+	return;
 }
 
 #ifndef __GNUC__
-#pragma endregion Constructor && Destructor
+#pragma endregion Constructor &&Destructor
 #endif
 
-
-RPN &	RPN::operator=(RPN const & rhs) {
+RPN &RPN::operator=(RPN const &rhs)
+{
 	DEBUG_LOG("RPN: Assignement operator called");
 
 	if (this != &rhs)
@@ -55,11 +57,12 @@ RPN &	RPN::operator=(RPN const & rhs) {
 	return *this;
 }
 
-std::stack<int> const &RPN::getRPN(void) const {
+std::stack<int> const &RPN::getRPN(void) const
+{
 	return this->_rpn;
 }
 
-int	RPN::_calculator(int n1, int n2, char op, bool *error)
+int RPN::_calculator(int n1, int n2, char op, bool *error)
 {
 	if (op == '+')
 		return n2 + n1;
@@ -80,10 +83,11 @@ int	RPN::_calculator(int n1, int n2, char op, bool *error)
 	return (0);
 }
 
-int	RPN::resolve(std::string const &str) {
+int RPN::resolve(std::string const &str)
+{
 
-	int	n1, n2;
-	std::string::const_iterator	it;
+	int n1, n2;
+	std::string::const_iterator it;
 	bool error = false;
 
 	it = str.begin();
@@ -103,24 +107,28 @@ int	RPN::resolve(std::string const &str) {
 			_rpn.push(_calculator(n1, n2, *it, &error));
 			if (error)
 				return (1);
+			it++;
 		}
 		else if (std::isdigit(*it))
 		{
 			_rpn.push(*it - '0');
+			it++;
+			if (std::isdigit(*it))
+			{
+				PRINT("Error: RPN not valid, number >= 10.");
+				return 1;
+			}
 		}
-		else if (!std::isspace(*it))
-		{
-			PRINT("Error: RPN not valid, not authorized character.");
-			return 1;
-		}
-		it++;
-		if (std::isspace(*it))
+		else if (std::isspace(*it))
 		{
 			while (std::isspace(*it))
 				it++;
 		}
-		else if (it == str.end())
-			break ;
+		else
+		{
+			PRINT("Error: RPN not valid, not authorized character.");
+			return 1;
+		}
 	}
 	if (_rpn.size() > 1)
 	{

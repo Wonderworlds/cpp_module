@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:26:11 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/07 23:18:11 by fmauguin         ###   ########.fr       */
+/*   Updated: 2023/09/07 23:26:14 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void PmergeMe::solve(void)
 		t_vec = _FJ_Algo(_vec, vec2, vec1, -1);
 		t_deq = _FJ_Algo(_deq, deq2, deq1, -1);
 	}
-	std::cout << "After: ";
+	std::cout << "After:  ";
 	for (size_t i = 0; i < deq1.size(); i++)
 	{
 		if (i == 4 && deq1.size() > 5)

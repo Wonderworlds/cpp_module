@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:26:21 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/07 23:16:58 by fmauguin         ###   ########.fr       */
+/*   Updated: 2023/09/07 23:25:35 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ private:
 
 		for (size_t i = 0; i < c_pair.size(); i++)
 			c_temp.push_back(c_pair[i].second);
-
+	
 		std::sort(c_sort.begin(), c_sort.end());
 
 		for (size_t i = 0; i < c_temp.size(); i++)

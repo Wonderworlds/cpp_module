@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 20:33:20 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/07 13:47:14 by fmauguin         ###   ########.fr       */
+/*   Created: 2023/09/07 13:35:56 by fmauguin          #+#    #+#             */
+/*   Updated: 2023/09/07 13:41:39 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RPN_HPP
-# define RPN_HPP
+#include "RPN.hpp"
 
-# include <iostream>
-# include <stack>
-# include <string>
-# include <cctype>
-
-class RPN
+int	main(int ac, char **av)
 {
-private:
-	std::stack<int> _rpn;
-	int _calculator(int n1, int n2, char op, bool *error);
-public:
-	RPN(void);
-	RPN(RPN const & src);
-	~RPN(void);
+	RPN	myRPN;
 
-	RPN &	operator=(RPN const & rhs);
-	std::stack<int> const &getRPN(void) const;
-	int	resolve(std::string const &str);
-};
-
-#endif
+	if (ac != 2)
+	{
+		std::cout << "Error: Invalid arguments." << std::endl;
+		return 1;
+	}
+	else
+	{
+		return (myRPN.resolve(av[1]));
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: fmauguin <fmauguin@student.42.fr >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:57:25 by fmauguin          #+#    #+#             */
-/*   Updated: 2023/09/07 17:48:55 by fmauguin         ###   ########.fr       */
+/*   Updated: 2023/09/07 22:38:52 by fmauguin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int main(int ac, char **av)
 		std::cout << "Error: Missing arguments." << std::endl;
 		return 1;
 	}
-	if (pme.fillContainer(&av[1], ac - 1))
+	if (pme.init(&av[1], ac - 1))
 		return 1;
-	pme.printOutput();
+	pme.solve();
 	return 0;
 }
